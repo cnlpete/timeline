@@ -1,5 +1,11 @@
 <?php
-
+/* 
+ *
+ * @link http://github.com/cnlpete/timeline
+ * @author Hauke Schade <http://hauke-schade.de>
+ *
+ */
+ 
 class Util {
 
 	static function ArrayToSelect($array, $name, $key = null, $selectedElement = null) {

@@ -1,4 +1,10 @@
 <?php
+/* 
+ *
+ * @link http://github.com/cnlpete/timeline
+ * @author Hauke Schade <http://hauke-schade.de>
+ *
+ */
 
 require_once('config.class.php');
 require_once('log.class.php');

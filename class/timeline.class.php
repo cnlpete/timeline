@@ -1,5 +1,11 @@
 <?php
-
+/* 
+ *
+ * @link http://github.com/cnlpete/timeline
+ * @author Hauke Schade <http://hauke-schade.de>
+ *
+ */
+ 
 require_once('db.class.php');
 require_once('event.class.php');
 require_once('colorclasses.class.php');

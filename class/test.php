@@ -1,4 +1,11 @@
 <?php
+/* 
+ *
+ * @link http://github.com/cnlpete/timeline
+ * @author Hauke Schade <http://hauke-schade.de>
+ *
+ */
+
 function custom_sort($a, $b) {
 	return $a['start'] > $b['start'];
 }

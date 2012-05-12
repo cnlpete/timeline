@@ -1,3 +1,11 @@
+<?php
+/* 
+ *
+ * @link http://github.com/cnlpete/timeline
+ * @author Hauke Schade <http://hauke-schade.de>
+ *
+ */
+?>
 <!DOCTYPE html>
 <html>
 <head>

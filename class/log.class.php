@@ -37,7 +37,8 @@ class Log {
 
 	public static function critical($sMessage, $bDie = true) {
 		Log::showMessage("[C] ".$sMessage, 'critical');
-		die('');
+		if ($bDie === true)
+		  die('');
 	}
 
 	public static function debug($sMessage) {

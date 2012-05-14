@@ -29,13 +29,14 @@ class Config {
 	public $tl_event_padding_y  = 40;
 
 	static function getInstance() {
-		if( !Config::$oInstance ) {
-			Config::$oInstance = new Config();
+		if( !self::$oInstance ) {
+			self::$oInstance = new Config();
 		}
-		if( !Config::$oInstance ) {
+		if( !self::$oInstance ) {
 			Log::critical('Could not create Config singleton.');
 		}
-		return Config::$oInstance;
+
+		return self::$oInstance;
 	}
 }
 ?>

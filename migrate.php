@@ -72,20 +72,19 @@ class Migrate {
   }
   
   private function _getExecutedMigrations() {
-		$sSql = <<<EOD
+    $sSql = <<<EOD
 SELECT 
-  e.file, UNIX_TIMESTAMP(executed) AS executed 
+  file, UNIX_TIMESTAMP(executed) AS executed 
 FROM `migrations`
-ORDER BY e.file ASC
+ORDER BY file ASC
 EOD;
-    $migrations = Array();
+    $aMigrations = Array();
     foreach (DB::queryAssoc($sSql) as $r)
-      $migrations[$r['file']] = $r['executed'];
-    return $migrations;
+      $aMigrations[md5($r['file'])] = $r['executed'];
+    return $aMigrations;
   }
   
   private function _addToMigrationDB($sFileName) {
-    $sFilename = md5($sFilename);
     $sSql = <<<EOD
 INSERT INTO `migrations` (`file`) 
 VALUES ('{$sFileName}');
@@ -126,7 +125,7 @@ EOD;
   }
 
   public function doMigration($fileHash) {
-    if (isset($this->_aMigrations[$fileHash])) {
+    if (isset($this->_aMigrations[$fileHash]) && $this->_aMigrations[$fileHash]['executed'] == false) {
       $aReturn = array();
       // execute migration, depending on file extension
       if ($this->_aMigrations[$fileHash]['ext'] == 'sql')
@@ -150,6 +149,7 @@ if (isset($_REQUEST['file'])) {
     echo $m->toHtml();
   }
   else {
+    $mReturn['debug'] = Log::getDebugMsg();
     echo json_encode($mReturn);
   }
 }

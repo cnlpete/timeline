@@ -13,16 +13,14 @@ require_once('log.class.php');
 
 class DB
 {
-	private $db_connect_id;
+	private $db_connect_id = null;
 	private $query_result;
-	private $oConfig = null;
 
 	private static $oInstance = null;
 
-	private function DB(Config $oConfig) {
-
+	private function __construct() {
 		if ( !$this->db_connect_id ) {
-
+		  $oConfig = Config::getInstance();
 			if ( !$this->db_connect_id = mysql_connect($oConfig->db_host . ":" . $oConfig->db_port,
 				$oConfig->db_user,
 				$oConfig->db_passwd) ) {
@@ -37,18 +35,17 @@ class DB
 			}
 			$this->sql_query("SET NAMES 'utf8'");
 		}
-		$this->oConfig = $oConfig;
 	}
 
 	static function getInstance() {
-		if( !DB::$oInstance ) {
-			DB::$oInstance = new DB( Config::getInstance() );
+		if( !self::$oInstance ) {
+			self::$oInstance = new DB();
 		}
-		if( !DB::$oInstance ) {
+		if( !self::$oInstance ) {
 			Log::critical('Could not create DB singleton.');
 		}
 
-		return DB::$oInstance;
+		return self::$oInstance;
 	}
 
 	public static function queryAssocAtom($sSql) {
@@ -89,9 +86,10 @@ class DB
 	}
 
 	public static function execute($sSql) {
-		$db = DB::getInstance();
+		$db = self::getInstance();
 
 		$oResult = $db->sql_query($sSql);
+
 		if( $oResult == null) {
 			Log::debug("Cannot execute query! ($sSql)");
 			return false;

@@ -6,6 +6,8 @@
  *
  */
 
+namespace Timeline;
+
 class Log {
 	private $debug_msg = Array();
 	private static $oInstance = null;

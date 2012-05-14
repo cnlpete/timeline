@@ -6,7 +6,7 @@
  *
  */
 
-ini_set("error_reporting", E_ALL & ~E_NOTICE );
+namespace Timeline;
 
 class Config {
 	private static $oInstance = null;

@@ -6,6 +6,8 @@
  *
  */
 
+namespace Timeline;
+
 require_once('config.class.php');
 require_once('log.class.php');
 

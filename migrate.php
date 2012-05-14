@@ -56,9 +56,12 @@ class Migrate {
   }
 
   public function toHtml() {
+    $bHasMigration = false;
+
     $sStr = '<ul>';
     foreach ($this->_aMigrations as $sMigrationKey => $aMigration) {
       if ($aMigration['executed'] === false) {
+        $bHasMigration = true;
         $sStr .= '<li>';
         $sStr .= '<a href="?file=' . $sMigrationKey . '">';
           $sStr .= '<time datetime="' . date('c', $aMigration['date']) . '">';
@@ -68,6 +71,11 @@ class Migrate {
       }
     }
     $sStr .= '</ul>';
+    
+    if (!$bHasMigration) {
+      $sStr = '<div class="alert alert-success">There are no migrations</div>';
+    }
+
     return $sStr;
   }
   

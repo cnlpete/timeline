@@ -6,6 +6,8 @@
  *
  */
 
+namespace Timeline;
+
 require_once 'db.class.php';
 
 class ColorClasses {

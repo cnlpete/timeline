@@ -172,69 +172,6 @@ class DB
 		return mysql_num_rows($query_result);
 	}
 
-	static function checkForTableCont($sql, $expectedFields) {
-		$imax = sizeof($expectedFields);
-
-		sort($expectedFields);
-		//assertion: expectedFields are sorted...
-
-		$results = DB::queryAssoc($sql);
-		if ($results == false) {
-	//		Log::debug("got invalid query ... table does not exist?!");
-			return null;
-		}
-		else if ($results == null) {
-	//		Log::debug("got empty result ... need to insert all fields");
-			return $expectedFields;
-		}
-		else {
-			$jmax = sizeof($results);
-
-			$fields = array();
-			foreach ($results as $r) {
-				$fields[] = $r['Field'];
-			}
-
-	//		Log::debug("found ".implode(',',$fields)." fields, expected: ".implode(',',$expectedFields));
-			sort($fields);
-			$missingFields = array();
-			$j=0;$i=0;
-			while ($i<$imax && $j<$jmax) {
-				if ($res = strcmp(strtolower($expectedFields[$i]), strtolower($fields[$j]))) {
-					if ($res < 0) {
-						$missingFields[] = $expectedFields[$i];
-						$i++;
-					}
-					else
-						$j++;
-				}
-				else {
-					$i++;
-					$j++;
-				}
-			}
-			while ($i<$imax) {
-				$missingFields[] = $expectedFields[$i];
-				$i++;
-			}
-			if (sizeof($missingFields) > 0)
-				return $missingFields;
-
-			else {
-	//			Log::debug("all fields found => we aint need no update...");
-				return array();
-			}
-		}
-	}
-
-	/** returns true or false, wether some $tablename has all $expectedFields **/
-	static function checkForTable($tablename, $expectedFields) {
-		if (DB::queryAssoc("SHOW TABLES LIKE '".$tablename."'")) {
-			return DB::checkForTableCont("DESCRIBE ".$tablename, $expectedFields);
-		} else {
-			return null;
-		}
-	}
 }
 
 ?>

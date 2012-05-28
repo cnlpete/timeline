@@ -5,6 +5,8 @@
  * @author Hauke Schade <http://hauke-schade.de>
  *
  */
+
+namespace Timeline;
 ?>
 <!DOCTYPE html>
 <html>

@@ -10,9 +10,6 @@ session_start();
 
 require_once 'class/admin.class.php';
 
-// prechecking users table
-Admin::checkAndUpdateTableUsers();
-
 // submit form
 if ($_POST['username'] && $_POST['password']) {
 	$user = mysql_real_escape_string($_POST['username']);
@@ -52,8 +49,6 @@ if (Admin::loggedIn()) {
 	<div class="config">
 		<h2>Konfiguration</h2>
 		<ul>
-			<li id="databaseUpdate" class="button">Datenbank Update</a></li>
-			<li id="databaseRestart" class="button">Datenbanken neu anlegen und Testdaten einfügen</a></li>
 			<li id="refreshbutton" class="button">Ansicht aktualisieren</a></li>
 		</ul>
 <?php

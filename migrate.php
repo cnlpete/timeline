@@ -1,17 +1,16 @@
 <?php
-/* 
+/** 
  *
  * Execute a given migration or display all migrations
  *
  * @link http://github.com/cnlpete/timeline
  * @author Hauke Schade <http://hauke-schade.de>
  *
- */
+ **/
 
 namespace Timeline;
 
 class Migrate {
-
 
   /**
    * holds all available migrations

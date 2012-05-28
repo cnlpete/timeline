@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+namespace Timeline;
+
 require_once 'class/admin.class.php';
 
 if (!Admin::loggedIn()) die('not logged in!');
@@ -40,15 +42,6 @@ switch ($action) {
 
 	case 'refresh':
 	$log['result'] = Admin::getEvents();
-	break;
-
-	case 'databaseRefresh':
-	$insertdata = trim($_POST['insert']);
-	$log['result'] = Admin::checkAndUpdateTable($insertdata?true:false);
-	break;
-
-	case 'dropAndInsertTestData':
-	$log['result'] = Admin::dropTables() && Admin::checkAndUpdateTable(true);
 	break;
 
 	default:

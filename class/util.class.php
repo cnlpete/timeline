@@ -5,7 +5,9 @@
  * @author Hauke Schade <http://hauke-schade.de>
  *
  */
- 
+
+namespace Timeline;
+
 class Util {
 
 	static function ArrayToSelect($array, $name, $key = null, $selectedElement = null) {

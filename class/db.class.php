@@ -10,13 +10,11 @@ namespace Timeline;
 
 require_once('config.class.php');
 require_once('log.class.php');
+require_once 'singleton.helper.php';
 
-class DB
-{
+class DB extends Singleton {
 	private $db_connect_id = null;
 	private $query_result;
-
-	private static $oInstance = null;
 
 	private function __construct() {
 		if ( !$this->db_connect_id ) {
@@ -35,17 +33,6 @@ class DB
 			}
 			$this->sql_query("SET NAMES 'utf8'");
 		}
-	}
-
-	static function getInstance() {
-		if( !self::$oInstance ) {
-			self::$oInstance = new DB();
-		}
-		if( !self::$oInstance ) {
-			Log::critical('Could not create DB singleton.');
-		}
-
-		return self::$oInstance;
 	}
 
 	public static function queryAssocAtom($sSql) {

@@ -8,8 +8,9 @@
 
 namespace Timeline;
 
-class Config {
-	private static $oInstance = null;
+require_once 'singleton.helper.php';
+
+class Config extends Singleton {
 
 	public $db_host     = "localhost";
 	public $db_name     = "";
@@ -28,15 +29,5 @@ class Config {
 	public $tl_event_padding_x  = 26;
 	public $tl_event_padding_y  = 40;
 
-	static function getInstance() {
-		if( !self::$oInstance ) {
-			self::$oInstance = new Config();
-		}
-		if( !self::$oInstance ) {
-			Log::critical('Could not create Config singleton.');
-		}
-
-		return self::$oInstance;
-	}
 }
 ?>

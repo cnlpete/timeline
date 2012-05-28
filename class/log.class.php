@@ -8,22 +8,11 @@
 
 namespace Timeline;
 
-class Log {
-	private $debug_msg = Array();
-	private static $oInstance = null;
+require_once 'singleton.helper.php';
 
-	static function getInstance() {
-		if( !Log::$oInstance ) {
-			Log::$oInstance = new Log();
-		}
-		if( !Log::$oInstance ) {
-			Log::critical('Could not create Log singleton.');
-		}			
-		
-		return Log::$oInstance;
-		
-	}
-	
+class Log extends Singleton{
+	private $debug_msg = Array();
+
 	function Log() {
 	}
 

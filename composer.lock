@@ -1,19 +1,13 @@
 {
-    "hash": "ddc5f092f33f342d0f5f2c33ce0167ca",
+    "hash": "706101860c2409d0af5ea0063c913d48",
     "packages": [
         {
-            "package": "simonhamp/routes",
-            "version": "0.1"
+            "package": "cnlpete/routes",
+            "version": "0.2"
         },
         {
             "package": "smarty/smarty",
             "version": "3.1.8"
-        },
-        {
-            "package": "symfony/yaml",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/yaml",

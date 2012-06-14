@@ -1,10 +1,15 @@
 cherokee.*.log
-composer.phar
 app/config/config.yml
 app/cache
 app/compile
 
-vendor
+composer.phar
+vendor/composer
+vendor/autoload.php
+
+vendor/cnlpete
+vendor/smarty
+vendor/symfony
 
 *~
 .sass-cache

@@ -32,14 +32,14 @@
       },{
         "type": "package",
         "package": {
-          "name": "simonhamp/routes",
-          "version": "0.1",
+          "name": "cnlpete/routes",
+          "version": "0.2",
           "dist": {
-            "url": "https://github.com/simonhamp/routes/zipball/master",
+            "url": "https://github.com/cnlpete/routes/zipball/master",
             "type": "zip"
           },
           "source": {
-            "url": "https://github.com/simonhamp/routes",
+            "url": "https://github.com/cnlpete/routes.git",
             "type": "git",
             "reference": "master"
           }
@@ -49,6 +49,6 @@
   "require": {
     "smarty/smarty": "3.1.*",
     "symfony/yaml": "master",
-    "simonhamp/routes": "0.1"
+    "cnlpete/routes": "0.2"
   }
 }

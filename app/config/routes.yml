@@ -1,5 +1,5 @@
 # Define the landing page
-"/": controller=sessions
+"/": sessions
 
 "admin/?": controller=admin
 "(:alpha)/?": controller=timeline&hash=$1

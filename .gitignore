@@ -1,4 +1,10 @@
+cherokee.*.log
+composer.phar
+app/config/config.yml
+app/cache
+app/compile
+
+vendor
+
 *~
-class/config.class.php
 .sass-cache
-*.log

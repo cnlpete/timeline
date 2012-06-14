@@ -1,4 +1,6 @@
-test: true
-test2:
-  x: false
-  y: true
+paths:
+  migrations: app/migrations
+  smarty:
+    cache: app/cache
+    compile: app/compile
+

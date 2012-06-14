@@ -1,14 +1,10 @@
 <?php
 
-//require_once PATH_STANDARD . '/vendor/autoload.php';
-//require_once PATH_STANDARD . '/vendor/timelinetool/helpers/smartySingleton.helper.php';
-
 namespace Timelinetool\Controllers;
 
 use \Timelinetool\Helpers\Helper;
 use \Symfony\Component\Yaml\Yaml;
 use \Routes;
-
 
 class Index {
 
@@ -22,9 +18,9 @@ class Index {
     require_once PATH_STANDARD . '/vendor/autoload.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/helper.helper.php';
 
-    $this->_aSession = $aSession;
-    $this->_aRequest = $aRequest;
-    $this->_aCookie = $aCookie;
+    $this->_aSession  = $aSession;
+    $this->_aRequest  = $aRequest;
+    $this->_aCookie   = $aCookie;
   }
 
   public function getConfig() {
@@ -74,7 +70,7 @@ class Index {
     $sController = Helper::getController($this->_aRequest['controller']);
     if ($sController == false)
       return 'Controller "'.$this->_aRequest['controller'].'" not found.';
-    $oController = new $sController($this->_aRequest, $this->_aSession, $this->_aCookie);
+    $oController = new $sController($this->_aSession, $this->_aRequest, $this->_aCookie);
 
     // executeAction shall return html code if format is html, otherwise raw data, that is safe to send to client
     $mOutput = $oController->executeAction();
@@ -83,11 +79,12 @@ class Index {
       default:
       case 'html':
         // build header and footer and attach accordingly
+        //TODO
         return $mOutput;
         break;
       case 'xml':
         // TODO needed?
-        
+        // @see http://de2.php.net/manual/en/book.simplexml.php
         break;
       case 'json':
         return json_encode($mOutput);
@@ -97,4 +94,3 @@ class Index {
 
 }
 
-?>

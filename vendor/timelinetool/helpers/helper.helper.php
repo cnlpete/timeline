@@ -44,13 +44,13 @@ class Helper {
   
   public static function getController($sController) {
     if (file_exists(PATH_STANDARD . '/vendor/timelinetool/controllers/' . $sController . '.controller.php')) {
+      require_once PATH_STANDARD . '/vendor/timelinetool/controllers/main.controller.php';
       require_once PATH_STANDARD . '/vendor/timelinetool/controllers/' . $sController . '.controller.php';
-      
-      return '\Timelinetool\Controllers\\' . $sController;
+
+      return '\Timelinetool\Controllers\\' . ucfirst($sController);
     }
     return false;
   }
 
 }
 
-?>

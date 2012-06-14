@@ -2,4 +2,5 @@
 "/": sessions
 
 "admin/?": controller=admin
+"(install|migrate)/?": controller=install&action=$1
 "(:alpha)/?": controller=timeline&hash=$1

@@ -105,5 +105,14 @@ EOD;
     else
       return false;
   }
+
+  public function hasMigration($sFileHash) {
+    return isset($this->_aMigrations[$sFileHash]) && 
+            $this->_aMigrations[$sFileHash]['executed'] !== false;
+  }
+
+  public function getMigrations() {
+    return $this->_aMigrations;
+  }
 }
 

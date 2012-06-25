@@ -3,6 +3,7 @@
 namespace Timelinetool\Controllers;
 
 use \Timelinetool\Helpers\Helper;
+use \Timelinetool\Helpers\MySmarty;
 use \Symfony\Component\Yaml\Yaml;
 use \Routes;
 
@@ -14,13 +15,18 @@ class Index {
   
   protected $_aCookie;
 
-  function __construct(&$aSession, &$aRequest, &$aCookie = '') {
+  function __construct(&$aRequest, &$aSession, &$aCookie = '') {
     require_once PATH_STANDARD . '/vendor/autoload.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/helper.helper.php';
+    require PATH_STANDARD . '/vendor/timelinetool/helpers/smarty.helper.php';
 
-    $this->_aSession  = $aSession;
-    $this->_aRequest  = $aRequest;
-    $this->_aCookie   = $aCookie;
+    $this->_aSession  = &$aSession;
+    $this->_aRequest  = &$aRequest;
+    $this->_aCookie   = &$aCookie;
+
+    $this->getConfig();
+
+    MySmarty::getInstance($aRequest, $aSession);
   }
 
   public function getConfig() {
@@ -79,8 +85,9 @@ class Index {
       default:
       case 'html':
         // build header and footer and attach accordingly
-        //TODO
-        return $mOutput;
+        $oSmarty = MySmarty::getInstance();
+        //TODO assigns, cache
+        return $oSmarty->fetch('_header.tpl') . $mOutput . $oSmarty->fetch('_footer.tpl');
         break;
       case 'xml':
         // TODO needed?

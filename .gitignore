@@ -4,10 +4,11 @@ app/cache
 app/compile
 
 composer.phar
+vendor/.composer
 vendor/composer
 vendor/autoload.php
 
-vendor/cnlpete
+vendor/simonhamp
 vendor/smarty
 vendor/symfony
 

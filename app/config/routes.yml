@@ -1,6 +1,6 @@
 # Define the landing page
 "/": timeline
 
-"admin/?": controller=admin
-"(install|migrate)/?": controller=install&action=$1
-"(:alpha)/?": controller=timeline&hash=$1
+"admin.(json|xml|html)": controller=admin&format=$1
+"(install|migrate).(json|xml|html)": controller=install&action=$1&format=$2
+"(:any).(json|xml|html)": controller=timeline&hash=$1&format=$2

@@ -42,16 +42,26 @@ class Index {
   }
 
   public function getRoutes() {
-    require_once PATH_STANDARD . '/vendor/cnlpete/routes/routes.php';
+    require_once PATH_STANDARD . '/vendor/simonhamp/routes/routes.php';
 
     # Cache routes for performance reasons
-    if(!isset($this->_aSession['routes']) || isset($this->_aRequest['reloadRoutes']))
+    if(!isset($this->_aSession['routes']) || true)
       $this->_aSession['routes'] = Yaml::parse(file_get_contents(PATH_STANDARD . '/app/config/routes.yml'));
 
     Routes::add($this->_aSession['routes']);
 
-    $sURI         = isset($_SERVER['REQUEST_URI']) ? Helper::removeSlash($_SERVER['REQUEST_URI']) : '/';
-    $aRouteParts  = explode('&', Routes::route($sURI));
+    $sURI = isset($_SERVER['REQUEST_URI']) ? Helper::removeSlash($_SERVER['REQUEST_URI']) : '';
+
+    if ( strpos( $sURI, '?' ) !== false ) {
+      # Break the query string off and attach later
+      $sAdditionalParams = parse_url( $sURI, PHP_URL_QUERY );
+      $sURI = str_replace( '?' . $sAdditionalParams, '', $sURI );
+    }
+
+    $aRouteParts = explode('&', Routes::route($sURI));
+
+    if (strlen($sAdditionalParams) > 0)
+      $aRouteParts = array_merge($aRouteParts, explode('&', $sAdditionalParams));
 
     foreach ($aRouteParts as $sRoutes) {
       $aRoute = explode('=', $sRoutes);

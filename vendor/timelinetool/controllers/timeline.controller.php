@@ -17,7 +17,8 @@ class Timeline extends Main {
           //TODO cache
           //TODO valid hash?
           if ($this->_aRequest['hash']) {
-            $oSmarty->assign('timelinedata', array());
+            $oSmarty->assign('timelinedata', $this->_oModel->getTimelineForHash($this->_aRequest['hash']));
+            $oSmarty->assign('source', '/' . $this->_aRequest['hash'] . '/' . $this->_sController);
             return $oSmarty->fetch('timeline.tpl');
           }
           else {
@@ -26,7 +27,7 @@ class Timeline extends Main {
           }
         }
         else
-          return $this->_oModel->getMigrations();
+          return $this->_oModel->getTimelineForHash($this->_aRequest['hash']);
         break;
     }
   }

@@ -1,5 +1,5 @@
 # Define the landing page
-"/": sessions
+"/": timeline
 
 "admin/?": controller=admin
 "(install|migrate)/?": controller=install&action=$1

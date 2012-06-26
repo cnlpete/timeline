@@ -31,7 +31,7 @@ class Index {
 
   public function getConfig() {
     # Cache config for performance reasons
-    if(!isset($this->_aSession['config']) || $this->_aRequest['reloadConfig']) {
+    if(!isset($this->_aSession['config']) || true) {
       $this->_aSession['config'] = Yaml::parse(file_get_contents(PATH_STANDARD . '/app/config/default.config.yml'));
 
       $aUserConfig = Yaml::parse(file_get_contents(PATH_STANDARD . '/app/config/config.yml'));

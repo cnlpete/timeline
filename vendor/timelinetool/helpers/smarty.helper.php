@@ -68,6 +68,13 @@ class MySmarty extends Smarty {
     # Use a readable structure
     $this->use_sub_dirs = true;
 
+    $this->assign('path', array(
+          'root' => PATH_STANDARD,
+          'css' => '/' . $aSession['config']['paths']['public'] . '/css',
+          'js' => '/' . $aSession['config']['paths']['public'] . '/js'));
+
+    $this->assign('meta', $aSession['config']['page']);
+
   }
 
   /**

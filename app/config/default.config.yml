@@ -1,6 +1,16 @@
+page:
+  title: Timelinetool
+  path: http://timelinetool.com
+  description: This is the timelinetool
+  keywords: timeline,timelinetool
+  author: Hauke Schade's Timelinetool
+
 paths:
+  public: public
   migrations: app/migrations
   smarty:
     cache: app/cache
     compile: app/compile
+  storage: app/storage
+
 

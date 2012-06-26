@@ -2,14 +2,14 @@
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <title>{$meta->title} - Timelinetool</title>
+    <title>{if $title}{$title} - {/if}{$meta.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{$meta->description}">
-    <meta name="author" content="{$meta->author}">
+    <meta name="description" content="{$meta.description}">
+    <meta name="author" content="{$meta.author}">
 
     <!-- Le styles -->
-    <link href="public/css/bootstrap.css" rel="stylesheet">
-    <link href="public/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="{$path.css}/bootstrap.css" rel="stylesheet">
+    <link href="{$path.css}/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -17,11 +17,16 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="public/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="public/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="public/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="public/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="public/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="{$path.root}/public/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{$path.root}/public/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{$path.root}/public/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{$path.root}/public/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="{$path.root}/public/ico/apple-touch-icon-57-precomposed.png">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
   </head>
 
   <body>
@@ -55,5 +60,6 @@
         </div>
       </div>
     </div>
+    
+    <div class="container">
 
-    <div class="container-fluid">

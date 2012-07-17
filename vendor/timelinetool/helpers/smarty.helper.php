@@ -5,7 +5,7 @@
  *
  * @author Hauke Schade <http://hauke-schade.de>
  * @license MIT
- * @since 2.0
+ * @since 1.0
  *
  */
 
@@ -74,7 +74,17 @@ class MySmarty extends Smarty {
           'js' => '/' . $aSession['config']['paths']['public'] . '/js'));
 
     $this->assign('meta', $aSession['config']['page']);
+  }
 
+  /**
+   * Assign the language array to smartys templates
+   *
+   * @access public
+   * @param array $aLang the language array
+   *
+   */
+  public function setDefaultLanguage(&$aLang) {
+    $this->assign('lang', $aLang);
   }
 
   /**

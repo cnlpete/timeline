@@ -86,11 +86,12 @@ class Helper {
     else
       exit(header('Location:' . $sUrl));
   }
+
   public static function recursive_array_replace(&$aAr1, &$aAr2) {
-    foreach ($aAr1 as $sKey => &$mValue) {
+    foreach ($aAr2 as $sKey => &$mValue) {
       if (isset($aAr2[$sKey])) {
         if (is_array($aAr2[$sKey]))
-          self::recursive_array_replace($mValue, $aAr2[$sKey]);
+          self::recursive_array_replace($aAr1[$sKey], $aAr2[$sKey]);
         else {
           $aAr1[$sKey] = $aAr2[$sKey];
         }

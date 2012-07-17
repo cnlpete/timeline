@@ -5,6 +5,9 @@ page:
   keywords: timeline,timelinetool
   author: Hauke Schade's Timelinetool
 
+# the default language to use, timelines however can specify different languages
+language: de
+
 paths:
   public: public
   migrations: app/migrations

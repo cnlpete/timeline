@@ -3,6 +3,7 @@
 namespace Timelinetool\Controllers;
 
 use \Timelinetool\Helpers\Helper;
+use \Timelinetool\Helpers\I18n;
 use \Timelinetool\Helpers\MySmarty;
 
 class Timeline extends Main {
@@ -24,6 +25,10 @@ class Timeline extends Main {
               $oSmarty->assign('timeline', $aTimelinedata);
               $oSmarty->assign('assets', $this->_oModel->getTimelineAssetsForHash($sHash));
 
+              // maybe set the user specified language?
+              if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))
+                I18n::load($aTimelinedata['language']);
+
               return $oSmarty->fetch('timeline.tpl');
             }
             else {
@@ -36,7 +41,10 @@ class Timeline extends Main {
           }
         }
         else
-          return $this->_oModel->getTimelineForHash($this->_aRequest['hash']);
+          return array(
+            'timeline' => $this->_oModel->getTimelineForHash($this->_aRequest['hash']),
+            'assets' => $this->_oModel->getTimelineAssetsForHash($this->_aRequest['hash'])
+          );
         break;
     }
   }

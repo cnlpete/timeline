@@ -3,6 +3,7 @@
 namespace Timelinetool\Controllers;
 
 use \Timelinetool\Helpers\Helper;
+use \Timelinetool\Helpers\I18n;
 use \Timelinetool\Helpers\MySmarty;
 use \Symfony\Component\Yaml\Yaml;
 use \Routes;
@@ -18,15 +19,17 @@ class Index {
   function __construct(&$aRequest, &$aSession, &$aCookie = '') {
     require_once PATH_STANDARD . '/vendor/autoload.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/helper.helper.php';
+    require PATH_STANDARD . '/vendor/timelinetool/helpers/i18n.helper.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/smarty.helper.php';
 
     $this->_aSession  = &$aSession;
     $this->_aRequest  = &$aRequest;
     $this->_aCookie   = &$aCookie;
 
-    $this->getConfig();
-
     MySmarty::getInstance($aRequest, $aSession);
+
+    $this->getConfig();
+    new I18n($this->_aSession);
   }
 
   public function getConfig() {

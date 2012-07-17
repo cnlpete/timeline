@@ -49,15 +49,15 @@
             <ul class="dropdown-menu">
               <li><a href="#">
                 <i class="icon-pencil"></i> Timeline bearbeiten</a></li>
-              <li><a href="#">Log Out</a></li>
+              <li><a href="#">{$lang.global.logout}</a></li>
             </ul>
           </div>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active">
                 <a href="{$url.self}">
-                  {if $title}{$title}{else}Home{/if}</a></li>
-              <li><a href="#about">About</a></li>
+                  {if $title}{$title}{else}{$lang.navigation.home}{/if}</a></li>
+              <li><a href="#about">{$lang.navigation.about}</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -1,3 +1,3 @@
 <section>
-  This is the timelinetool :)
+  {$lang.timeline.index.intro}
 </section>

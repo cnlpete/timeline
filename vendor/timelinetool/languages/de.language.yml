@@ -1,0 +1,73 @@
+global:
+  login: Login
+  logout: Logout
+  months:
+    1: Januar
+    2: Februar
+    3: März
+    4: April
+    5: Mai
+    6: Juni
+    7: Juli
+    8: August
+    9: September
+    10: Oktober
+    11: November
+    12: Dezember
+  time:
+    time: Zeit
+    format: #set the standard date format (http://php.net/strftime)
+      date: %d.%m.%Y
+      time: %H:%M Uhr
+      datetime: %d.%m.%Y, %H:%M Uhr
+
+success:
+  entry:
+    create: Eintrag wurde hinzugefügt!
+    destroy: Eintrag wurde gelöscht!
+    update: Update erfolgreich!
+  file:
+    upload: Datei erfolgreich hochgeladen!
+    destroy: Datei erfolgreich gelöscht!
+  upload: Datei(en) erfolgreich hochgeladen!
+
+error:
+  302:
+    info: Die angeforderte URL ist neuerdings unter %s erreichbar.
+  404:
+    info: Die angeforderte URL wurde nicht gefunden. Entweder haben Sie auf einen fehlerhaften Link geklickt, die Seite wurde gelöscht oder die URL ist falsch eingegeben worden.
+    title: Error 404 - URL nicht gefunden
+  file:
+    destroy: Die Datei konnte nicht gelöscht werden!
+    size: Maximale Dateigröße von %s erreicht!
+    type: Es wurde ein falscher Dateityp hochgeladen!
+    upload: Es gab einen Fehler beim Upload!
+  form:
+    missing:
+      category: Bitte wählen Sie eine Kategorie.
+      content: Füllen Sie bitte den Inhalt aus.
+      email: Geben Sie bitte Ihre E-Mail-Adresse an.
+      file: Geben Sie bitte eine Datei zum Upload an.
+      name: Geben Sie bitte Ihren Namen an.
+      surname: Geben Sie bitte Ihren Nachnamen an.
+      terms: Bitte stimmen Sie den Nutzungsbedingungen zu.
+      title: Geben Sie bitte einen Titel an.
+      password: Geben Sie bitte ein Passwort an.
+      standard: Bitte füllen Sie dieses Feld aus.
+      subject: Geben Sie bitte einen Betreff an.
+  standard: Es trat ein Fehler auf!
+
+flash:
+  error: Fehler!
+  warning: Achtung!
+  success: ''
+
+navigation:
+  home: Home
+  about: Über
+
+timeline:
+  index: 
+    intro: Ein sehr laaanger Text
+  error:
+    hash_not_found: 'Die Timeline "%s" wurde nicht gefunden!'

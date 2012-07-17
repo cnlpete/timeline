@@ -110,6 +110,7 @@ class Index {
         // @see http://de2.php.net/manual/en/book.simplexml.php
         break;
       case 'json':
+        header('Content-type: application/json');
         return json_encode($mOutput);
         break;
     }

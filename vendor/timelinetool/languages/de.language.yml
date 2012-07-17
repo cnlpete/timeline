@@ -71,3 +71,7 @@ timeline:
     intro: Ein sehr laaanger Text
   error:
     hash_not_found: 'Die Timeline "%s" wurde nicht gefunden!'
+
+admin:
+  error:
+    hash_not_valid: 'Dir fehlen zum bearbeiten der Timeline "%s" die erforderlichen Rechte.'

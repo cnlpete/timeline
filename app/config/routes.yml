@@ -1,7 +1,22 @@
 # Define the landing page
 "/": timeline
 
-"admin.(json|xml|html)": controller=admin&format=$1
+# admin api
+"admin/create.(json|xml|html)": controller=admin&format=$1&action=create_timeline
+"admin/(:alnum).(json|xml|html)": controller=admin&hash=$1&format=$2&action=show_timeline
+"admin/(:alnum)/(update|destroy).(json|xml|html)": controller=admin&format=$3&hash=$1&action=$2_timeline
+"admin/(:alnum)/create.(json|xml|html)": controller=admin&format=$2&hash=$1&action=create_asset
+"admin/(:alnum)/(:alnum).(json|xml|html)": controller=admin&format=$4&timelinehash=$1&hash=$2&action=show_asset
+"admin/(:alnum)/(:alnum)/(update|destroy).(json|xml|html)": controller=admin&format=$4&timelinehash=$1&hash=$2&action=$3_asset
+
+# the admin views
+"admin.(json|xml|html)": controller=admin&format=$1&action=show
+
+# the installer
 "(install|migrate).(json|xml|html)": controller=install&action=$1&format=$2
-"(:any).(json|xml|html)": controller=timeline&hash=$1&format=$2
-"(:any)": controller=timeline&hash=$1&format=html
+
+# timeline
+"(:alnum).(json|xml|html)": controller=timeline&hash=$1&format=$2
+"(:alnum)": controller=timeline&hash=$1&format=html
+
+

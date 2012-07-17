@@ -27,13 +27,7 @@ class Main {
     $this->_sController = $aRequest['controller'];
     $this->_sFormat     = $aRequest['format'];
 
-    if (file_exists(PATH_STANDARD . '/vendor/timelinetool/models/' . $this->_sController . '.model.php')) {
-      require_once PATH_STANDARD . '/vendor/timelinetool/models/main.model.php';
-      require_once PATH_STANDARD . '/vendor/timelinetool/models/' . $this->_sController . '.model.php';
-
-      $sClass = '\Timelinetool\Models\\' . ucfirst($this->_sController);
-      $this->_oModel = new $sClass($aSession, $aRequest, $aCookie);
-    }
+    $this->_oModel = $this->_loadModel($this->_sController);
 
     $this->__init();
   }
@@ -42,5 +36,16 @@ class Main {
     //overwrite to customize
   }
 
+  protected function _loadModel($sModel) {
+    if (file_exists(PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php')) {
+      require_once PATH_STANDARD . '/vendor/timelinetool/models/main.model.php';
+      require_once PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php';
+
+      $sClass = '\Timelinetool\Models\\' . ucfirst($sModel);
+      return new $sClass($this->_aSession, $this->_aRequest, $this->_aCookie);
+    }
+    else
+      return null;
+  }
 }
 

@@ -4,3 +4,4 @@
 "admin.(json|xml|html)": controller=admin&format=$1
 "(install|migrate).(json|xml|html)": controller=install&action=$1&format=$2
 "(:any).(json|xml|html)": controller=timeline&hash=$1&format=$2
+"(:any)": controller=timeline&hash=$1&format=html

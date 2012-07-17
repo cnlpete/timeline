@@ -63,16 +63,17 @@ class I18n {
       // the session also has no language-strings loaded yet
       if (!isset($aSession['lang'])) {
         self::$_aLang = array();
-        // load the defualt language
-        self::load($this->_aSession['config']['language']);
+
         if ($aSession != null)
           $aSession['lang'] = & I18n::$_aLang;
       }
       // use the already loaded session stuff
-      else {
-        self::$_sLanguage = $this->_aSession['config']['language'];
+      else
         self::$_aLang = & $aSession['lang'];
-      }
+
+      // load the default language
+      self::load($this->_aSession['config']['language']);
+
     }
   }
 

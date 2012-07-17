@@ -65,4 +65,15 @@
     </div>
     
     <div class="container">
+      {if isset($_FLASH.message) && !empty($_FLASH.message)}
+        <div id='js-flash_message'>
+          <div class='alert alert-{$_FLASH.type}' id='js-flash_{$_FLASH.type}'>
+            <a class='close' href='#'>×</a>
+            {if isset($_FLASH.headline) && !empty($_FLASH.headline)}<h4 class='alert-heading'>{$_FLASH.headline}</h4>{/if}
+            <p>
+              {$_FLASH.message}
+            </p>
+          </div>
+        </div>
+      {/if}
 

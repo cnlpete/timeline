@@ -15,11 +15,20 @@ class Timeline extends Main {
           $oSmarty = MySmarty::getInstance();
           $oSmarty->addTplDir($this->_sController);
           //TODO cache
-          //TODO valid hash?
+
           if ($this->_aRequest['hash']) {
-            $oSmarty->assign('timelinedata', $this->_oModel->getTimelineForHash($this->_aRequest['hash']));
-            $oSmarty->assign('source', '/' . $this->_aRequest['hash'] . '/' . $this->_sController);
-            return $oSmarty->fetch('timeline.tpl');
+            $sHash = trim($this->_aRequest['hash']);
+
+            if ($this->_oModel->isValidHash($sHash)) {
+              $aTimelinedata = (array)$this->_oModel->getTimelineForHash($sHash);
+              $oSmarty->assign('timeline', $aTimelinedata);
+              $oSmarty->assign('assets', $this->_oModel->getTimelineAssetsForHash($sHash));
+
+              return $oSmarty->fetch('timeline.tpl');
+            }
+            else {
+              Helper::errorMessage(I18n::get('timeline.error.hash_not_found', $sHash), '/');
+            }
           }
           else {
             // show some index instead

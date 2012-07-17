@@ -1,9 +1,91 @@
 <?php
 
+/**
+ * Provide many helper methods.
+ *
+ * @author Hauke Schade <http://hauke-schade.de>
+ * @license MIT
+ * @since 1.0
+ *
+ */
+
 namespace Timelinetool\Helpers;
 
 class Helper {
 
+  /**
+   * Display a success message after an action is done.
+   *
+   * @static
+   * @access public
+   * @param string $sMessage message to provide
+   * @param string $sRedirectTo site to redirect to
+   * @return boolean true
+   * @todo store in main session object
+   *
+   */
+  public static function successMessage($sMessage, $sRedirectTo = '') {
+    $_SESSION['flash_message'] = array(
+        'type'    => 'success',
+        'message' => $sMessage,
+        'headline'=> I18n::get('flash.success'));
+    return $sRedirectTo ? Helper::redirectTo ($sRedirectTo) : true;
+  }
+
+  /**
+   * Display a warning message after an action is done.
+   *
+   * @static
+   * @access public
+   * @param string $sMessage message to provide
+   * @param string $sRedirectTo site to redirect to
+   * @return boolean false
+   * @todo store in main session object
+   *
+   */
+  public static function warningMessage($sMessage, $sRedirectTo = '') {
+    $_SESSION['flash_message'] = array(
+        'type'    => 'warning',
+        'message' => $sMessage,
+        'headline'=> I18n::get('flash.warning'));
+    return $sRedirectTo ? Helper::redirectTo ($sRedirectTo) : false;
+  }
+
+  /**
+   * Display an error message after an action is done.
+   *
+   * @static
+   * @access public
+   * @param string $sMessage message to provide
+   * @param string $sRedirectTo site to redirect to
+   * @return boolean false
+   * @todo store in main session object
+   *
+   */
+  public static function errorMessage($sMessage, $sRedirectTo = '') {
+    $_SESSION['flash_message'] = array(
+        'type'    => 'error',
+        'message' => $sMessage,
+        'headline'=> I18n::get('flash.error'));
+    return $sRedirectTo ? Helper::redirectTo ($sRedirectTo) : false;
+  }
+
+  /**
+   * Redirect user to a specified page.
+   *
+   * @static
+   * @access public
+   * @param string $sUrl URL to redirect the user to
+   *
+   */
+  public static function redirectTo($sUrl) {
+    if (CRAWLER && $sUrl == '/errors/404') {
+      header('Status: 404 Not Found');
+      header('HTTP/1.0 404 Not Found');
+    }
+    else
+      exit(header('Location:' . $sUrl));
+  }
   public static function recursive_array_replace(&$aAr1, &$aAr2) {
     foreach ($aAr1 as $sKey => &$mValue) {
       if (isset($aAr2[$sKey])) {

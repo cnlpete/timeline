@@ -86,6 +86,7 @@ class Index {
     $sController = Helper::getController($this->_aRequest['controller']);
     if ($sController == false)
       return 'Controller "'.$this->_aRequest['controller'].'" not found.';
+
     $oController = new $sController($this->_aSession, $this->_aRequest, $this->_aCookie);
 
     // executeAction shall return html code if format is html, otherwise raw data, that is safe to send to client
@@ -96,6 +97,8 @@ class Index {
       case 'html':
         // build header and footer and attach accordingly
         $oSmarty = MySmarty::getInstance();
+
+        $oSmarty->assign('_FLASH', $this->_getFlashMessage());
         //TODO assigns, cache
         return $oSmarty->fetch('_header.tpl') . $mOutput . $oSmarty->fetch('_footer.tpl');
         break;
@@ -107,6 +110,21 @@ class Index {
         return json_encode($mOutput);
         break;
     }
+  }
+
+  /**
+   * Store and show flash status messages in the application.
+   *
+   * @access protected
+   * @see app/config/Candy.inc.php
+   * @return array $aFlashMessage The message, its type and the headline of the message.
+   *
+   */
+  protected function _getFlashMessage() {
+    $aFlashMessage = isset($this->_aSession['flash_message']) ? $this->_aSession['flash_message'] : '';
+
+    unset($this->_aSession['flash_message']);
+    return $aFlashMessage;
   }
 
 }

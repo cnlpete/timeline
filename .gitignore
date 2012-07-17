@@ -2,6 +2,9 @@ cherokee.*.log
 app/config/config.yml
 app/cache
 app/compile
+app/storage
+
+old
 
 composer.phar
 vendor/.composer

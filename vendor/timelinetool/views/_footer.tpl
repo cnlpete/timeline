@@ -9,8 +9,6 @@
     <!-- The javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{$path.js}/jquery.js"></script>
-    <script src="{$path.js}/bootstrap.js"></script>
     <script src="{$path.js}/core.js"></script>
   </body>
 </html>

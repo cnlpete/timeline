@@ -61,7 +61,7 @@ class I18n {
     if (!isset(self::$_aLang)) {
     
       // the session also has no language-strings loaded yet
-      if (!isset($aSession['lang'])) {
+      if (!isset($aSession['lang']) || true) {
         self::$_aLang = array();
 
         if ($aSession != null)

@@ -63,15 +63,30 @@ flash:
   success: ''
 
 navigation:
-  home: Home
   about: Über
+  admin: Administration
+  home: Home
 
 timeline:
+  update: Timeline bearbeiten
   index: 
     intro: Ein sehr laaanger Text
   error:
     hash_not_found: 'Die Timeline "%s" wurde nicht gefunden!'
+    
+confirm:
+  timeline: Möchten Sie die Timeline "%s" wirklich löschen?
 
 admin:
   error:
     hash_not_valid: 'Dir fehlen zum bearbeiten der Timeline "%s" die erforderlichen Rechte.'
+    timeline_not_destroyed: 'Beim löschen der Timeline "%s" ist etwas schief gegangen.'
+  timeline:
+    date: Zeitraum
+    description: Beschreibung
+    language: Bevorzugte Sprache
+    asset_list: Alle Einträge
+    assets:
+      title: Titel
+      date: Datum
+      options: Optionen

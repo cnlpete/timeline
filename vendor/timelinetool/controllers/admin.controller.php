@@ -104,7 +104,11 @@ class Admin extends Main {
   protected function _showTimeline($sHash) {
     // if not html, directly return the data
     if ($this->_sFormat != 'html')
-      return $this->_oTimelineModel->getTimelineForHash($sHash);
+      return array('timeline' => $this->_oTimelineModel->getTimelineForHash($sHash),
+              'assets' => $this->_oTimelineModel->getTimelineAssetsForHash($sHash));
+
+    if (!$this->_oTimelineModel->isValidHash($sHash))
+      return Helper::errorMessage(I18n::get('timeline.error.hash_not_found', $sHash), '/admin.html');
 
     $oSmarty = MySmarty::getInstance();
     $oSmarty->addTplDir($this->_sController);
@@ -112,8 +116,20 @@ class Admin extends Main {
 
     if ($this->_oModel->canEditHash($sHash)) {
       $aTimelinedata = (array)$this->_oTimelineModel->getTimelineForHash($sHash);
+      $oSmarty->assign('hash', $sHash);
       $oSmarty->assign('timeline', $aTimelinedata);
-      $oSmarty->assign('assets', $this->_oTimelineModel->getTimelineAssetsForHash($sHash));
+      $oSmarty->assign('assets_json', json_encode($this->_oTimelineModel->getTimelineAssetsForHash($sHash)));
+
+      // assign nav-links
+      $aNavList = array();
+      $aNavList['update'] = array('icon' => 'refresh');
+      $aNavList['edit']   = array('icon' => 'wrench');
+      $aNavList['delete'] = array('icon' => 'trash');
+      $oSmarty->assign('navlist', $aNavList);
+
+      // set the title
+      if ($aTimelinedata['title'])
+        $oSmarty->assign('title', $aTimelinedata['title']);
 
       // maybe set the user specified language?
       if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))

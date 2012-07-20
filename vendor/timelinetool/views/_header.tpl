@@ -11,6 +11,10 @@
     <link href="{$path.css}/bootstrap.css" rel="stylesheet">
     <link href="{$path.css}/bootstrap-responsive.css" rel="stylesheet">
 
+    <script src="{$path.js}/jquery.js"></script>
+    <script src="{$path.js}/bootstrap.js"></script>
+    <script src="{$path.js}/handlebars.js"></script>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -47,17 +51,28 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#">
-                <i class="icon-pencil"></i> Timeline bearbeiten</a></li>
-              <li><a href="#">{$lang.global.logout}</a></li>
+              {if $timeline.hash}<li><a href="/admin/{$timeline.hash}.html">
+                <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
+              <li><a href="/admin.html">
+                <i class="icon-th"></i> {$lang.navigation.admin}</a></li>
+              <li><a href="#logout">
+                <i class="icon-off"></i> {$lang.global.logout}</a></li>
             </ul>
           </div>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active">
-                <a href="{$url.self}">
-                  {if $title}{$title}{else}{$lang.navigation.home}{/if}</a></li>
-              <li><a href="#about">{$lang.navigation.about}</a></li>
+              {if $navlist}
+                {foreach $navlist as $navkey => $navitem}
+                  <li><a href="#{$navkey}" id="nav-{$navkey}">
+                    {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}</a></li>
+                  <li class="divider-vertical"></li>
+                {/foreach}
+              {else}
+                <li class="active">
+                  <a href="/">
+                    {if $title}{$title}{else}{$lang.navigation.home}{/if}</a></li>
+                <li><a href="/#about">{$lang.navigation.about}</a></li>
+              {/if}
             </ul>
           </div><!--/.nav-collapse -->
         </div>

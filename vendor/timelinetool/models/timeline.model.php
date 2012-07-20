@@ -22,7 +22,9 @@ class Timeline extends Main {
     $sFilename = $sStoragePath . '/timeline/' . $sHash . '.json';
 
     if (file_exists($sFilename)) {
-      return json_decode(file_get_contents($sFilename));
+      $aTimelineData = (array)json_decode(file_get_contents($sFilename));
+      $aTimelineData['hash'] = $sHash;
+      return $aTimelineData;
     }
     else
       return false;
@@ -42,8 +44,11 @@ class Timeline extends Main {
     // load all assets
     if ($oDirHandle = opendir($sAssetPath)) {
       while (false !== ($sFile = readdir($oDirHandle))) {
-        if(preg_match($sPattern, $sFile, $aTreffer))
-          $aAssets[$sFile] = json_decode(file_get_contents($sAssetPath . $sFile));;
+        if(preg_match($sPattern, $sFile, $aTreffer)) {
+          $aData = (array)json_decode(file_get_contents($sAssetPath . $sFile));
+          $aData['hash'] = substr($sFile, 0, strlen($sFile) - 5);
+          $aAssets[] = $aData;
+        }
       }
       closedir($oDirHandle);
     }

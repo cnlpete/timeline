@@ -61,6 +61,8 @@
 {/literal}
 </script>
 
+<script src="{$path.js}/bootstrap-datepicker.js"></script>
+<script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
 <script type="text/javascript">
   var list_template = Handlebars.compile($("#list-template").html());

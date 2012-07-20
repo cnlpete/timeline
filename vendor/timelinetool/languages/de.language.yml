@@ -76,11 +76,13 @@ timeline:
     
 confirm:
   timeline: Möchten Sie die Timeline "%s" wirklich löschen?
+  asset: Möchten Sie den Eintrag wirklich löschen?
 
 admin:
   error:
     hash_not_valid: 'Dir fehlen zum bearbeiten der Timeline "%s" die erforderlichen Rechte.'
     timeline_not_destroyed: 'Beim löschen der Timeline "%s" ist etwas schief gegangen.'
+    asset_not_destroyed: 'Beim löschen des Eintrags ist etwas schief gegangen.'
   timeline:
     date: Zeitraum
     description: Beschreibung

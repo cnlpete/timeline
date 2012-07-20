@@ -32,20 +32,20 @@
 <script id="list-template" type="text/x-handlebars-template">
 {literal}
   {{#each entries}}
-    <tr class="asset">
+    <tr class="asset" data-hash='{{hash}}'>
       <td class="table-title">{{title}}</td>
       <td class="table-date">{{date}}</td>
       <td class="table-options">
         <a class="btn" href="#show-{{hash}}"><i class="icon-search"></i></a>
         <a class="btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
-        <a class="btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
+        <a class="btn btn-danger js-destroy" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
       </td>
     </tr>
   {{/each}}
 {/literal}
 </script>
 
-<script id="edit-timeline-template" type="text/x-handlebars-template">
+<script id="timeline-edit-template" type="text/x-handlebars-template">
 {literal}
   <form class="form-horizontal">
     <fieldset>
@@ -64,6 +64,7 @@
 <script src="{$path.js}/admin.timeline.js"></script>
 <script type="text/javascript">
   var list_template = Handlebars.compile($("#list-template").html());
+  var timeline_edit_template = Handlebars.compile($("#timeline-edit-template").html());
 
   // enable the refresh button
   $('#nav-update').click(function() {
@@ -75,7 +76,7 @@
     });
   });
   
-  // initialize
+  // initialize the event list
   refreshList($('#eventlist'), {$assets_json});
   
   // the timeline delete button
@@ -90,6 +91,26 @@
           // TODO proper error message
           alert('{$title|string_format:$lang.admin.error.timeline_not_destroyed}');
           $('#nav-delete').show();
+        }
+      });
+    }
+  });
+
+  // the assets delete buttons
+  $('#eventlist').on('click', 'a.js-destroy', function() {
+    var destroyButton = $(this);
+    var asset = destroyButton.closest('tr.asset');
+    var assetHash = asset.data('hash');
+    if (confirm('{$lang.confirm.asset}')) {
+      destroyButton.hide();
+      $.getJSON('/admin/{$hash}/' + assetHash + '/destroy.json', function(data) {
+        if (data.result) {
+          asset.fadeOut(function() { asset.remove(); });
+        }
+        else {
+          // TODO proper error message
+          alert('{$lang.admin.error.asset_not_destroyed}');
+          destroyButton.show();
         }
       });
     }

@@ -36,6 +36,8 @@ admin:
     asset_not_destroyed: 'Beim löschen des Eintrags ist etwas schief gegangen.'
     asset_not_updated: 'Beim speichern des Eintrags ist etwas schief gegangen.'
   timeline:
+    update:
+      header: '"%s" bearbeiten'
     date: Zeitraum
     description: Beschreibung
     language: Bevorzugte Sprache

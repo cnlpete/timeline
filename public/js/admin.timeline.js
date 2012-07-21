@@ -30,3 +30,50 @@ refreshInfo = function(data){
   $('#timelinedata .js-startDate').html(data.startDate);
   $('#timelinedata .js-endDate').html(data.endDate);
 }
+
+/* save the timeline */
+saveTimeline = function(hash, timelinedata, success, error) {
+  $.post('/admin/' + hash + '/update.json', {'data' : timelinedata}, function(data) {
+    if (data.result) {
+      if ($.isFunction(success))
+        success.call();
+    }
+    else {
+      if ($.isFunction(error))
+        error.call();
+    }
+  });
+}
+
+/* get the timeline */
+getTimeline = function(hash, callback) {
+  $.getJSON('/admin/' + hash + '.json', callback);
+}
+
+/* destroy the timeline */
+destroyTimeline = function(hash, success, error) {
+  $.getJSON('/admin/' + hash + '/destroy.json', function(data) {
+    if (data.result) {
+      if ($.isFunction(success))
+        success.call();
+      parent.location.href = '/admin.html';
+    }
+    else {
+      if ($.isFunction(error))
+        error.call();
+    }
+  });
+}
+
+
+
+
+$('#myModal').on('hidden', function () {
+  // unbind the old click function
+  $('#myModal #form-save').off('click');
+})
+
+$('#myModal').on('shown', function () {
+  // bind all datepickers
+  $('#myModal .js-datepicker').datepicker( { 'weekStart':1, 'autoclose':true, 'startView':'decade', 'language':'de' } );
+})

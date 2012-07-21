@@ -40,7 +40,7 @@ class Admin extends Main {
         return $this->updateAsset(trim($this->_aRequest['timelinehash']), trim($this->_aRequest['hash']));
         break;
       case 'destroy_asset':
-        return $this->updateAsset(trim($this->_aRequest['timelinehash']), trim($this->_aRequest['hash']));
+        return $this->destroyAsset(trim($this->_aRequest['timelinehash']), trim($this->_aRequest['hash']));
         break;
 
       // views

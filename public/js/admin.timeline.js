@@ -89,6 +89,19 @@ saveAsset = function(timelinehash, assethash, assetdata, success, error) {
   });
 }
 
+/* create an asset */
+createAsset = function(timelinehash, assetdata, success, error) {
+  $.post('/admin/' + timelinehash + '/create.json', {'data' : assetdata}, function(data) {
+    if (data.result) {
+      if ($.isFunction(success))
+        success.call(data);
+    }
+    else {
+      if ($.isFunction(error))
+        error.call(data);
+    }
+  });
+}
 
 $('#myModal').on('hidden', function () {
   // unbind the old click function

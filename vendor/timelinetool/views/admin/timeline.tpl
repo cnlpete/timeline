@@ -20,7 +20,7 @@
       <tr>
         <td>{$lang.admin.timeline.assets.title}</td>
         <td>{$lang.admin.timeline.assets.date}</td>
-        <td width='120px'>{$lang.admin.timeline.assets.options}</td>
+        <td width='80px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
       </tr>
     </thead>
     <tbody>
@@ -57,7 +57,6 @@
   <td class="table-title">{{title}}</td>
   <td class="table-date">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
-    <a class="js-show btn" href="#show-{{hash}}"><i class="icon-search"></i></a>
     <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
     <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
   </td>
@@ -175,5 +174,25 @@
       });
       $('#myModal').modal( { 'backdrop':'static' } );
     });
+  });
+
+  // the assets create buttons
+  $('#eventlist').on('click', 'a.js-create', function() {
+    $('#myModal .modal-body').html(asset_form_template({}));
+    $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.create.header}');
+    $('#myModal #form-save').click(function() {
+      // get the data
+      var data = {};
+      $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
+          data[item.name] = item.value;
+      });
+      // send to server
+      createAsset('{$hash}', data, function() {
+        $('#myModal').modal('hide');
+        data.hash = this.hash;
+        $('#eventlist tbody').append(list_template( { 'entries':[data] } ));
+      });
+    });
+    $('#myModal').modal( { 'backdrop':'static' } );
   });
 </script>

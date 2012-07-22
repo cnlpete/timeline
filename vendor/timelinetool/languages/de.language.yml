@@ -46,6 +46,7 @@ admin:
     assets:
       update:
         header: 'Event bearbeiten'
+      create:
+        header: 'Event erstellen'
       title: Titel
-      date: Datum
-      options: Optionen
+      date: Zeitraum

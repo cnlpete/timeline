@@ -6,7 +6,7 @@
 "admin/(:alnum).(json|xml|html)": controller=admin&hash=$1&format=$2&action=show_timeline
 "admin/(:alnum)/(update|destroy).(json|xml|html)": controller=admin&format=$3&hash=$1&action=$2_timeline
 "admin/(:alnum)/create.(json|xml|html)": controller=admin&format=$2&hash=$1&action=create_asset
-"admin/(:alnum)/(:alnum).(json|xml|html)": controller=admin&format=$4&timelinehash=$1&hash=$2&action=show_asset
+"admin/(:alnum)/(:alnum).(json|xml|html)": controller=admin&format=$3&timelinehash=$1&hash=$2&action=show_asset
 "admin/(:alnum)/(:alnum)/(update|destroy).(json|xml|html)": controller=admin&format=$4&timelinehash=$1&hash=$2&action=$3_asset
 
 # the admin views

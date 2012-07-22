@@ -134,8 +134,10 @@ class Timeline extends Main {
     $sStoragePath = $this->_aSession['config']['paths']['storage'];
     $sAssetPath = $sStoragePath . '/timeline/' . $sHash . '/';
 
-    if (file_exists($sFilename)) {
-      return json_decode(file_get_contents($sFilename));
+    if (file_exists($sAssetPath . $sAssetHash . '.json')) {
+      $aData = (array) json_decode(file_get_contents($sAssetPath . $sAssetHash . '.json'));
+      $aData['hash'] = $sAssetHash;
+      return $aData;
     }
     else
       return false;

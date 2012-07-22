@@ -9,6 +9,11 @@ showDebugMsg = function(msgs){
 }
 
 /* refresh the list with some given data */
+refreshItem = function(data){
+  $('#hash-' + data.hash).html(list_item_template(data));
+}
+
+/* refresh the list with some given data */
 refreshList = function(list, data){
   var tBody = $('tbody', list);
   tBody.fadeOut('fast', function() {
@@ -65,7 +70,24 @@ destroyTimeline = function(hash, success, error) {
   });
 }
 
+/* get an asset */
+getAsset = function(timelinehash, assethash, callback) {
+  $.getJSON('/admin/' + timelinehash + '/' + assethash + '.json', callback);
+}
 
+/* save the asset */
+saveAsset = function(timelinehash, assethash, assetdata, success, error) {
+  $.post('/admin/' + timelinehash + '/' + assethash + '/update.json', {'data' : assetdata}, function(data) {
+    if (data.result) {
+      if ($.isFunction(success))
+        success.call();
+    }
+    else {
+      if ($.isFunction(error))
+        error.call();
+    }
+  });
+}
 
 
 $('#myModal').on('hidden', function () {

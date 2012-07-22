@@ -46,82 +46,38 @@
 <script id="list-template" type="text/x-handlebars-template">
 {literal}
   {{#each entries}}
-    <tr class="asset" data-hash='{{hash}}'>
-      <td class="table-title">{{title}}</td>
-      <td class="table-date">{{date}}</td>
-      <td class="table-options">
-        <a class="btn" href="#show-{{hash}}"><i class="icon-search"></i></a>
-        <a class="btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
-        <a class="btn btn-danger js-destroy" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
-      </td>
+    <tr class="asset" id="hash-{{hash}}" data-hash='{{hash}}'>
+      {{> list-item}}
     </tr>
   {{/each}}
 {/literal}
 </script>
-
-<script id="timeline-edit-template" type="text/x-handlebars-template">
+<script id="list-item-template" type="text/x-handlebars-template">
 {literal}
-  <form class="form-horizontal">
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.title}{literal}</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" name="title" id="form-title" value="{{title}}">
-        </div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label">{/literal}{$lang.admin.timeline.date}{literal}</label>
-        <div class="controls">
-          <input class="span1 js-datepicker" name="startDate" id="form-startDate" size="16" type="text" value="{{startDate}}" data-date-format="yyyy-mm-dd" readonly>
-          -
-          <input class="span1 js-datepicker" name="endDate" id="form-endDate" size="16" type="text" value="{{endDate}}" data-date-format="yyyy-mm-dd" readonly>
-        </div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.language}{literal}</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" name="language" id="form-language" value="{{language}}">
-        </div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.description}{literal}</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" name="description" id="form-description" value="{{description}}">
-        </div>
-      </div>
-    </fieldset>
-  </form>
+  <td class="table-title">{{title}}</td>
+  <td class="table-date">{{startDate}} - {{endDate}}</td>
+  <td class="table-options">
+    <a class="js-show btn" href="#show-{{hash}}"><i class="icon-search"></i></a>
+    <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
+    <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
+  </td>
 {/literal}
 </script>
 
-<script id="asset-edit-template" type="text/x-handlebars-template">
-{literal}
-  <form class="form-horizontal">
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label" for="form-startDate">{/literal}{$timeline.startDate}{literal}</label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="form-startDate">
-        </div>
-      </div>
-    </fieldset>
-  </form>
-{/literal}
-</script>
+{include file='_timeline.form.template.tpl'}
+
+{include file='_asset.form.template.tpl'}
 
 <script src="{$path.js}/bootstrap-datepicker.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
 <script type="text/javascript">
+  Handlebars.registerPartial("list-item", $("#list-item-template").html());
   var list_template           = Handlebars.compile($("#list-template").html());
-  var timeline_edit_template  = Handlebars.compile($("#timeline-edit-template").html());
-  var asset_edit_template     = Handlebars.compile($("#asset-edit-template").html());
+  var list_item_template      = Handlebars.compile($("#list-item-template").html());
+  var timeline_form_template  = Handlebars.compile($("#timeline-form-template").html());
+  var asset_form_template     = Handlebars.compile($("#asset-form-template").html());
+
 
   // enable the refresh button
   $('#nav-update').click(function() {
@@ -155,7 +111,7 @@
     getTimeline('{$hash}', function(data) {
       refreshList($('#eventlist'), data.assets);
       refreshInfo(data.timeline);
-      $('#myModal .modal-body').html(timeline_edit_template(data.timeline));
+      $('#myModal .modal-body').html(timeline_form_template(data.timeline));
       $('#myModal .modal-header h3').html('{$title|string_format:$lang.admin.timeline.update.header}');
       $('#myModal #form-save').click(function() {
         // get the data
@@ -194,20 +150,30 @@
   });
 
   // the assets update buttons
-  $('#eventlist').on('click', 'a.js-update', function() {
+  $('#eventlist').on('click', 'a.js-edit', function() {
     var updateButton = $(this);
     var asset = updateButton.closest('tr.asset');
     var assetHash = asset.data('hash');
-    // show modal form
-    //$.getJSON('/admin/{$hash}/' + assetHash + '/update.json', data, function(data) {
-      
-    //  if (data.result) {
-    //    asset.fadeOut(function() { /* TODO update data */ });
-    //  }
-    //  else {
-        // TODO proper error message
-    //    alert('{$lang.admin.error.asset_not_updated}');
-    //  }
-    //});
+    var updateButton = $(this);
+    // reload the data, just to be shure
+    getAsset('{$hash}', assetHash, function(data) {
+      refreshItem(data);
+      $('#myModal .modal-body').html(asset_form_template(data));
+      $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.update.header}');
+      $('#myModal #form-save').click(function() {
+        // get the data
+        var data = {};
+        $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
+            data[item.name] = item.value;
+        });
+        // send to server
+        saveAsset('{$hash}', assetHash, data, function() {
+          $('#myModal').modal('hide');
+          data.hash = assetHash;
+          refreshItem(data);
+        });
+      });
+      $('#myModal').modal( { 'backdrop':'static' } );
+    });
   });
 </script>

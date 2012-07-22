@@ -38,11 +38,14 @@ admin:
   timeline:
     update:
       header: '"%s" bearbeiten'
+    title: Titel
     date: Zeitraum
     description: Beschreibung
     language: Bevorzugte Sprache
     asset_list: Alle Einträge
     assets:
+      update:
+        header: 'Event bearbeiten'
       title: Titel
       date: Datum
       options: Optionen

@@ -26,9 +26,9 @@ class Index {
     $this->_aRequest  = &$aRequest;
     $this->_aCookie   = &$aCookie;
 
+    $this->getConfig();
     MySmarty::getInstance($aRequest, $aSession);
 
-    $this->getConfig();
     new I18n($this->_aSession);
   }
 

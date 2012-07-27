@@ -13,9 +13,5 @@ class Admin extends Main {
     return array();
   }
 
-  public function canEditHash($sHash) {
-    //TODO
-    return true;
-  }
 }
 

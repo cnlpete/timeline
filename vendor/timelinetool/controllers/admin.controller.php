@@ -18,7 +18,7 @@ class Admin extends Main {
 
   public function executeAction() {
     if (!(Session::getUserSession()->isLoggedIn()))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
 
     switch ($this->_sAction) {
       // api
@@ -64,7 +64,7 @@ class Admin extends Main {
   protected function showOverview() {
     //check rights
     if (!(Session::getUserSession()->hasPermission('admin') || Session::getUserSession()->hasPermission('edit_timeline')))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_showOverview();
   }
 
@@ -87,7 +87,7 @@ class Admin extends Main {
    **/
   protected function createTimeline() {
     if (!(Session::getUserSession()->hasPermission('admin')))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_createTimeline();
   }
 
@@ -105,7 +105,7 @@ class Admin extends Main {
 
   protected function showTimeline($sHash) {
     if (!(Session::getUserSession()->canEditTimeline($sHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_showTimeline($sHash);
   }
 
@@ -122,37 +122,32 @@ class Admin extends Main {
     $oSmarty->addTplDir($this->_sController);
     //TODO cache
 
-    if ($this->_oModel->canEditHash($sHash)) {
-      $aTimelinedata = (array)$this->_oTimelineModel->getTimelineForHash($sHash);
-      $oSmarty->assign('hash', $sHash);
-      $oSmarty->assign('timeline', $aTimelinedata);
-      $oSmarty->assign('assets_json', json_encode($this->_oTimelineModel->getTimelineAssetsForHash($sHash)));
+    $aTimelinedata = (array)$this->_oTimelineModel->getTimelineForHash($sHash);
+    $oSmarty->assign('hash', $sHash);
+    $oSmarty->assign('timeline', $aTimelinedata);
+    $oSmarty->assign('assets_json', json_encode($this->_oTimelineModel->getTimelineAssetsForHash($sHash)));
 
-      // assign nav-links
-      $aNavList = array();
-      $aNavList['update'] = array('icon' => 'refresh');
-      $aNavList['edit']   = array('icon' => 'wrench');
-      $aNavList['delete'] = array('icon' => 'trash');
-      $oSmarty->assign('navlist', $aNavList);
+    // assign nav-links
+    $aNavList = array();
+    $aNavList['update'] = array('icon' => 'refresh');
+    $aNavList['edit']   = array('icon' => 'wrench');
+    $aNavList['delete'] = array('icon' => 'trash');
+    $oSmarty->assign('navlist', $aNavList);
 
-      // set the title
-      if ($aTimelinedata['title'])
-        $oSmarty->assign('title', $aTimelinedata['title']);
+    // set the title
+    if ($aTimelinedata['title'])
+      $oSmarty->assign('title', $aTimelinedata['title']);
 
-      // maybe set the user specified language?
-      if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))
-        I18n::load($aTimelinedata['language']);
+    // maybe set the user specified language?
+    if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))
+      I18n::load($aTimelinedata['language']);
 
-      return $oSmarty->fetch('timeline.tpl');
-    }
-    else {
-      Helper::errorMessage(I18n::get('admin.error.hash_not_valid', $sHash), '/' . $this->_sController);
-    }
+    return $oSmarty->fetch('timeline.tpl');
   }
 
   protected function updateTimeline($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_updateTimeline($sTimelineHash);
   }
 
@@ -167,7 +162,7 @@ class Admin extends Main {
 
   protected function destroyTimeline($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_destroyTimeline($sTimelineHash);
   }
 
@@ -181,7 +176,7 @@ class Admin extends Main {
 
   protected function createAsset($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_createAsset($sTimelineHash);
   }
 
@@ -199,7 +194,7 @@ class Admin extends Main {
 
   protected function showAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_showAsset($sTimelineHash, $sAssetHash);
   }
 
@@ -213,7 +208,7 @@ class Admin extends Main {
 
   protected function updateAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_updateAsset($sTimelineHash, $sAssetHash);
   }
 
@@ -228,7 +223,7 @@ class Admin extends Main {
 
   protected function destroyAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'));
+      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_destroyAsset($sTimelineHash, $sAssetHash);
   }
 

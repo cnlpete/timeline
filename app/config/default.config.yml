@@ -20,7 +20,6 @@ permissions:
   scope: timelinetool
   admin: admin
   edit_timeline: edit_timeline
-  edit_all_timelines: edit_all_timelines
 
 authserver:
   host: localhost

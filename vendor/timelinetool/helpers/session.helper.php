@@ -62,6 +62,8 @@ class Session {
     $sData = Helper::loadDataFromUrl($sHost, $iPort, $sScriptPath.'?op=user_login&user='.$sUsername.'&password='.$sPassword);
     //parse Data
     $this->_parseUserDataFromXML(simplexml_load_string($sData));
+    if ($this->isLoggedIn())
+      setcookie('loginname', $sUsername, time() + 60*60*24*30); // keep the cookie for 30 days
     return $this->isLoggedIn();
   }
 
@@ -109,6 +111,17 @@ class Session {
   public function hasPermission($sPermissionIdentifier) {
     return isset($this->_aData['permissions'][$sPermissionIdentifier]) && 
       count($this->_aData['permissions'][$sPermissionIdentifier]) > 0;
+  }
+
+  private function hasTimelineHashInPermission($sHash, $sPermission) {
+    foreach ($this->_aData['permissions'][$sPermission] as $sTimeline)
+      if ($sTimeline == $sHash)
+        return true;
+  }
+
+  public function canEditTimeline($sHash) {
+    return $this->hasPermission('admin') || 
+      ($this->hasPermission('edit_timeline') && $this->hasTimelineHashInPermission($sHash, 'edit_timeline')) ;
   }
 
   public function getEditableTimelineHashes() {

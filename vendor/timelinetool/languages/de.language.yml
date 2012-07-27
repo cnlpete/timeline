@@ -40,6 +40,7 @@ admin:
     timeline_not_destroyed: 'Beim löschen der Timeline "%s" ist etwas schief gegangen.'
     asset_not_destroyed: 'Beim löschen des Eintrags ist etwas schief gegangen.'
     asset_not_updated: 'Beim speichern des Eintrags ist etwas schief gegangen.'
+    missing_rights: Dir fehlen die erforderlichen Rechte um diese Seite aufrufen zu können.'
   timeline:
     update:
       header: '"%s" bearbeiten'

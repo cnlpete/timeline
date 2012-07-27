@@ -35,6 +35,8 @@
 
   <body>
 
+{include file='_login.form.template.tpl'}
+
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -45,20 +47,38 @@
           </a>
           <a class="brand" href="{if $hash}/{$hash}{else}{$meta.url}{/if}">
             {if $title}{$title}{else}{$meta.title}{/if}</a>
-          <div class="btn-group pull-right">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> {$user.name}
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              {if $timeline.hash}<li><a href="/admin/{$timeline.hash}.html">
-                <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
-              <li><a href="/admin.html">
-                <i class="icon-th"></i> {$lang.navigation.admin}</a></li>
-              <li><a href="#logout">
-                <i class="icon-off"></i> {$lang.global.logout}</a></li>
+          {if $user.authenticated}
+            <div class="btn-group pull-right">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i> {$user.name}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {if $timeline.hash}<li><a href="/admin/{$timeline.hash}.html">
+                  <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
+                {if $user.has_admin_right || $user.editable_timelines}
+                  <li><a href="/admin.html">
+                    <i class="icon-th"></i> {$lang.navigation.admin}</a></li>
+                {/if}
+                {if !$user.has_admin_right && $user.editable_timelines}
+                  <li class="divider-horizontal"></li>
+                  {foreach $user.editable_timelines as $user_timeline}
+                    <li><a href="/admin/{$user_timeline}.html">
+                      <i class="icon-th-large"></i> {$user_timeline}</a></li>
+                  {/foreach}
+                {/if}
+                <li class="divider-horizontal"></li>
+                <li><a id="js-logout-button" href="#logout">
+                  <i class="icon-off"></i> {$lang.global.logout}</a></li>
+              </ul>
+            </div>
+          {else}
+            <ul class="nav pull-right">
+              <li><a id="js-login-button" href="#login">
+                <i class="icon-user icon-white"></i> {$lang.global.login}
+              </a></li>
             </ul>
-          </div>
+          {/if}
           <div class="nav-collapse">
             <ul class="nav">
               {if $navlist}

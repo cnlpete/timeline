@@ -74,6 +74,15 @@ class MySmarty extends Smarty {
           'js' => '/' . $aSession['config']['paths']['public'] . '/js'));
 
     $this->assign('meta', $aSession['config']['page']);
+
+    $oUser = Session::getUserSession();
+    $aUser = array(
+      'authenticated' => $oUser->isLoggedIn(),
+      'name' => $oUser->getName(),
+      'editable_timelines' => $oUser->getEditableTimelineHashes(),
+      'has_admin_right' => $oUser->hasPermission($aSession['config']['permissions']['admin'])
+    );
+    $this->assign('user', $aUser);
   }
 
   /**

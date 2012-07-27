@@ -1,6 +1,11 @@
 global:
   login: Login
   logout: Logout
+  guestname: Besucher
+
+login_form:
+  name: Name
+  password: Passwort
 
 success:
   entry:

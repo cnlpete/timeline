@@ -11,7 +11,6 @@ function hide(jDiv, iDelay) {
   jDiv.delay(iDelay).slideUp();
 }
 
-
 /* Show success and error messages */
 if($('#js-flash_message').length) {
   show($('#js-flash_message'), 10000);
@@ -23,3 +22,31 @@ $('#js-flash_message .close').click(function(e) {
   hide($(this).closest('#js-flash_message'), 0);
 });
 
+
+/* call the login api */
+login = function(logindata, success, error) {
+  $.post('/login.json', logindata, function(data) {
+    if (data) {
+      if ($.isFunction(success))
+        success.call();
+    }
+    else {
+      if ($.isFunction(error))
+        error.call();
+    }
+  });
+}
+
+/* call the login api */
+logout = function(success, error) {
+  $.post('/logout.json', function(data) {
+    if (data) {
+      if ($.isFunction(success))
+        success.call();
+    }
+    else {
+      if ($.isFunction(error))
+        error.call();
+    }
+  });
+}

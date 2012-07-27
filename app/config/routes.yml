@@ -15,6 +15,10 @@
 # the installer
 "(install|migrate).(json|xml|html)": controller=install&action=$1&format=$2
 
+# login
+"(login|logout).(json|xml|html)": controller=session&action=$1&format=$2
+"(login|logout)": controller=session&action=$1&format=html
+
 # timeline
 "(:alnum).(json|xml|html)": controller=timeline&hash=$1&format=$2
 "(:alnum)": controller=timeline&hash=$1&format=html

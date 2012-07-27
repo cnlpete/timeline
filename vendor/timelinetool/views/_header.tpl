@@ -43,7 +43,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{$meta.url}">
+          <a class="brand" href="{if $hash}/{$hash}{else}{$meta.url}{/if}">
             {if $title}{$title}{else}{$meta.title}{/if}</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -64,14 +64,10 @@
               {if $navlist}
                 {foreach $navlist as $navkey => $navitem}
                   <li><a href="#{$navkey}" id="nav-{$navkey}">
-                    {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}</a></li>
-                  <li class="divider-vertical"></li>
+                    {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}
+                    {if $navitem.label}{$navitem.label}{/if}</a></li>
+                  {if !$navitem.nodivider}<li class="divider-vertical"></li>{/if}
                 {/foreach}
-              {else}
-                <li class="active">
-                  <a href="/">
-                    {if $title}{$title}{else}{$lang.navigation.home}{/if}</a></li>
-                <li><a href="/#about">{$lang.navigation.about}</a></li>
               {/if}
             </ul>
           </div><!--/.nav-collapse -->

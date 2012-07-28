@@ -41,7 +41,7 @@ class Timeline extends Main {
             // assign nav-links
             $aNavList = array();
             $aNavList['home'] = array('icon' => 'home', 'label' => 'Home');
-            $aNavList['edit']   = array('icon' => 'question-sign', 'label' => 'Über');
+            $aNavList['about']   = array('icon' => 'question-sign', 'label' => 'Über');
             $oSmarty->assign('navlist', $aNavList);
 
             return $oSmarty->fetch('index.tpl');

@@ -26,7 +26,8 @@ navigation:
 timeline:
   update: Timeline bearbeiten
   index: 
-    intro: Ein sehr laaanger Text
+    intro: Der Intro Text
+    about: Der About Text
   error:
     hash_not_found: 'Die Timeline "%s" wurde nicht gefunden!'
     

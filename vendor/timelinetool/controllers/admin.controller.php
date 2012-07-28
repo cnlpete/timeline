@@ -69,15 +69,20 @@ class Admin extends Main {
   }
 
   protected function _showOverview() {
-    // there is no other format for this action than html
+    // api call
     if ($this->_sFormat != 'html')
-      return null;
+      return array('timelines' => $this->_oModel->getAllEditableTimelines());
 
     $oSmarty = MySmarty::getInstance();
     $oSmarty->addTplDir($this->_sController);
     //TODO cache
 
-    $oSmarty->assign('timelines', $this->_oModel->getAllEditableTimelines());
+    // assign nav-links
+    $aNavList = array();
+    $aNavList['update'] = array('icon' => 'refresh');
+    $oSmarty->assign('navlist', $aNavList);
+
+    $oSmarty->assign('timelines_json', json_encode($this->_oModel->getAllEditableTimelines()));
 
     return $oSmarty->fetch('overview.tpl');
   }

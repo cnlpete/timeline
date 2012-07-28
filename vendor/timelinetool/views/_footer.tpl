@@ -6,8 +6,6 @@
 
     </div><!--/.container-->
 
-{include file='_asset.modal.tpl'}
-
     <!-- The javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

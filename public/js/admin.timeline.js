@@ -36,6 +36,20 @@ refreshInfo = function(data){
   $('#timelinedata .js-endDate').html(data.endDate);
 }
 
+/* create a timeline */
+createTimeline = function(timelinedata, success, error) {
+  $.post('/admin/create.json', {'data' : timelinedata}, function(data) {
+    if (data.result) {
+      if ($.isFunction(success))
+        success.call(data);
+    }
+    else {
+      if ($.isFunction(error))
+        error.call(data);
+    }
+  });
+}
+
 /* save the timeline */
 saveTimeline = function(hash, timelinedata, success, error) {
   $.post('/admin/' + hash + '/update.json', {'data' : timelinedata}, function(data) {
@@ -48,6 +62,11 @@ saveTimeline = function(hash, timelinedata, success, error) {
         error.call();
     }
   });
+}
+
+/* get the timeline */
+getTimelines = function(callback) {
+  $.getJSON('/admin.json', callback);
 }
 
 /* get the timeline */

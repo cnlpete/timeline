@@ -32,22 +32,25 @@ timeline:
     
 confirm:
   timeline: Möchten Sie die Timeline "%s" wirklich löschen?
-  asset: Möchten Sie den Eintrag wirklich löschen?
+  asset: Möchten Sie den Eintrag "%s" wirklich löschen?
 
 admin:
   error:
     hash_not_valid: 'Dir fehlen zum bearbeiten der Timeline "%s" die erforderlichen Rechte oder die Timeline existiert noch nicht.'
     timeline_not_destroyed: 'Beim löschen der Timeline "%s" ist etwas schief gegangen.'
-    asset_not_destroyed: 'Beim löschen des Eintrags ist etwas schief gegangen.'
-    asset_not_updated: 'Beim speichern des Eintrags ist etwas schief gegangen.'
+    asset_not_destroyed: 'Beim löschen des Eintrags "%s" ist etwas schief gegangen.'
+    asset_not_updated: 'Beim speichern des Eintrags "%s" ist etwas schief gegangen.'
     missing_rights: Dir fehlen die erforderlichen Rechte um diese Seite aufrufen zu können.
   timeline:
+    create:
+      header: 'Timeline erstellen'
     update:
       header: '"%s" bearbeiten'
     title: Titel
     date: Zeitraum
     description: Beschreibung
     language: Bevorzugte Sprache
+    timeline_list: Alle deine Timelines
     asset_list: Alle Einträge
     assets:
       update:

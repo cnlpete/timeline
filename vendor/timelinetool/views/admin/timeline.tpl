@@ -20,7 +20,7 @@
       <tr>
         <td>{$lang.admin.timeline.assets.title}</td>
         <td>{$lang.admin.timeline.assets.date}</td>
-        <td width='80px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
+        <td width='120px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +43,7 @@
   <td class="table-title">{{title}}</td>
   <td class="table-date">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
+    <a class="js-play btn" href="/{{hash}}.html"><i class="icon-play-circle"></i></a>
     <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
     <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
   </td>
@@ -119,7 +120,7 @@
     var destroyButton = $(this);
     var asset = destroyButton.closest('tr.asset');
     var assetHash = asset.data('hash');
-    if (confirm('{$lang.confirm.asset}')) {
+    if (confirm(sprintf('{$lang.confirm.asset}', asset.find('.table-title').html()))) {
       destroyButton.hide();
       $.getJSON('/admin/{$hash}/' + assetHash + '/destroy.json', function(data) {
         if (data.result) {
@@ -127,7 +128,7 @@
         }
         else {
           // TODO proper error message
-          alert('{$lang.admin.error.asset_not_destroyed}');
+          alert(sprintf('{$lang.admin.error.asset_not_destroyed}', asset.find('.table-title').html()));
           destroyButton.show();
         }
       });
@@ -139,7 +140,6 @@
     var updateButton = $(this);
     var asset = updateButton.closest('tr.asset');
     var assetHash = asset.data('hash');
-    var updateButton = $(this);
     // reload the data, just to be shure
     getAsset('{$hash}', assetHash, function(data) {
       refreshItem(data);

@@ -73,7 +73,7 @@ class Timeline extends Main {
       return false;
 
     // create the timeline-file
-    return $this->_writeData(array('title' => 'Dummy Title', 'date' => time()), $sTimelinePath . $sHash . '.json');
+    return $this->_writeData($this->_aRequest['data'], $sTimelinePath . $sHash . '.json');
   }
 
   public function updateTimeline($sHash) {

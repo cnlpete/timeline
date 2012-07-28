@@ -26,6 +26,8 @@
 		this.element = $(element);
 		this.language = options.language||this.element.data('date-language')||"en";
 		this.language = this.language in dates ? this.language : "en";
+		this.enableYearToMonth = options.enableYearToMonth ? true : false;
+		this.enableMonthToDay = options.enableMonthToDay ? true : false;
 		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'mm/dd/yyyy');
 		this.picker = $(DPGlobal.template)
 							.appendTo('body')
@@ -439,6 +441,34 @@
 							this.showMode(-1);
 							this.fill();
 						}
+						// Determine the state transitions
+						var year, month, day;
+						year = this.viewDate.getFullYear();
+						month = this.viewDate.getMonth();
+						day = this.viewDate.getDay();
+						console.log(year, month, day);
+						if (this.viewMode == 2) {
+							this.viewDate = new Date(year+1, 0, 0,0,0,0,0);
+							this.date = new Date(year+1, 0, 0,0,0,0,0);
+							this.setValue();
+							if (this.enableYearToMonth) {
+								console.log('doing switch - y2m');
+								this.showMode(-1); // decade to year
+							} else {
+								this.showMode(0); // no-op decade to year
+							}
+						} else if (this.viewMode == 1) {
+							this.viewDate = new Date(year, month, 1,0,0,0,0);
+							this.date = new Date(year, month, 1,0,0,0,0);
+							this.setValue();
+							if (this.enableMonthToDay) {
+								console.log('doing switch - m2d');
+								this.showMode(-1); // year to month
+							} else {
+								this.showMode(0); // year to month
+							}
+						}
+						this.fill();
 						break;
 					case 'td':
 						if (target.is('.day') && !target.is('.disabled')){

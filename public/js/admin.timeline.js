@@ -129,5 +129,11 @@ $('#myModal').on('hidden', function () {
 
 $('#myModal').on('shown', function () {
   // bind all datepickers
-  $('#myModal .js-datepicker').datepicker( { 'weekStart':1, 'autoclose':true, 'startView':'decade', 'language':'de' } );
+  $('#myModal .js-datepicker').datepicker( { 
+    'weekStart':1, 
+    'autoclose':true, 
+    'startView':'decade', 
+    'language':'de', 
+    'enableYearToMonth' : false, 
+    'enableMonthToDay' : false } );
 })

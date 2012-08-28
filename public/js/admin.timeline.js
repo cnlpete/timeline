@@ -129,11 +129,28 @@ $('#myModal').on('hidden', function () {
 
 $('#myModal').on('shown', function () {
   // bind all datepickers
-  $('#myModal .js-datepicker').datepicker( { 
+  $('#myModal .js-yearpicker').datepicker({
     'weekStart':1, 
     'autoclose':true, 
     'startView':'decade', 
     'language':'de', 
-    'enableYearToMonth' : false, 
-    'enableMonthToDay' : false } );
+    'format': 'yyyy'
+  }).on('changeYear', function(e) {
+    var dp = $(e.currentTarget).data('datepicker');
+    dp.date = e.date;
+    dp.setValue();
+    dp.hide();
+  });
+  $('#myModal .js-monthpicker').datepicker({
+    'weekStart':1, 
+    'autoclose':true, 
+    'startView':'decade', 
+    'language':'de', 
+    'format': 'yyyy-mm'
+  }).on('changeMonth', function(e) {
+    var dp = $(e.currentTarget).data('datepicker');
+    dp.date = e.date;
+    dp.setValue();
+    dp.hide();
+  });
 })

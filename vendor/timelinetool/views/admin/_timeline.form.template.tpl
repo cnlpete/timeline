@@ -13,9 +13,9 @@
       <div class="control-group">
         <label class="control-label">{/literal}{$lang.admin.timeline.date}{literal}</label>
         <div class="controls">
-          <input class="span1 js-datepicker" name="startDate" id="form-startDate" size="16" type="text" value="{{startDate}}" data-date-format="yyyy" readonly>
+          <input class="span1 js-yearpicker" name="startDate" id="form-startDate" size="16" type="text" value="{{startDate}}" data-date-format="yyyy" readonly>
           -
-          <input class="span1 js-datepicker" name="endDate" id="form-endDate" size="16" type="text" value="{{endDate}}" data-date-format="yyyy" readonly>
+          <input class="span1 js-yearpicker" name="endDate" id="form-endDate" size="16" type="text" value="{{endDate}}" data-date-format="yyyy" readonly>
         </div>
       </div>
     </fieldset>

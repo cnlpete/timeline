@@ -56,6 +56,55 @@ class Timeline extends Main {
     return $aAssets;
   }
 
+  public function getSortedTimelineAssetsForHash($sHash) {
+    $aAssets = $this->getTimelineAssetsForHash($sHash);
+    $aSortedAssets = array();
+    // put assets in the correct type-layer, if type is given
+    foreach ($aAssets as &$aAsset) {
+      $iStartY = (int)substr($aAsset['startDate'],0,4);
+      if (isset($aAsset['type']))
+        $aSortedAssets[$aAsset['type']][$iStartY][] = $aAsset;
+      else
+        $aSortedAssets['default-type'][$iStartY][] = $aAsset;
+    }
+    
+    // sort each layer respective to their assets starting years
+    foreach ($aSortedAssets as &$aAssetLayer)
+      ksort($aAssetLayer);
+
+    // for each assetlayer, assign the line according to its surrounding assets
+    // also note the max start/end year
+    $iBegin = null;
+    $iEnd = null;
+    foreach ($aSortedAssets as &$aAssetLayer) {
+      $aFlags = array();
+      $aAssetLayer['maxline'] = 0;
+      foreach ($aAssetLayer as $iStartY => &$aAssetYear) {
+        foreach ($aAssetYear as &$aAsset) {
+          $aAsset['line'] = 0;
+          // find the first free line
+          while ($aFlags[$iStartY][$aAsset['line']])
+            $aAsset['line']++;
+          // mark this line as taken
+          $iEndY = (int)substr($aAsset['endDate'],0,4);
+          for ($iY = $iStartY; $iY <= $iEndY; $iY++)
+            $aFlags[$iY][$aAsset['line']] = true;
+
+          if (!isset($iEnd) || $iEnd < $iEndY)
+            $iEnd = $iEndY;
+          if (!isset($iBegin) || $iBegin > $iStartY)
+            $iBegin = $iStartY;
+
+          if ($aAssetLayer['maxline'] < $aAsset['line'])
+            $aAssetLayer['maxline'] = $aAsset['line'];
+        }
+      }
+    }
+    $aSortedAssets['min'] = $iBegin;
+    $aSortedAssets['max'] = $iEnd;
+    return $aSortedAssets;
+  }
+
   public function createTimeline($sHash = '') {
     $sStoragePath = $this->_aSession['config']['paths']['storage'];
     $sTimelinePath = $sStoragePath . '/timeline/';

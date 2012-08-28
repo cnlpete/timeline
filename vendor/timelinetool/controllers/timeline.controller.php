@@ -34,7 +34,7 @@ class Timeline extends Main {
 
               $oSmarty->assign('range', array('start' => $iStartYear, 'end' => $iEndYear));
               $oSmarty->assign('timeline', $aTimelinedata);
-              $oSmarty->assign('assets', $aAssetData);
+              $oSmarty->assign('assets', $aAssetData['data']);
 
               // maybe set the user specified language?
               if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))

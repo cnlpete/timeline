@@ -63,9 +63,9 @@ class Timeline extends Main {
     foreach ($aAssets as &$aAsset) {
       $iStartY = (int)substr($aAsset['startDate'],0,4);
       if (isset($aAsset['type']))
-        $aSortedAssets[$aAsset['type']][$iStartY][] = $aAsset;
+        $aSortedAssets[$aAsset['type']]['data'][$iStartY][] = $aAsset;
       else
-        $aSortedAssets['default-type'][$iStartY][] = $aAsset;
+        $aSortedAssets['default-type']['data'][$iStartY][] = $aAsset;
     }
     
     // sort each layer respective to their assets starting years
@@ -79,7 +79,7 @@ class Timeline extends Main {
     foreach ($aSortedAssets as &$aAssetLayer) {
       $aFlags = array();
       $aAssetLayer['maxline'] = 0;
-      foreach ($aAssetLayer as $iStartY => &$aAssetYear) {
+      foreach ($aAssetLayer['data'] as $iStartY => &$aAssetYear) {
         foreach ($aAssetYear as &$aAsset) {
           $aAsset['line'] = 0;
           // find the first free line
@@ -89,6 +89,10 @@ class Timeline extends Main {
           $iEndY = (int)substr($aAsset['endDate'],0,4);
           for ($iY = $iStartY; $iY <= $iEndY; $iY++)
             $aFlags[$iY][$aAsset['line']] = true;
+
+          $aAsset['width'] = $iEndY - $iStartY;
+          if ($aAsset['width'] <= 0)
+            $aAsset['width'] = 1;
 
           if (!isset($iEnd) || $iEnd < $iEndY)
             $iEnd = $iEndY;
@@ -100,9 +104,7 @@ class Timeline extends Main {
         }
       }
     }
-    $aSortedAssets['min'] = $iBegin;
-    $aSortedAssets['max'] = $iEnd;
-    return $aSortedAssets;
+    return array('min' => $iBegin, 'max' => $iEnd, 'data' => $aSortedAssets);
   }
 
   public function createTimeline($sHash = '') {

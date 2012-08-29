@@ -50,3 +50,27 @@
     <!-- END Timeline -->
   </div>
 </section>
+<script src="{$path.js}/iscroll.js"></script>
+<script src="{$path.js}/jquery.mini-map.js"></script>
+<script src="{$path.js}/timeline.js"></script>
+<script type="text/javascript">
+  /* PAGE LOAD */
+  jQuery(document).ready(function($){
+    /*** iScroll ***/
+    timeline = new iScroll('wrapper',{
+        bounce: false,
+        scrollbarClass: 'scrollbar',
+        vScroll: false,
+        vScrollbar: false
+      });
+
+    /* mini map */
+    $('#scroller').minimap(timeline, $(window).width()-4);
+
+    // update timeline height
+    setWrapperHeight();
+    $(window).resize(function() {
+      setWrapperHeight();
+    });
+  });
+</script>

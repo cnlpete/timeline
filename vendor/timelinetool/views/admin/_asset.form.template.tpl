@@ -19,6 +19,14 @@
         </div>
       </div>
     </fieldset>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="form-source">{/literal}{$lang.admin.timeline.assets.source}{literal}</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" name="source" id="form-source" value="{{source}}">
+        </div>
+      </div>
+    </fieldset>
   </form>
 {/literal}
 </script>

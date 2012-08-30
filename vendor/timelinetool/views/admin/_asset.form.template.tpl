@@ -21,6 +21,15 @@
     </fieldset>
     <fieldset>
       <div class="control-group">
+        <label class="control-label" for="form-type">{/literal}{$lang.admin.timeline.assets.type}{literal}</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge js-typeahead" name="type" id="form-type" value="{{type}}" 
+            data-items="4" data-provide="typeahead">
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="control-group">
         <label class="control-label" for="form-source">{/literal}{$lang.admin.timeline.assets.source}{literal}</label>
         <div class="controls">
           <input type="text" class="input-xlarge" name="source" id="form-source" value="{{source}}">

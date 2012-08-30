@@ -56,9 +56,29 @@ class Timeline extends Main {
     return $aAssets;
   }
 
+  public function getTypes(&$aAssets) {
+    // make a list of all types
+    $aTypes = array();
+    foreach ($aAssets as &$aAsset) {
+      $sType = isset($aAsset['type']) && !empty($aAsset['type']) ? $aAsset['type'] : 'default-type';
+      if (!isset($aTypes[$sType]))
+        $aTypes[$sType] = true;
+    }
+    $asTypes = array();
+    foreach ($aTypes as $sKey => $bFlag) {
+      if ($bFlag)
+        $asTypes[] = $sKey;
+    }
+    return $asTypes;
+  }
+
   public function getSortedTimelineAssetsForHash($sHash) {
     $aAssets = $this->getTimelineAssetsForHash($sHash);
     $aSortedAssets = array();
+
+    // make a list of all types
+    $asTypes = $this->getTypes($aAssets);
+
     // put assets in the correct type-layer, if type is given
     foreach ($aAssets as &$aAsset) {
       $iStartY = (int)substr($aAsset['startDate'],0,4);
@@ -104,7 +124,7 @@ class Timeline extends Main {
         }
       }
     }
-    return array('min' => $iBegin, 'max' => $iEnd, 'data' => $aSortedAssets);
+    return array('min' => $iBegin, 'max' => $iEnd, 'data' => &$aSortedAssets, 'types' => &$asTypes);
   }
 
   public function createTimeline($sHash = '') {

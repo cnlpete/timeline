@@ -143,6 +143,7 @@
     // reload the data, just to be shure
     getAsset('{$hash}', assetHash, function(data) {
       refreshItem(data);
+      typeahead = {$types};
       $('#myModal .modal-body').html(asset_form_template(data));
       $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.update.header}');
       $('#myModal #form-save').click(function() {

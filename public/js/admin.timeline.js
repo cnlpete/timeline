@@ -153,4 +153,6 @@ $('#myModal').on('shown', function () {
     dp.setValue();
     dp.hide();
   });
+  // bind typeaheads
+  $('#myModal .js-typeahead').typeahead({'source': typeahead});
 })

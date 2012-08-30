@@ -130,7 +130,9 @@ class Admin extends Main {
     $aTimelinedata = (array)$this->_oTimelineModel->getTimelineForHash($sHash);
     $oSmarty->assign('hash', $sHash);
     $oSmarty->assign('timeline', $aTimelinedata);
-    $oSmarty->assign('assets_json', json_encode($this->_oTimelineModel->getTimelineAssetsForHash($sHash)));
+    $aAssets = $this->_oTimelineModel->getTimelineAssetsForHash($sHash);
+    $oSmarty->assign('assets_json', json_encode($aAssets));
+    $oSmarty->assign('types', json_encode($this->_oTimelineModel->getTypes($aAssets)));
 
     // assign nav-links
     $aNavList = array();

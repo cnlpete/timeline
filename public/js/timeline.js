@@ -41,11 +41,16 @@ Title = {
 
 /* set wrapper height to current browser viewport */
 setWrapperHeight = function() {
-  var scroller = $('#scroller');
   var wrapper = $('#wrapper');
-  var full_width = $(window).width();
   var full_height = $(window).height();
-  scroller.css('height', full_height - parseInt(wrapper.css('top')) - 70 + 'px');
+  var height = full_height - 10
+      - parseInt(wrapper.css('top')) 
+      - $('#options').outerHeight(true) 
+      - $('footer').siblings().last().outerHeight(true)
+      - $('footer').outerHeight(true);
+  $('#scroller').css('height', (height - 10) + 'px');
+  $('#wrapper').css('height', (height + 5) + 'px');
+  $('#timeline').css('height', height + 'px');
 };
 
 var zIndices = [1];
@@ -84,11 +89,12 @@ hoverOutFunction = function($this, e) {
   var title = $this.find('.title span');
   Title.scrollToPosition(0, title);
 
-  var eventDetails = $this.find('.content');
-  eventDetails.css('bottom', '').css('position', '');
-  eventDetails.parent().css('bottom', '');
+  var details = $this.find('.content');
+  details.css('bottom', '').css('position', '');
+  details.parent().css('bottom', '');
 
-  eventDetails.stop(true, true).animate({ opacity: 0 }, function() {
+  details.stop(true, true).animate({ opacity: 0 }, function() {
+    details.css('display', 'none')
     //remove self from list
     zIndices.rmElem(parseInt($this.css("zIndex")));
     $this.css("zIndex", "1");

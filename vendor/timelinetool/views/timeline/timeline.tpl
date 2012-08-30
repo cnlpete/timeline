@@ -32,11 +32,13 @@
                 {foreach $assetsintype.data as $year=>$assetsinyear}
                   {foreach $assetsinyear as $asset}
                     <div class="asset"
+                      id="asset-{$asset.hash}"
+                      data-hash="{$asset.hash}"
                       style="top: {$asset.line * 30}px; 
                         left: {($year - $range.start) * 100}px;
                         width: {$asset.width * 100}px;">
                       <h4 class="title"><span>{$asset.title}</span></h4>
-                      <div class="content">
+                      <div class="content" style="display: none;">
                         <span class="date">{$year}</span>
                         <div class="text">{$asset.text}</div>
                         <div class="source">{$asset.source}</div>
@@ -51,10 +53,21 @@
       </div>
     </div>
     <!-- END Timeline -->
+    <div id="options">
+      <div id="colorclasses">
+        <p>{$lang.timeline.colorclasses}</p>
+        Colorclasses
+      </div>
+      <div id="source">
+        <p>{$lang.timeline.sources}</p>
+        <span class="toggle"></span>
+      </div>
+    </div>
   </div>
 </section>
 <script src="{$path.js}/iscroll.js"></script>
 <script src="{$path.js}/jquery.mini-map.js"></script>
+<script src="{$path.js}/jquery.switch.js"></script>
 <script src="{$path.js}/timeline.js"></script>
 <script type="text/javascript">
   /* PAGE LOAD */
@@ -75,7 +88,7 @@
     $(window).resize(function() {
       setWrapperHeight();
     });
-    
+
     // show event details on hover
     $('#scroller').on('mouseenter mouseleave', '.asset', function(e) {
       var offset = timeline.x ? timeline.x : 0;
@@ -83,6 +96,15 @@
         hoverInFunction($(this), e, offset);
       else
         hoverOutFunction($(this), e);
+    });
+
+    // fancy switch
+    var sources = $('#scroller').find('.source');
+    $('.toggle').Switch("off", function() {
+      sources.slideDown();
+    }, function() {
+      sources.filter(":visible").slideUp();
+      sources.filter(":not(:visible)").hide();
     });
   });
 </script>

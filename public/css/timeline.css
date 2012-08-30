@@ -3,6 +3,7 @@
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:28px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;}
 #timeline{height:350px;margin-top:20px;}
+#options{text-align:center;}
 #wrapper{overflow:auto;position:absolute;left:0;height:65%;width:100%;z-index:1;}#wrapper #scroller{cursor:ew-resize;padding:0;margin-bottom:5px;height:300px;}#wrapper #scroller #timelinecontent{background:#ffffff url(../img/table.png);height:100%;margin:0 10px;overflow:hidden;border:1px solid #ccc;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;}#wrapper #scroller #timelinecontent .dates{font-size:18px;font-weight:bold;position:relative;height:40px;text-align:center;text-shadow:0 1px 0 rgba(255, 255, 255, 0.9);vertical-align:middle;}#wrapper #scroller #timelinecontent .dates .date{border-left:1px solid #ccc;border-right:1px solid #fff;display:table-cell;padding:10px 0;}
 #wrapper #scroller #timelinecontent .timelinetype:nth-child(even){background:#F5F5F5;}
 #wrapper .scrollbarH{height:8px;z-index:-1;}#wrapper .scrollbarH >div{border:1px solid #06a;height:6px;z-index:100;background:#258dc8;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;-webkit-box-shadow:inset 1px 1px 0 rgba(255, 255, 255, 0.5);-moz-box-shadow:inset 1px 1px 0 rgba(255, 255, 255, 0.5);box-shadow:inset 1px 1px 0 rgba(255, 255, 255, 0.5);}
@@ -30,3 +31,7 @@
 #mini-map div{background:#eaeaea;color:#333;font-size:8px;position:absolute;width:100%;margin:1px;-webkit-border-radius:0.2em;-moz-border-radius:0.2em;border-radius:0.2em;}#mini-map div.asset{background:#06c;}
 #mini-map div.date{background:#eee;}
 #mini-map div.hovered{background:#0cc;}
+#options #colorclasses{display:inline-block;width:40%;}#options #colorclasses p{display:inline-block;}
+#options #colorclasses .toggle{cursor:pointer;display:inline-block;margin:5px 2px 1px;vertical-align:middle;}#options #colorclasses .toggle .switch{background:url('../img/switch/switch.png') no-repeat;display:inline-block;}
+#options #source{display:inline-block;width:40%;}#options #source p{display:inline-block;}
+#options #source .toggle{cursor:pointer;display:inline-block;margin:5px 2px 1px;vertical-align:middle;}#options #source .toggle .switch{background:url('../img/switch/switch.png') no-repeat;display:inline-block;}

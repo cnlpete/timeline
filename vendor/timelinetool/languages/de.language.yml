@@ -24,6 +24,8 @@ navigation:
   home: Home
 
 timeline:
+  sources: 'Quellen:'
+  colorclasses: 'Ereignisse filtern:'
   update: Timeline bearbeiten
   index: 
     intro: Der Intro Text

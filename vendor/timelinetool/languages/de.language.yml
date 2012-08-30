@@ -34,6 +34,9 @@ timeline:
 confirm:
   timeline: Möchten Sie die Timeline "%s" wirklich löschen?
   asset: Möchten Sie den Eintrag "%s" wirklich löschen?
+  modal:
+    save: Speichern
+    cancel: Abbrechen
 
 admin:
   error:

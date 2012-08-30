@@ -62,7 +62,7 @@ class Timeline extends Main {
     // put assets in the correct type-layer, if type is given
     foreach ($aAssets as &$aAsset) {
       $iStartY = (int)substr($aAsset['startDate'],0,4);
-      if (isset($aAsset['type']))
+      if (isset($aAsset['type']) && !empty($aAsset['type']))
         $aSortedAssets[$aAsset['type']]['data'][$iStartY][] = $aAsset;
       else
         $aSortedAssets['default-type']['data'][$iStartY][] = $aAsset;
@@ -70,7 +70,7 @@ class Timeline extends Main {
     
     // sort each layer respective to their assets starting years
     foreach ($aSortedAssets as &$aAssetLayer)
-      ksort($aAssetLayer);
+      ksort($aAssetLayer['data']);
 
     // for each assetlayer, assign the line according to its surrounding assets
     // also note the max start/end year

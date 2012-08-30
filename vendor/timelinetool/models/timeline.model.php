@@ -110,7 +110,7 @@ class Timeline extends Main {
           for ($iY = $iStartY; $iY <= $iEndY; $iY++)
             $aFlags[$iY][$aAsset['line']] = true;
 
-          $aAsset['width'] = $iEndY - $iStartY;
+          $aAsset['width'] = $iEndY - $iStartY + 1;
           if ($aAsset['width'] <= 0)
             $aAsset['width'] = 1;
 

@@ -33,10 +33,13 @@
                   {foreach $assetsinyear as $asset}
                     <div class="asset"
                       style="top: {$asset.line * 30}px; 
-                        left: {($year - $range.start) * 100}px; border: 1px solid black;
+                        left: {($year - $range.start) * 100}px;
                         width: {$asset.width * 100}px;">
-                      <div class="assetcontent">
-                        <h4 class="title">{$asset.title}</h4>
+                      <h4 class="title"><span>{$asset.title}</span></h4>
+                      <div class="content">
+                        <span class="date">{$year}</span>
+                        <div class="text">{$asset.text}</div>
+                        <div class="source">{$asset.source}</div>
                       </div>
                     </div>
                   {/foreach}
@@ -71,6 +74,15 @@
     setWrapperHeight();
     $(window).resize(function() {
       setWrapperHeight();
+    });
+    
+    // show event details on hover
+    $('#scroller').on('mouseenter mouseleave', '.asset', function(e) {
+      var offset = timeline.x ? timeline.x : 0;
+      if (e.type == 'mouseenter')
+        hoverInFunction($(this), e, offset);
+      else
+        hoverOutFunction($(this), e);
     });
   });
 </script>

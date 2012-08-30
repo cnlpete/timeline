@@ -61,14 +61,14 @@ Licensed like jQuery - http://docs.jquery.com/License
 
 			var mapIcon = $('<div>');
 			mapIcon
-			  .attr('id', 'minimap-'+event.data('event'))
+			  .attr('id', 'minimap-'+event.data('hash'))
 			  .css({
-				  'height': Math.round(1.5*event.height()/factor), 
+				  'height': Math.round(event.height()/factor), 
 				  'width': Math.round(event.width()/factor), 
 				  'left': Math.round(eventCoords.left/factor),
 				  'top': Math.round((eventCoords.top - topOffset)/factor) + 10
 			  })
-			  .addClass(t.tagName.toLowerCase())
+			  .addClass('asset')
 			  .appendTo(miniMap);
 		});
 

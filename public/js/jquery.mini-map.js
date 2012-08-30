@@ -18,18 +18,21 @@ Licensed like jQuery - http://docs.jquery.com/License
 		var clicked = false;
 		var miniMap = $('#mini-map');
 		var miniMapCurrentView = $('#current-view', miniMap);
+		var topOffset = years.first().offset().top;
 		
 		//factor-calc:
-		factor = Math.max(minfactor, Math.ceil(el.width()/size));
+		var factor = Math.max(minfactor, Math.ceil(el.width()/size));
 		timeline.options.onScrollEnd = function(){
 			$('#current-view').css('left', -timeline.x/factor);
 		};
 
-		var height = Math.round(el.height()/factor);
+		var height = Math.round((el.height() - topOffset)/factor);
 		var width = Math.round(el.width()/factor);
 		miniMap.height(height + 20);
 		miniMap.width(width);
 		$('#map-container').width(width);
+
+		var topOffset = years.first().offset().top;
 
 		miniMapCurrentView.height(height + 20);
 		miniMapCurrentView.width(Math.round($(window).width()/factor));
@@ -63,7 +66,7 @@ Licensed like jQuery - http://docs.jquery.com/License
 				  'height': Math.round(1.5*event.height()/factor), 
 				  'width': Math.round(event.width()/factor), 
 				  'left': Math.round(eventCoords.left/factor),
-				  'top': Math.round(eventCoords.top/factor) + 3
+				  'top': Math.round((eventCoords.top - topOffset)/factor) + 10
 			  })
 			  .addClass(t.tagName.toLowerCase())
 			  .appendTo(miniMap);

@@ -85,7 +85,7 @@
             <ul class="nav">
               {if $navlist}
                 {foreach $navlist as $navkey => $navitem}
-                  <li><a href="#{$navkey}" id="nav-{$navkey}">
+                  <li><a href="{if $navitem.url}{$navitem.url}{else}#{$navkey}{/if}" id="nav-{$navkey}">
                     {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}
                     {if $navitem.label}{$navitem.label}{/if}</a></li>
                   {if !$navitem.nodivider}<li class="divider-vertical"></li>{/if}

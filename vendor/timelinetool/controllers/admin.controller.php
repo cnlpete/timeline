@@ -134,6 +134,7 @@ class Admin extends Main {
 
     // assign nav-links
     $aNavList = array();
+    $aNavList['play']   = array('icon' => 'play-circle', 'url' => '/'.$sHash.'.html');
     $aNavList['update'] = array('icon' => 'refresh');
     $aNavList['edit']   = array('icon' => 'wrench');
     $aNavList['delete'] = array('icon' => 'trash');

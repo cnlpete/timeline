@@ -74,10 +74,10 @@
         showDebugMsg(data.debug);
     });
   });
-  
+
   // initialize the event list
   refreshList($('#eventlist'), {$assets_json});
-  
+
   // the timeline delete button
   $('#nav-delete').click(function() {
     if (confirm('{$title|string_format:$lang.confirm.timeline}')) {
@@ -89,7 +89,7 @@
       });
     }
   });
-  
+
   // the assets update buttons
   $('#nav-edit').click(function() {
     var updateButton = $(this);

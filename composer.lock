@@ -1,5 +1,5 @@
 {
-    "hash": "e2a5348b681d89a6247324d6ae14c288",
+    "hash": "65079800f0c025aa6a7b47b629ebe867",
     "packages": [
         {
             "package": "simonhamp/routes",
@@ -7,25 +7,20 @@
         },
         {
             "package": "smarty/smarty",
-            "version": "3.1.8"
+            "version": "3.1.11"
         },
         {
             "package": "symfony/yaml",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/yaml",
-            "version": "dev-master",
-            "source-reference": "v2.1.0-BETA1"
+            "source-reference": "v2.1.0-BETA1",
+            "commit-date": "1339592252"
         }
     ],
     "packages-dev": null,
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [
 
     ]

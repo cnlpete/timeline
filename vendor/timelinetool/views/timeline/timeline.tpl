@@ -1,5 +1,7 @@
 <section>
   <link href="{$path.css}/timeline.css" rel="stylesheet" />
+{include file='../_colorclasses.tpl'}
+
   <div>
     <!-- BEGIN Minimap -->
     <div id="map-container">

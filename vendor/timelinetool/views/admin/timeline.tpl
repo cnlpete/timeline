@@ -1,5 +1,7 @@
 <section id='admin-timeline'>
 
+{include file='../_colorclasses.tpl'}
+
   <!-- the timeline info -->
   <div id='timelinedata' class="row-fluid">
     <div class="span6">
@@ -165,6 +167,7 @@
 
   // the assets create buttons
   $('#eventlist').on('click', 'a.js-create', function() {
+    typeahead = {$types};
     $('#myModal .modal-body').html(asset_form_template({}));
     $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.create.header}');
     $('#myModal #form-save').click(function() {

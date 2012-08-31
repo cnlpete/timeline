@@ -127,12 +127,20 @@ class Admin extends Main {
     $oSmarty->addTplDir($this->_sController);
     //TODO cache
 
-    $aTimelinedata = (array)$this->_oTimelineModel->getTimelineForHash($sHash);
+    $aTimelinedata =    (array)$this->_oTimelineModel->getTimelineForHash($sHash);
+    $aAssets =          $this->_oTimelineModel->getTimelineAssetsForHash($sHash);
+    $oColorclassModel = $this->_loadModel('colorclass');
+    $aTypes =           $this->_oTimelineModel->getTypes($aAssets);
+    $aPublicCCs =       $oColorclassModel->getPublicColorclasses();
+    $aPublicTypes =     array();
+    foreach ($aPublicCCs as $aPublicCC)
+      $aPublicTypes[] = $aPublicCC['name'];
+
     $oSmarty->assign('hash', $sHash);
     $oSmarty->assign('timeline', $aTimelinedata);
-    $aAssets = $this->_oTimelineModel->getTimelineAssetsForHash($sHash);
     $oSmarty->assign('assets_json', json_encode($aAssets));
-    $oSmarty->assign('types', json_encode($this->_oTimelineModel->getTypes($aAssets)));
+    $oSmarty->assign('types', json_encode(array_merge($aTypes, $aPublicTypes)));
+    $oSmarty->assign('colorclasses', $aPublicCCs);
 
     // assign nav-links
     $aNavList = array();

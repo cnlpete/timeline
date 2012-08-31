@@ -23,6 +23,8 @@ class Timeline extends Main {
             if ($this->_oModel->isValidHash($sHash)) {
               $aTimelinedata = (array)$this->_oModel->getTimelineForHash($sHash);
               $aAssetData = (array)$this->_oModel->getSortedTimelineAssetsForHash($sHash);
+              $oColorclassModel = $this->_loadModel('colorclass');
+              $aColorclasses = (array)$oColorclassModel->getPublicColorclasses();
 
               // assign start and end year, depending on max/min of timelinedata and assetdata
               $iStartYear = $aAssetData['min'] - 1;
@@ -35,6 +37,7 @@ class Timeline extends Main {
               $oSmarty->assign('range', array('start' => $iStartYear, 'end' => $iEndYear));
               $oSmarty->assign('timeline', $aTimelinedata);
               $oSmarty->assign('assets', $aAssetData['data']);
+              $oSmarty->assign('colorclasses', $aColorclasses);
 
               // maybe set the user specified language?
               if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))

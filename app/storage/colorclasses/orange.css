@@ -1,0 +1,9 @@
+background: #ffa84c;
+background: linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+background: -o-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+background: -ms-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+background: -moz-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+background: -webkit-linear-gradient(top, #ffa84c 0%, #ff7b0d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa84c', endColorstr='#ff7b0d', GradientType=0 );
+color: #fff;
+text-shadow: 0 1px 0 #000;

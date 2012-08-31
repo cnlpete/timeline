@@ -1,0 +1,10 @@
+background: #ee0000;
+background: linear-gradient(top, #ee0000 0%, #aa0000 100%);
+background: -o-linear-gradient(top, #ee0000 0%, #aa0000 100%);
+background: -ms-linear-gradient(top, #ee0000 0%, #aa0000 100%);
+background: -moz-linear-gradient(top, #ee0000 0%, #aa0000 100%);
+background: -webkit-linear-gradient(top, #ee0000 0%, #aa0000 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee0000', endColorstr='#aa0000', GradientType=0 );
+color: #fff;
+text-shadow: 0 1px 0 #000;
+

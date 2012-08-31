@@ -27,8 +27,8 @@ class Timeline extends Main {
               $aColorclasses = (array)$oColorclassModel->getPublicColorclasses();
 
               // assign start and end year, depending on max/min of timelinedata and assetdata
-              $iStartYear = $aAssetData['min'] - 1;
-              $iEndYear   = $aAssetData['max'] + 1;
+              $iStartYear = $aAssetData['min'] != null ? $aAssetData['min'] - 1 : $aTimelinedata['startDate'];
+              $iEndYear   = $aAssetData['max'] != null ? $aAssetData['max'] + 1 : $aTimelinedata['endDate'];
               if ($aTimelinedata['startDate'] != 0 && $aTimelinedata['startDate'] < $aAssetData['min'])
                 $iStartYear = $aTimelinedata['startDate'];
               if ($aTimelinedata['endDate'] != 0 && $aTimelinedata['endDate'] > $aAssetData['max'])

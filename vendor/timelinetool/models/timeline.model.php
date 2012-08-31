@@ -106,7 +106,7 @@ class Timeline extends Main {
           while ($aFlags[$iStartY][$aAsset['line']])
             $aAsset['line']++;
           // mark this line as taken
-          $iEndY = (int)substr($aAsset['endDate'],0,4);
+          $iEndY = max((int)substr($aAsset['endDate'],0,4), $iStartY);
           for ($iY = $iStartY; $iY <= $iEndY; $iY++)
             $aFlags[$iY][$aAsset['line']] = true;
 

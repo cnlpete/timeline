@@ -39,6 +39,10 @@ class Timeline extends Main {
               $oSmarty->assign('assets', $aAssetData['data']);
               $oSmarty->assign('colorclasses', $aColorclasses);
 
+              // set the title
+              if ($aTimelinedata['title'])
+                $oSmarty->assign('title', $aTimelinedata['title']);
+
               // maybe set the user specified language?
               if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))
                 I18n::load($aTimelinedata['language']);

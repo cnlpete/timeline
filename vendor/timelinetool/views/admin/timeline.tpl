@@ -1,6 +1,6 @@
 <section id='admin-timeline'>
 
-{include file='../_colorclasses.tpl'}
+{include file='../_colorclasses.tpl' selector='div'}
 
   <!-- the timeline info -->
   <div id='timelinedata' class="row-fluid">
@@ -20,6 +20,7 @@
   <table id='eventlist' class="table table-bordered">
     <thead>
       <tr>
+        <td style="width: 30px;"></td>
         <td>{$lang.admin.timeline.assets.title}</td>
         <td>{$lang.admin.timeline.assets.date}</td>
         <td width='120px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
@@ -42,6 +43,7 @@
 </script>
 <script id="list-item-template" type="text/x-handlebars-template">
 {literal}
+  <td class="type-{{type}}" style="text-align: center;"><div style="width: 20px; height: 20px; display: inline-block"></div></td>
   <td class="table-title">{{title}}</td>
   <td class="table-date">{{startDate}} - {{endDate}}</td>
   <td class="table-options">

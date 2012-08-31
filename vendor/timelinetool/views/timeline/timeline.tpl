@@ -1,6 +1,6 @@
 <section>
   <link href="{$path.css}/timeline.css" rel="stylesheet" />
-{include file='../_colorclasses.tpl'}
+{include file='../_colorclasses.tpl' selector='.asset .title'}
 
   <div>
     <!-- BEGIN Minimap -->

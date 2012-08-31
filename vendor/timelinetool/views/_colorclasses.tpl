@@ -1,6 +1,6 @@
 <style type="text/css">
   {foreach $colorclasses as $colorclass}
-    .type-{$colorclass.name} .asset .title {
+    .type-{$colorclass.name} {$selector} {
       {$colorclass.css}
     }
   {/foreach}

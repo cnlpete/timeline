@@ -83,7 +83,7 @@
       });
 
     /* mini map */
-    $('#scroller').minimap(timeline, $(window).width()-4);
+    $('#scroller').minimap(timeline, $('.container').width()-4);
 
     // update timeline height
     setWrapperHeight();

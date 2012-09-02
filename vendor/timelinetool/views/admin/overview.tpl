@@ -5,10 +5,10 @@
   <table id='eventlist' class="table table-bordered">
     <thead>
       <tr>
-        <td>{$lang.admin.timeline.title}</td>
-        <td>{$lang.admin.timeline.description}</td>
-        <td>{$lang.admin.timeline.date}</td>
-        <td width='160px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
+        <th class="type-string">{$lang.admin.timeline.title}</th>
+        <th>{$lang.admin.timeline.description}</th>
+        <th class="type-string">{$lang.admin.timeline.date}</th>
+        <th width='160px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></th>
       </tr>
     </thead>
     <tbody>
@@ -42,6 +42,7 @@
 
 {include file='_timeline.form.template.tpl'}
 
+<script src="{$path.js}/jquery.stupidtable.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
@@ -50,6 +51,8 @@
   var list_template           = Handlebars.compile($("#list-template").html());
   var list_item_template      = Handlebars.compile($("#list-item-template").html());
   var timeline_form_template  = Handlebars.compile($("#timeline-form-template").html());
+
+  $('#eventlist').stupidtable();
 
   // enable the refresh button
   $('#nav-update').click(function() {

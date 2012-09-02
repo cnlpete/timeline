@@ -20,10 +20,10 @@
   <table id='eventlist' class="table table-bordered">
     <thead>
       <tr>
-        <td style="width: 30px;"></td>
-        <td>{$lang.admin.timeline.assets.title}</td>
-        <td>{$lang.admin.timeline.assets.date}</td>
-        <td width='120px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></td>
+        <th class="type-string" style="width: 30px;"></th>
+        <th class="type-string">{$lang.admin.timeline.assets.title}</th>
+        <th class="type-int">{$lang.admin.timeline.assets.date}</th>
+        <th width='120px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></th>
       </tr>
     </thead>
     <tbody>
@@ -43,9 +43,10 @@
 </script>
 <script id="list-item-template" type="text/x-handlebars-template">
 {literal}
-  <td class="type-{{type}}" style="text-align: center;"><div style="width: 20px; height: 20px; display: inline-block"></div></td>
+  <td class="type-{{type}}" style="text-align: center;" data-order-by="{{type}}">
+    <div style="width: 20px; height: 20px; display: inline-block"></div></td>
   <td class="table-title">{{title}}</td>
-  <td class="table-date">{{startDate}} - {{endDate}}</td>
+  <td class="table-date" data-order-by="{{startDate}}">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
     <a class="js-play btn" href="/{{hash}}.html"><i class="icon-play-circle"></i></a>
     <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
@@ -58,6 +59,7 @@
 
 {include file='_asset.form.template.tpl'}
 
+<script src="{$path.js}/jquery.stupidtable.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
@@ -68,6 +70,7 @@
   var timeline_form_template  = Handlebars.compile($("#timeline-form-template").html());
   var asset_form_template     = Handlebars.compile($("#asset-form-template").html());
 
+  $('#eventlist').stupidtable();
 
   // enable the refresh button
   $('#nav-update').click(function() {

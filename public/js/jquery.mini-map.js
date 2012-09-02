@@ -29,7 +29,7 @@ Licensed like jQuery - http://docs.jquery.com/License
 		var topOffset = years.first().offset().top;
 
 		// show every 5th year
-		years.each(function(i,t){
+		years.each(function(i,t) {
 			if (i % 5 == 0) {
 				var year = $(this);
 				var yearCoords = year.offset();
@@ -47,7 +47,7 @@ Licensed like jQuery - http://docs.jquery.com/License
 
 		// show events
 		var height = 0;
-		events.each(function(i,t){
+		events.each(function(i,t) {
 			var event = $(this);
 			var eventCoords = event.offset();
 
@@ -67,7 +67,6 @@ Licensed like jQuery - http://docs.jquery.com/License
 		});
 
 		// minimap size
-		var height = Math.round(el.height()/factor);
 		var width = Math.round(el.width()/factor);
 		miniMap.height(height + 5);
 		miniMap.width(width);

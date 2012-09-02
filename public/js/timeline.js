@@ -54,49 +54,65 @@ setWrapperHeight = function() {
 };
 
 var zIndices = [1];
-hoverInFunction = function($this, e, timelineOffset){
-  var details = $this.find('.content');
-  var title = $this.find('.title span');
-  var newPos = e ? e.clientX - $this.offset().left - (title.width() * 0.5) : 0;
+Event = {
+  hoverInFunction: function($this, e, timelineOffset){
+    var details = $this.find('.content');
+    var title = $this.find('.title span').first();
+    var newPos = e ? e.clientX - $this.offset().left - (title.width() * 0.5) : 0;
 
-  // check for content
-  if (details.text().length) {
-    // center title under mouse position
-    Title.scrollToPosition(newPos, title);
+    // check for content
+    if (details.text().length) {
+      // center title under mouse position
+      Title.scrollToPosition(newPos, title);
 
-    // change details position
-    // avoid that details move out of container
-    newPos = Math.max(Math.min(newPos, $this.width() - details.width()), 0);
-    details.css('display', 'inline-block')
-    details.stop(true, true).animate({ opacity: 1, left: newPos + 'px' });
+      // change details position
+      // avoid that details move out of container
+      newPos = Math.max(Math.min(newPos, $this.width() - details.width()), 0);
+      details.css('display', 'inline-block')
+      details.stop(true, true).animate({ opacity: 1, left: newPos + 'px' });
 
-    //create new max of zIndices, so element will hover on top...
-    zIndices.push(zIndices.last()+1);
-    $this.css("zIndex", zIndices.last().toString());
+      //create new max of zIndices, so element will hover on top...
+      zIndices.push(zIndices.last()+1);
+      $this.css("zIndex", zIndices.last().toString());
 
-    xE = details.offset().top + details.outerHeight();
-    xB = $(window).height() - $('#options').outerHeight();
-    if (xE >= xB) {
-      //event is too big, we need to shift it up a bit ...
-      details.css('bottom', 0).css('position', 'relative');
-      details.parent().css('bottom', 0).css('top', '');
+      xE = details.offset().top + details.outerHeight();
+      xB = $(window).height() - $('#options').outerHeight();
+      if (xE >= xB) {
+        //event is too big, we need to shift it up a bit ...
+        details.css('bottom', 0).css('position', 'relative');
+        details.parent().css('bottom', 0).css('top', '');
+      }
     }
+  },
+  hoverOutFunction: function($this, e) {
+    // change title position back
+    var title = $this.find('.title span').first();
+    Title.scrollToPosition(0, title);
+
+    var details = $this.find('.content');
+    details.css('bottom', '').css('position', '');
+    details.parent().css('bottom', '');
+
+    details.stop(true, true).animate({ opacity: 0 }, function() {
+      details.css('display', 'none')
+      //remove self from list
+      zIndices.rmElem(parseInt($this.css("zIndex")));
+      $this.css("zIndex", "1");
+    });
+  },
+  click: function($this, e) {
+    if (Event.isSticky($this))
+      Event.removeSticky($this);
+    else
+      Event.makeSticky($this);
+  },
+  isSticky: function(event) {
+    return event.hasClass('sticky');
+  },
+  makeSticky: function(event) {
+    event.addClass('sticky');
+  },
+  removeSticky: function(event) {
+    event.removeClass('sticky');
   }
-};
-
-hoverOutFunction = function($this, e) {
-  // change title position back
-  var title = $this.find('.title span');
-  Title.scrollToPosition(0, title);
-
-  var details = $this.find('.content');
-  details.css('bottom', '').css('position', '');
-  details.parent().css('bottom', '');
-
-  details.stop(true, true).animate({ opacity: 0 }, function() {
-    details.css('display', 'none')
-    //remove self from list
-    zIndices.rmElem(parseInt($this.css("zIndex")));
-    $this.css("zIndex", "1");
-  });
 };

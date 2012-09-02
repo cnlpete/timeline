@@ -39,7 +39,10 @@
                       style="top: {$asset.line * 35}px; 
                         left: {($year - $range.start) * 100}px;
                         width: {$asset.width * 100}px;">
-                      <h4 class="title"><span>{$asset.title}</span></h4>
+                      <h4 class="title">
+                        <span>{$asset.title}</span>
+                        <span class="pin"></span>
+                      </h4>
                       <div class="content" style="display: none;">
                         <span class="date">{$year}</span>
                         <div class="text">{$asset.text}</div>
@@ -95,9 +98,14 @@
     $('#scroller').on('mouseenter mouseleave', '.asset', function(e) {
       var offset = timeline.x ? timeline.x : 0;
       if (e.type == 'mouseenter')
-        hoverInFunction($(this), e, offset);
+        Event.hoverInFunction($(this), e, offset);
       else
-        hoverOutFunction($(this), e);
+        Event.hoverOutFunction($(this), e);
+    });
+
+    // make events sticky on click
+    $('#scroller').on('click', '.asset', function(e) {
+      Event.click($(this), e);
     });
 
     // fancy switch

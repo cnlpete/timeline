@@ -26,16 +26,7 @@ Licensed like jQuery - http://docs.jquery.com/License
 			$('#current-view').css('left', -timeline.x/factor);
 		};
 
-		var height = Math.round((el.height() - topOffset)/factor);
-		var width = Math.round(el.width()/factor);
-		miniMap.height(height + 20);
-		miniMap.width(width);
-		$('#map-container').width(width);
-
 		var topOffset = years.first().offset().top;
-
-		miniMapCurrentView.height(height + 20);
-		miniMapCurrentView.width(Math.round($(window).width()/factor));
 
 		// show every 5th year
 		years.each(function(i,t){
@@ -45,32 +36,46 @@ Licensed like jQuery - http://docs.jquery.com/License
 
 				var mapIcon = $('<div>' + year.text() + '</div>');
 				mapIcon
-				  .css({
-					  'width': 18, 
-					  'left': Math.round(yearCoords.left/factor)
-				  })
-				  .addClass(t.tagName.toLowerCase())
-				  .appendTo(miniMap);
+					.css({
+						'width': 18, 
+						'left': Math.round(yearCoords.left/factor)
+					})
+					.addClass(t.tagName.toLowerCase())
+					.appendTo(miniMap);
 			}
 		});
 
 		// show events
+		var height = 0;
 		events.each(function(i,t){
 			var event = $(this);
 			var eventCoords = event.offset();
 
 			var mapIcon = $('<div>');
 			mapIcon
-			  .attr('id', 'minimap-'+event.data('hash'))
-			  .css({
-				  'height': Math.round(event.height()/factor), 
-				  'width': Math.round(event.width()/factor), 
-				  'left': Math.round(eventCoords.left/factor),
-				  'top': Math.round((eventCoords.top - topOffset)/factor) + 10
-			  })
-			  .addClass('asset')
-			  .appendTo(miniMap);
+				.attr('id', 'minimap-'+event.data('hash'))
+				.css({
+					'height': Math.round(event.height()/factor), 
+					'width': Math.round(event.width()/factor), 
+					'left': Math.round(eventCoords.left/factor),
+					'top': Math.round((eventCoords.top - topOffset)/factor) + 16
+				})
+				.addClass('asset')
+				.appendTo(miniMap);
+			var tmp = Math.round((eventCoords.top - topOffset)/factor) + 16 + Math.round(event.height()/factor);
+			if (tmp > height) height = tmp;
 		});
+
+		// minimap size
+		var height = Math.round(el.height()/factor);
+		var width = Math.round(el.width()/factor);
+		miniMap.height(height + 5);
+		miniMap.width(width);
+		$('#map-container').width(width);
+
+		// size of current view
+		miniMapCurrentView.height(height + 5);
+		miniMapCurrentView.width(Math.round($(window).width()/factor));
 
 		miniMapCurrentView.mousedown(function(){
 			clicked = true;

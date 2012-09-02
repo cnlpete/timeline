@@ -30,13 +30,13 @@
               {/for}
             </div>
             {foreach $assets as $type=>$assetsintype}
-              <div class="timelinetype type-{$type}" style="position:relative; height: {($assetsintype.maxline + 1) * 30}px;">
+              <div class="timelinetype type-{$type}" style="position:relative; height: {($assetsintype.maxline + 1) * 35}px;">
                 {foreach $assetsintype.data as $year=>$assetsinyear}
                   {foreach $assetsinyear as $asset}
                     <div class="asset"
                       id="asset-{$asset.hash}"
                       data-hash="{$asset.hash}"
-                      style="top: {$asset.line * 30}px; 
+                      style="top: {$asset.line * 35}px; 
                         left: {($year - $range.start) * 100}px;
                         width: {$asset.width * 100}px;">
                       <h4 class="title"><span>{$asset.title}</span></h4>

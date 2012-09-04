@@ -23,6 +23,24 @@ Array.prototype.last = function() {
     return 10; //start with 10, if no element is hovered yet
 }
 
+String.prototype.nl2br = function() {
+  var text = escape(this);
+  var re_nlchar = null;
+
+  if(text.indexOf('%0D%0A') > -1) {
+    re_nlchar = /%0D%0A/g ;
+  }
+  else if(text.indexOf('%0A') > -1) {
+    re_nlchar = /%0A/g ;
+  }
+  else if(text.indexOf('%0D') > -1) {
+    re_nlchar = /%0D/g ;
+  }
+
+  text = (re_nlchar != null) ? unescape(text.replace(re_nlchar,'<br />')) : unescape(text);
+  return text
+}
+
 Title = {
   scrollToPosition: function(x, title, buffer) {
     if (!buffer)
@@ -113,8 +131,7 @@ Event = {
   },
   fadeIn: function(event, newPos) {
     var details = event.find('.content');
-    details.css('display', 'inline-block')
-    details.stop(true, true).animate({ opacity: 1, left: newPos + 'px' });
+    details.stop(true, true).css('display', 'inline-block').animate({ opacity: 1, left: newPos + 'px' });
   },
   scrollDetailContainer: function(event, newPos) {
     var details = event.find('.content');
@@ -139,6 +156,9 @@ Event = {
     jEvents.each(function(index) {
       var content = $(this).find('.content');
       content.html(content.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>'));
+
+      var source = $(this).find('.source');
+      source.html(source.html().nl2br());
     });
   }
 };

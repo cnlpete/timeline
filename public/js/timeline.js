@@ -75,6 +75,12 @@ setWrapperHeight = function() {
   $('#timeline').css('height', height + 'px');
 };
 
+Timeline = {
+  scrollTo: function(x) {
+    timeline.scrollTo(x*-1, 300);
+  }
+};
+
 var zIndices = [1];
 Event = {
   hoverInFunction: function($this, e, timelineOffset){
@@ -160,5 +166,8 @@ Event = {
       var source = $(this).find('.source');
       source.html(source.html().nl2br());
     });
+  },
+  scrollTo: function(event) {
+    Timeline.scrollTo(event.offset().left + Math.round(event.width()/2) - Math.round($(window).width()/2));
   }
 };

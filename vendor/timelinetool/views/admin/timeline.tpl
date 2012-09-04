@@ -48,7 +48,7 @@
   <td class="table-title">{{title}}</td>
   <td class="table-date" data-order-by="{{startDate}}">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
-    <a class="js-play btn" href="/{{hash}}.html"><i class="icon-play-circle"></i></a>
+    <a class="js-play btn" href="/{/literal}{$hash}{literal}.html#{{hash}}"><i class="icon-play-circle"></i></a>
     <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
     <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
   </td>

@@ -21,7 +21,7 @@
 .asset .content .time{font-size:14px;font-weight:bold;line-height:30px;}
 .asset .content .video_overlay{background:url('../images/video.png') no-repeat;display:inline-block;float:left;position:absolute;top:100px;left:85px;width:48px;height:48px;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;-webkit-box-shadow:0 0 5px #ffffff;-moz-box-shadow:0 0 5px #ffffff;box-shadow:0 0 5px #ffffff;}
 .asset .content a{font-weight:bold;}.asset .content a.video:hover span{-webkit-box-shadow:0 0 15px #ffffff;-moz-box-shadow:0 0 15px #ffffff;box-shadow:0 0 15px #ffffff;}
-.asset .content a.extern{background:url('../images/extern.png') no-repeat 5px center;font-weight:normal;padding-left:20px;}
+.asset .content a.extern{background:url('../img/extern.png') no-repeat 5px center;font-weight:normal;padding-left:20px;}
 .asset .content a.jump{cursor:pointer;float:right;height:32px;width:32px;-webkit-border-radius:16px;-moz-border-radius:16px;border-radius:16px;}.asset .content a.jump:hover{-webkit-box-shadow:0 0 15px #808080;-moz-box-shadow:0 0 15px #808080;box-shadow:0 0 15px #808080;}
 .asset .content a.jump.left-arrow{background:url("../img/left.png") no-repeat;}
 .asset .content a.jump.right-arrow{background:url("../img/right.png") no-repeat;}

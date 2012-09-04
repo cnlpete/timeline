@@ -1,3 +1,7 @@
+
+/* a regular expression for detecting urls */
+var urlpattern = /(http(s)?:\/\/([\w-]+\.)+[\w]{1,4}(\/[\w-\.,?=%#_]+)*\/?)/gi;
+
 /* Array functions to sort, removeObject and getLast */
 Array.prototype.sortNum = function() {
   return this.sort( function (a,b) { return a-b; } );
@@ -103,8 +107,8 @@ Event = {
     details.stop(true, true).animate({ opacity: 0 }, function() {
       details.css('display', 'none')
       //remove self from list
-      zIndices.rmElem(parseInt($this.css("zIndex")));
-      $this.css("zIndex", "1");
+      zIndices.rmElem(parseInt(event.css("zIndex")));
+      event.css("zIndex", "1");
     });
   },
   fadeIn: function(event, newPos) {
@@ -130,5 +134,11 @@ Event = {
   },
   removeSticky: function(event) {
     event.removeClass('sticky');
+  },
+  buildContent: function(jEvents) {
+    jEvents.each(function(index) {
+      var content = $(this).find('.content');
+      content.html(content.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>'));
+    });
   }
 };

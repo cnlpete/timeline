@@ -88,11 +88,14 @@
     /* mini map */
     $('#scroller').minimap(timeline, $('.container').width()-4);
 
-    // update timeline height
+    /* update timeline height */
     setWrapperHeight();
     $(window).resize(function() {
       setWrapperHeight();
     });
+
+    /* build links and stuff */
+    Event.buildContent($('#scroller').find('.asset'));
 
     // show event details on hover
     $('#scroller').on('mouseenter mouseleave', '.asset', function(e) {

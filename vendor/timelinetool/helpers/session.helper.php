@@ -64,7 +64,8 @@ class Session {
 
   public function login($sUsername, $sPassword) {
     if (!$this->_aSession['config']['permissions']['use_permissions']) {
-      $this->_parseDummyData(I18n::get('global.guestname'));
+      $this->_parseDummyData(empty($sUsername) ? I18n::get('global.guestname') : $sUsername);
+      setcookie('loginname', $sUsername, time() + 60*60*24*30);
       return true;
     }
 

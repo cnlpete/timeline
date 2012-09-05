@@ -105,7 +105,7 @@
     /* build links and stuff */
     Event.buildContent($('#scroller').find('.asset'));
 
-    // show event details on hover
+    /* show event details on hover */
     $('#scroller').on('mouseenter mouseleave', '.asset', function(e) {
       var offset = timeline.x ? timeline.x : 0;
       if (e.type == 'mouseenter')
@@ -114,12 +114,12 @@
         Event.hoverOutFunction($(this), e);
     });
 
-    // make events sticky on click
+    /* make events sticky on click */
     $('#scroller').on('click', '.asset', function(e) {
       Event.click($(this), e);
     });
 
-    // fancy switch
+    /* fancy switch */
     var sources = $('#scroller').find('.source');
     $('.toggle').Switch("off", function() {
       sources.slideDown();
@@ -128,7 +128,10 @@
       sources.filter(":not(:visible)").hide();
     });
 
-    // scroll to event, if starthash is given
+    /* Colorclass Buttons */
+    Options.enableCCButtons();
+
+    /* scroll to event, if starthash is given */
     if(window.location.hash) {
       var event = $('#asset-' + window.location.hash.substr(1, window.location.hash.length - 1));
       if (event.length) {

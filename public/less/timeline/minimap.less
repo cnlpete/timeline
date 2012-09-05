@@ -1,4 +1,8 @@
 /***** MINI-MAP *****/
+
+@minimapassetcolor: #06c;
+@minimapdatecolor: #eee;
+
 #map-container {
   margin:   10px auto;
   position: relative;
@@ -39,8 +43,12 @@
     width:      100%;
     margin:     1px;
     .border-radius(.2em);
-    &.asset { background: #06c; }
-    &.date { background: #eee; }
-    &.hovered { background: #0cc; }
+    &.asset {
+      background: @minimapassetcolor;
+      &.hiddenAsset { background: fadeout(@minimapassetcolor, 60%); }
+      &.stickyAsset { background: darken(@minimapassetcolor, 10%); }
+    }
+    &.date { background: @minimapdatecolor; }
+    &.hoveredAsset { background: darken(@minimapassetcolor, 20%); }
   }
 }

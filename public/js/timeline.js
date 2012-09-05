@@ -79,6 +79,23 @@ Timeline = {
   }
 };
 
+Options = {
+  enableCCButtons: function() {
+    $('#colorclasses').on('click', 'li', function(e){
+      var button = $(this);
+      button.toggleClass('selected');
+      var flag = button.hasClass('selected');
+
+      $('.type-' + $(this).text() + ' .asset').each(function() {
+        if (flag)
+          Event.showEvent($(this));
+        else
+          Event.hideEvent($(this));
+      });
+    });
+  }
+}
+
 var zIndices = [1];
 var scroller = $('#scroller');
 Event = {
@@ -99,6 +116,8 @@ Event = {
         Event.fadeIn($this, newPos);
       else
         Event.scrollDetailContainer($this, newPos);
+
+      $('#minimap-' + $this.data('hash')).addClass('hoveredAsset');
 
       //create new max of zIndices, so element will hover on top...
       zIndices.push(zIndices.last()+1);
@@ -123,6 +142,8 @@ Event = {
     details.css('bottom', '').css('position', '');
     details.parent().css('bottom', '');
 
+    $('#minimap-' + $this.data('hash')).removeClass('hoveredAsset');
+
     if (!Event.isSticky($this))
       Event.fadeOut($this);
   },
@@ -139,6 +160,16 @@ Event = {
     var details = event.find('.content');
     details.stop(true, true).css('display', 'inline-block').animate({ opacity: 1, left: newPos + 'px' });
   },
+  hideEvent: function(event) {
+    if (Event.isSticky(event))
+      Event.removeSticky(event);
+    event.fadeOut();
+    $('#minimap-' + event.data('hash')).addClass('hiddenAsset');
+  },
+  showEvent: function(event) {
+    event.fadeIn();
+    $('#minimap-' + event.data('hash')).removeClass('hiddenAsset');
+  },
   scrollDetailContainer: function(event, newPos) {
     var details = event.find('.content');
     details.stop(true, true).animate({ left: newPos + 'px' });
@@ -154,9 +185,11 @@ Event = {
   },
   makeSticky: function(event) {
     event.addClass('sticky');
+    $('#minimap-' + event.data('hash')).addClass('stickyAsset');
   },
   removeSticky: function(event) {
     event.removeClass('sticky');
+    $('#minimap-' + event.data('hash')).removeClass('stickyAsset');
   },
   buildContent: function(jEvents) {
     jEvents.each(function(index) {

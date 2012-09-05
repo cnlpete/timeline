@@ -1,6 +1,6 @@
 <section id='admin-timeline'>
 
-{include file='../_colorclasses.tpl' selector='div'}
+{include file='../_colorclasses.tpl' selectors=' div'}
 
   <!-- the timeline info -->
   <div id='timelinedata' class="row-fluid">

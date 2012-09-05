@@ -1,18 +1,22 @@
-#options {
-  #colorclasses {
+#colorclasses {
+  ul {
     display:  inline-block;
-    width:    40%;
-    p {
-      display: inline-block;
-    }
-    .toggle {
-      cursor:         pointer;
-      display:        inline-block;
-      margin:         5px 2px 1px;
-      vertical-align: middle;
-      .switch {
-        background: url('../img/switch/switch.png') no-repeat;
-        display: inline-block;
+    margin:   0;
+    li {
+      border:   1px solid #777;
+      cursor:   pointer;
+      display:  inline-block;
+      padding:  5px;
+      margin:   5px;
+      .border-radius(4px);
+
+      &.selected {
+        font-weight:  bold;
+        opacity:      1;
+      }
+      &:not(.selected) {
+        font-weight:  normal;
+        opacity:      0.5;
       }
     }
   }

@@ -1,6 +1,6 @@
 <section>
   <link href="{$path.css}/timeline.css" rel="stylesheet" />
-{include file='../_colorclasses.tpl' selector='.asset .title'}
+{include file='../_colorclasses.tpl' selectors=[' .asset .title', '.colortarget']}
 
   <div>
     <!-- BEGIN Minimap -->
@@ -61,7 +61,11 @@
     <div id="options">
       <div id="colorclasses">
         <p>{$lang.timeline.colorclasses}</p>
-        Colorclasses
+        <ul>
+          {foreach $used_colorclasses as $colorclass}
+            <li class="type-{$colorclass} colortarget selected">{$colorclass}</li>
+          {/foreach}
+        </ul>
       </div>
       <div id="source">
         <p>{$lang.timeline.sources}</p>
@@ -77,6 +81,10 @@
 <script type="text/javascript">
   /* PAGE LOAD */
   jQuery(document).ready(function($){
+    /* hide the footer */
+    $('footer').siblings().last().hide();
+    $('footer').hide();
+
     /*** iScroll ***/
     timeline = new iScroll('wrapper',{
         bounce: false,

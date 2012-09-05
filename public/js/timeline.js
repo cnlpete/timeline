@@ -67,11 +67,9 @@ setWrapperHeight = function() {
   var full_height = $(window).height();
   var height = full_height - 10
       - parseInt(wrapper.css('top')) 
-      - $('#options').outerHeight(true) 
-      - $('footer').siblings().last().outerHeight(true)
-      - $('footer').outerHeight(true);
-  $('#scroller').css('height', (height - 10) + 'px');
-  $('#wrapper').css('height', (height + 5) + 'px');
+      - $('#options').outerHeight(true);
+  $('#scroller').css('height', (height - 15) + 'px');
+  $('#wrapper').css('height', (height) + 'px');
   $('#timeline').css('height', height + 'px');
 };
 
@@ -82,6 +80,7 @@ Timeline = {
 };
 
 var zIndices = [1];
+var scroller = $('#scroller');
 Event = {
   hoverInFunction: function($this, e, timelineOffset){
     var details = $this.find('.content');
@@ -106,9 +105,10 @@ Event = {
       $this.css("zIndex", zIndices.last().toString());
 
       xE = details.offset().top + details.outerHeight();
-      xB = $(window).height() - $('#options').outerHeight();
+      xB = scroller.height() + scroller.offset().top;
       if (xE >= xB) {
         //event is too big, we need to shift it up a bit ...
+        //FIXME, this doese not yet work with the new div approach
         details.css('bottom', 0).css('position', 'relative');
         details.parent().css('bottom', 0).css('top', '');
       }

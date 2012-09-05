@@ -37,6 +37,7 @@ class Timeline extends Main {
               $oSmarty->assign('range', array('start' => $iStartYear, 'end' => $iEndYear));
               $oSmarty->assign('timeline', $aTimelinedata);
               $oSmarty->assign('assets', $aAssetData['data']);
+              $oSmarty->assign('used_colorclasses', $aAssetData['types']);
               $oSmarty->assign('colorclasses', $aColorclasses);
 
               // set the title

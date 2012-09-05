@@ -1,6 +1,6 @@
 <style type="text/css">
   {foreach $colorclasses as $colorclass}
-    .type-{$colorclass.name} {$selector} {
+    {foreach name=sels from=$selectors item=selector}.type-{$colorclass.name}{$selector}{if !$smarty.foreach.sels.last}, {/if}{/foreach} {
       {$colorclass.css}
     }
   {/foreach}

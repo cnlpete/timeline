@@ -17,6 +17,7 @@ paths:
   storage: app/storage
 
 permissions:
+  use_permissions: true
   scope: timelinetool
   admin: admin
   edit_timeline: edit_timeline

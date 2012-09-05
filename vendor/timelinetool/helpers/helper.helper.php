@@ -137,25 +137,6 @@ class Helper {
 
   public static function loadDataFromUrl($sHost, $iPort, $sUrl) {
     return file_get_contents($sHost."/".$sUrl);
-
-/*    $timeout = 30;
-die('trying to load: ' . $sHost."/".$sUrl);
-    $fp = fsockopen($sHost, $iPort, $errno, $errstr, $timeout);
-    if($fp) {
-      $request = "GET ".$sHost."/".$sUrl." HTTP/1.1\r\n";
-      $request.= "Host: ".$sHost."\r\n";
-      $request.= "User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; de-DE; rv:1.7.12) Gecko/20050919 Firefox/1.0.7\r\n";
-      $request.= "Connection: Close\r\n\r\n";
-
-      fwrite($fp, $request);
-      while (!feof($fp))
-        $data .= fgets($fp, 128);
-
-      fclose($fp);
-      return $data;
-    }
-    else
-      return '';*/
   }
 }
 

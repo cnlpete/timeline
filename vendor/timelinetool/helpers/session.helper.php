@@ -53,7 +53,21 @@ class Session {
     }
   }
 
+  protected function _parseDummyData($sUsername) {
+    $this->_aData = array(
+      'username' => (string)$sUsername,
+      'firstname' => (string)$sUsername,
+      'lastname' => (string)'',
+      'authenticated' => (int)true,
+      'permissions' => array('admin' => array('true')));
+  }
+
   public function login($sUsername, $sPassword) {
+    if (!$this->_aSession['config']['permissions']['use_permissions']) {
+      $this->_parseDummyData(I18n::get('global.guestname'));
+      return true;
+    }
+
     //TODO check if valid name and password
     // do the call
     $sHost        = $this->_aSession['config']['authserver']['host'];
@@ -77,6 +91,11 @@ class Session {
   }
 
   protected function _loadUser($sUsername) {
+    if (!$this->_aSession['config']['permissions']['use_permissions']) {
+      $this->_parseDummyData($sUsername);
+      return;
+    }
+
     //TODO check if valid name
     // do the call
     $sHost = $this->_aSession['config']['authserver']['host'];

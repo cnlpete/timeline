@@ -67,3 +67,5 @@ admin:
       date: Zeitraum
       type: Typ
       source: Quelle
+      text: Beschreibung
+      image: Bild oder Video Quelle

@@ -3,7 +3,7 @@
   <form class="form-horizontal">
     <fieldset>
       <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.assets.title}{literal}</label>
+        <label class="control-label" for="form-title">{/literal}{$lang.admin.timeline.assets.title}{literal}</label>
         <div class="controls">
           <input type="text" class="input-xlarge" name="title" id="form-title" value="{{title}}">
         </div>
@@ -16,6 +16,22 @@
           <input class="span1 js-monthpicker" name="startDate" id="form-startDate" size="16" type="text" value="{{startDate}}" data-date-format="yyyy-mm" readonly>
           -
           <input class="span1 js-monthpicker" name="endDate" id="form-endDate" size="16" type="text" value="{{endDate}}" data-date-format="yyyy-mm" readonly>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="form-image">{/literal}{$lang.admin.timeline.assets.image}{literal}</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" name="image" id="form-image" value="{{image}}">
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="form-text">{/literal}{$lang.admin.timeline.assets.text}{literal}</label>
+        <div class="controls">
+          <textarea type="text" class="input-xlarge" name="text" id="form-text">{{text}}</textarea>
         </div>
       </div>
     </fieldset>

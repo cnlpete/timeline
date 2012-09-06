@@ -50,7 +50,27 @@
                           {$asset.title}
                         </h4>
                         <span class="date">{$year}</span>
-                        <div class="text">{$asset.text}</div>
+                        <div class="text">
+                          {if $asset.texttype == 'image'}
+                            <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                            <p class="img-text">{$asset.text}</p>
+                          {elseif $asset.texttype == 'video'}
+                            <div class="js-url2video" title="{$asset.image}">
+                              <a href="{$asset.image}">{$asset.image}</a>
+                            </div>
+                            <p class="img-text">{$asset.text}</p>
+                          {elseif $asset.texttype == 'quote'}
+                            {if !empty($asset.image)}
+                              <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                            {/if}
+                            <blockquote>{$asset.text}</blockquote>
+                          {else}
+                            {if !empty($asset.image)}
+                              <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                            {/if}
+                            <p>{$asset.text}</p>
+                          {/if}
+                        </div>
                         <div class="source">{$asset.source}</div>
                       </div>
                     </div>

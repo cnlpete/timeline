@@ -1,3 +1,5 @@
+@shadowcolor: rgba(0,0,0,.3);
+
 /***** EVENT *****/
 .asset {
   display:  inline-block;
@@ -28,7 +30,7 @@
     &:active {
       position: relative;
       top:      1px;
-      .box-shadow(0 0 4px 2px rgba(0,0,0,.3) inset);
+      .box-shadow(0 0 4px 2px @shadowcolor inset);
     }
     &:focus {
       outline:    0;
@@ -37,16 +39,16 @@
     span {
       position: relative;
     }
-    .pin {
-      background: url(../img/pin.png) no-repeat;
-      display:    none;
-      float:      right;
-      position:   absolute;
-      right:      -2px;
-      top:        -3px;
-      height:     16px;
-      width:      16px;
-    }
+  }
+  .pin {
+    background: url(../img/pin.png) no-repeat;
+    display:    none;
+    float:      right;
+    position:   relative;
+    right:      -2px;
+    top:        -3px;
+    height:     16px;
+    width:      16px;
   }
   .content {
     font-size:    10px;
@@ -56,15 +58,22 @@
     line-height:1.5em;
     padding:    10px;
     text-align: left;
-    position:   relative;
+    position:   absolute;
     top:        0;
     min-width:  200px;
     text-align: justify;
     background: #fff;
     border:     solid 1px #ddd;
     .border-radius(3px);
-    .box-shadow(5px 5px 5px #888);
+    .box-shadow(5px 5px 5px @shadowcolor);
     .column-width(300px);
+    .color {
+      width:    16px;
+      height:   16px;
+      display:  inline-block;
+      .border-radius(8px);
+      .box-shadow(0 0 3px @shadowcolor);
+    }
     p .img {
       clear:  both;
       margin: 10px 30px;
@@ -133,10 +142,8 @@
 }
 
 .asset.sticky {
-  .title {
-    .pin {
-      display: block;
-    }
+  .pin {
+    display: block;
   }
 }
 

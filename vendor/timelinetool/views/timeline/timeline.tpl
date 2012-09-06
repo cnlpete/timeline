@@ -1,6 +1,6 @@
 <section>
   <link href="{$path.css}/timeline.css" rel="stylesheet" />
-{include file='../_colorclasses.tpl' selectors=[' .asset .title', '.colortarget']}
+{include file='../_colorclasses.tpl' selectors=[' .asset .title', ' .asset .content .color', '.colortarget']}
 
   <div>
     <!-- BEGIN Minimap -->
@@ -40,10 +40,15 @@
                         left: {($year - $range.start) * 100}px;
                         width: {$asset.width * 100}px;">
                       <h4 class="title">
-                        <span>{$asset.title}</span>
                         <span class="pin"></span>
+                        <span>{$asset.title}</span>
                       </h4>
                       <div class="content" style="display: none;">
+                        <h4>
+                          <span class="pin"></span>
+                          <span class="color"></span>
+                          {$asset.title}
+                        </h4>
                         <span class="date">{$year}</span>
                         <div class="text">{$asset.text}</div>
                         <div class="source">{$asset.source}</div>

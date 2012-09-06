@@ -101,7 +101,7 @@ var scroller = $('#scroller');
 Event = {
   hoverInFunction: function($this, e, timelineOffset){
     var details = $this.find('.content');
-    var title = $this.find('.title span').first();
+    var title = $this.find('.title span').last();
     var newPos = e ? e.clientX - $this.offset().left - (title.width() * 0.5) : 0;
 
     // check for content
@@ -135,7 +135,7 @@ Event = {
   },
   hoverOutFunction: function($this, e) {
     // change title position back
-    var title = $this.find('.title span').first();
+    var title = $this.find('.title span').last();
     Title.scrollToPosition(0, title);
 
     var details = $this.find('.content');

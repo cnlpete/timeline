@@ -194,6 +194,12 @@ Event = {
   buildContent: function(jEvents) {
     jEvents.each(function(index) {
       var content = $(this).find('.content');
+      content.find('.js-url2video').each(function(e) {
+        var $this = $(this);
+        $.getJSON(this.title, function(data) {
+          $this.html(data['html']);
+        });
+      });
 
       var source = $(this).find('.source');
       source.html(source.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>').nl2br());

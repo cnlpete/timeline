@@ -1,4 +1,3 @@
-
 /* do some logging of debug messages, if given */
 showDebugMsg = function(msgs){
   if(console && $.isArray(msgs)){

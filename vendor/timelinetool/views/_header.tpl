@@ -14,6 +14,7 @@
     <script src="{$path.js}/jquery.js"></script>
     <script src="{$path.js}/bootstrap.js"></script>
     <script src="{$path.js}/handlebars.js"></script>
+    <script src="{$path.js}/handlebars.helper.js"></script>
     <script src="{$path.js}/sprintf.js"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

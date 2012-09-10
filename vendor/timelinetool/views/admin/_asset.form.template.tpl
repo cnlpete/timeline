@@ -21,6 +21,22 @@
     </fieldset>
     <fieldset>
       <div class="control-group">
+        <label class="control-label" for="form-texttype">{/literal}{$lang.admin.timeline.assets.texttype}{literal}</label>
+        <div class="controls">
+          <select name="texttype" class="input-xlarge" id="form-texttype" size="1">
+            {{#each texttypes}}
+              {{#compare ../texttype this}}
+                <option type="text" value="{{this}}" selected="selected">{{this}}</option>
+              {{^}}
+                <option type="text" value="{{this}}">{{this}}</option>
+              {{/compare}}
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="control-group">
         <label class="control-label" for="form-image">{/literal}{$lang.admin.timeline.assets.image}{literal}</label>
         <div class="controls">
           <input type="text" class="input-xlarge" name="image" id="form-image" value="{{image}}">

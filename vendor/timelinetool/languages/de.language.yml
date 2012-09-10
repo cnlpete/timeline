@@ -69,3 +69,4 @@ admin:
       source: Quelle
       text: Beschreibung
       image: Bild oder Video Quelle
+      texttype: Inhaltsart

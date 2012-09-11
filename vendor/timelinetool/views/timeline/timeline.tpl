@@ -50,7 +50,7 @@
                           {$asset.title}
                         </h4>
                         <span class="date">{$year}</span>
-                        <div class="text">
+                        <div class="{$asset.texttype}">
                           {if $asset.texttype == 'image'}
                             <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
                             <p class="img-text">{$asset.text}</p>

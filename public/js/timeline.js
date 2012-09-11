@@ -196,8 +196,11 @@ Event = {
       var content = $(this).find('.content');
       content.find('.js-url2video').each(function(e) {
         var $this = $(this);
-        $.getJSON(this.title, function(data) {
-          $this.html(data['html']);
+        $.ajax({
+          url: 'http://url2video.com/',
+          data: { 'w': 300, 'h': 200, 'url' : encodeURI(this.title) },
+          dataType: 'jsonp',
+          success: function(data) { $this.html(data['html']); }
         });
       });
 

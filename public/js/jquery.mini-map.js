@@ -22,9 +22,12 @@ Licensed like jQuery - http://docs.jquery.com/License
 		
 		//factor-calc:
 		var factor = Math.max(minfactor, Math.ceil(el.width()/size));
-		timeline.options.onScrollEnd = function(){
-			$('#current-view').css('left', -timeline.x/factor);
+		timeline.options.onScrollEnd = function(d){
+			miniMapCurrentView.css('left', -timeline.x/factor);
 		};
+		timeline.options.onScrollMove = function(d){
+			miniMapCurrentView.css('left', -timeline.x/factor);
+		}
 
 		var topOffset = years.first().offset().top;
 
@@ -71,37 +74,32 @@ Licensed like jQuery - http://docs.jquery.com/License
 		miniMap.height(height + 5);
 		miniMap.width(width);
 		$('#map-container').width(width);
+		miniMapOffsetLeft = miniMap.offset().left;
 
 		// size of current view
+		var miniMapCurrentViewCenter = Math.round($(window).width() / factor);
 		miniMapCurrentView.height(height + 5);
-		miniMapCurrentView.width(Math.round($(window).width()/factor));
+		miniMapCurrentView.width(miniMapCurrentViewCenter);
+		miniMapCurrentViewCenter /= 2;
 
 		miniMapCurrentView.mousedown(function(){
 			clicked = true;
+			miniMapCurrentView.css({'cursor': 'ew-resize'});
 		});
 
 		miniMap.mouseup(function(e){
 			clicked = false;
+			miniMapCurrentView.css('cursor', 'pointer');
 
-			var view = $('#current-view');
-			var mousePosition = e.pageX;
-			var offset =  $(this).offset();
-			var viewCenter = Math.round(view.width()/2);
-			var newPosition = Math.round((mousePosition - viewCenter - offset.left) * -factor);
-
-			view.css('cursor', 'pointer');
-			timeline.scrollTo(newPosition, 0, 200);
+			var newPosition = e.pageX - miniMapCurrentViewCenter - miniMapOffsetLeft;
+			timeline.scrollTo(newPosition * factor * -1, 0, 200);
 		});
 
 		miniMapCurrentView.mousemove(function(e){
 			if (clicked) {
-				var view = $(this);
-				var mousePosition = e.pageX;
-				var offset = view.parent().offset();
-				var viewCenter = Math.round(view.width()/2);
-				var newPosition = mousePosition - viewCenter - offset.left;
-
-				view.css({'cursor': 'ew-resize', 'left': newPosition});
+				var newPosition = e.pageX - miniMapCurrentViewCenter - miniMapOffsetLeft;
+				miniMapCurrentView.css({'left': newPosition});
+				timeline.scrollTo(newPosition * factor * -1, 0, 200);
 			}
 		});
 	};

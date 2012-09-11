@@ -1,0 +1,72 @@
+global:
+  login: Login
+  logout: Logout
+  guestname: Guest
+
+login_form:
+  name: Name
+  password: Password
+
+success:
+  entry:
+    create: Entry successfully created!
+    destroy: Entry successfully deleted!
+    update: Update successful!
+
+flash:
+  error: Error!
+  warning: Warning!
+  success: ''
+
+navigation:
+  about: About
+  admin: Administration
+  home: Home
+
+timeline:
+  sources: 'Sources:'
+  colorclasses: 'Filter by Type:'
+  update: Edit Timeline
+  index: 
+    intro: The Intro Text
+    about: The About Text
+  error:
+    hash_not_found: 'Did not find "%s"!'
+
+confirm:
+  timeline: Do you really want to delete the Timeline "%s"?
+  asset: Do you really want to delete the Entry "%s"?
+  modal:
+    save: Save
+    cancel: Cancel
+
+admin:
+  error:
+    hash_not_valid: 'You are missing the appropriate rights or the Timeline "%s" does not yet exist.'
+    timeline_not_destroyed: 'Could not delete the Timeline "%s".'
+    asset_not_destroyed: 'Could not delete the Entry "%s".'
+    asset_not_updated: 'Something went wrong during saving of "%s".'
+    missing_rights: You do not have the Permission to proceed.
+  timeline:
+    create:
+      header: 'Create Timeline'
+    update:
+      header: 'Edit "%s"'
+    title: Title
+    date: Timespan
+    description: Description
+    language: Preferred Language
+    timeline_list: All your Timelines
+    asset_list: All Entries
+    assets:
+      update:
+        header: 'Edit Entry'
+      create:
+        header: 'Create Entry'
+      title: Title
+      date: Timespan
+      type: Type
+      source: Source
+      text: Description
+      image: Image or Video URL
+      texttype: Texttype

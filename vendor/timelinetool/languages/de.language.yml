@@ -32,7 +32,7 @@ timeline:
     about: Der About Text
   error:
     hash_not_found: 'Die Timeline "%s" wurde nicht gefunden!'
-    
+
 confirm:
   timeline: Möchten Sie die Timeline "%s" wirklich löschen?
   asset: Möchten Sie den Eintrag "%s" wirklich löschen?

@@ -11,8 +11,8 @@
     <link href="{$path.css}/bootstrap.css" rel="stylesheet" />
     <link href="{$path.css}/bootstrap-responsive.css" rel="stylesheet" />
 
-    <script src="{$path.js}/jquery.js"></script>
-    <script src="{$path.js}/bootstrap.js"></script>
+    <script src="{$path.js}/jquery.min.js"></script>
+    <script src="{$path.js}/bootstrap.min.js"></script>
     <script src="{$path.js}/handlebars.js"></script>
     <script src="{$path.js}/handlebars.helper.js"></script>
     <script src="{$path.js}/sprintf.js"></script>

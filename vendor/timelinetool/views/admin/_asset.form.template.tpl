@@ -55,8 +55,15 @@
       <div class="control-group">
         <label class="control-label" for="form-type">{/literal}{$lang.admin.timeline.assets.type}{literal}</label>
         <div class="controls">
-          <input type="text" class="input-xlarge js-typeahead" name="type" id="form-type" value="{{type}}" 
-            data-items="4" data-provide="typeahead">
+          <select name="type" class="input-xlarge" id="form-type" size="1">
+            {{#each types}}
+              {{#compare ../type this}}
+                <option type="text" value="{{this}}" selected="selected">{{this}}</option>
+              {{^}}
+                <option type="text" value="{{this}}">{{this}}</option>
+              {{/compare}}
+            {{/each}}
+          </select>
         </div>
       </div>
     </fieldset>

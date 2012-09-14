@@ -139,7 +139,7 @@ class Admin extends Main {
     $oSmarty->assign('hash', $sHash);
     $oSmarty->assign('timeline', $aTimelinedata);
     $oSmarty->assign('assets_json', json_encode($aAssets));
-    $oSmarty->assign('types', json_encode(array_merge($aTypes, $aPublicTypes)));
+    $oSmarty->assign('types', json_encode(Helper::array_unique_merge($aTypes, $aPublicTypes)));
     $oSmarty->assign('colorclasses', $aPublicCCs);
 
     // assign nav-links

@@ -150,7 +150,7 @@
     // reload the data, just to be shure
     getAsset('{$hash}', assetHash, function(data) {
       refreshItem(data);
-      typeahead = {$types};
+      data['types'] = {$types};
       data['texttypes'] = ['text', 'quote', 'image', 'video'];
       $('#myModal .modal-body').html(asset_form_template(data));
       $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.update.header}');
@@ -173,8 +173,10 @@
 
   // the assets create buttons
   $('#eventlist').on('click', 'a.js-create', function() {
-    typeahead = {$types};
-    $('#myModal .modal-body').html(asset_form_template({ 'texttypes': ['text', 'quote', 'image', 'video'] }));
+    var data = {};
+    data['types'] = {$types};
+    data['texttypes'] = ['text', 'quote', 'image', 'video'];
+    $('#myModal .modal-body').html(asset_form_template(data));
     $('#myModal .modal-header h3').html('{$lang.admin.timeline.assets.create.header}');
     $('#myModal #form-save').click(function() {
       // get the data

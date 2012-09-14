@@ -99,6 +99,14 @@ class Helper {
     }
   }
 
+  public static function array_unique_merge(&$aAr1, &$aAr2) {
+    $aArTmp = array_unique(array_merge($aAr1, $aAr2));
+    $aArTarget = array();
+    foreach ($aArTmp as $sString)
+      $aArTarget[] = $sString;
+    return $aArTarget;
+  }
+
   /**
    * Removes first slash at dirs.
    *

@@ -132,16 +132,12 @@ class Admin extends Main {
     $aTimelinedata =    (array)$this->_oTimelineModel->getTimelineForHash($sHash);
     $aAssets =          $this->_oTimelineModel->getTimelineAssetsForHash($sHash);
     $oColorclassModel = $this->_loadModel('colorclass');
-    $aTypes =           $this->_oTimelineModel->getTypes($aAssets);
     $aPublicCCs =       $oColorclassModel->getPublicColorclasses();
-    $aPublicTypes =     array();
-    foreach ($aPublicCCs as $aPublicCC)
-      $aPublicTypes[] = $aPublicCC['name'];
 
     $oSmarty->assign('hash', $sHash);
     $oSmarty->assign('timeline', $aTimelinedata);
     $oSmarty->assign('assets_json', json_encode($aAssets));
-    $oSmarty->assign('types', json_encode(Helper::array_unique_merge($aTypes, $aPublicTypes)));
+    $oSmarty->assign('types', json_encode($aTimelinedata['types']));
     $oSmarty->assign('colorclasses', $aPublicCCs);
 
     // assign nav-links

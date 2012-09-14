@@ -57,10 +57,10 @@
         <div class="controls">
           <select name="type" class="input-xlarge" id="form-type" size="1">
             {{#each types}}
-              {{#compare ../type this}}
-                <option type="text" value="{{this}}" selected="selected">{{this}}</option>
+              {{#compare ../type this.key}}
+                <option type="text" value="{{this.key}}" selected="selected">{{this.value}}</option>
               {{^}}
-                <option type="text" value="{{this}}">{{this}}</option>
+                <option type="text" value="{{this.key}}">{{this.value}}</option>
               {{/compare}}
             {{/each}}
           </select>

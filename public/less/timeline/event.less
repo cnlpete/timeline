@@ -65,7 +65,6 @@
     border:       solid 1px #ddd;
     .border-radius(3px);
     .box-shadow(5px 5px 5px @shadowcolor);
-    .column-width(300px);
     h4, .date{
       font-weight:  bold;
       text-align:   left;
@@ -77,7 +76,10 @@
       .border-radius(8px);
       .box-shadow(0 0 3px @shadowcolor);
     }
-    blockquote {
+    .text {
+      .column-width(300px);
+    }
+    .quote {
       display:      block;
       font-size:    (@baseFontSize + 3);
       font-family:  @serifFontFamily;

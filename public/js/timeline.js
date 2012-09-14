@@ -192,6 +192,7 @@ Event = {
     $('#minimap-' + event.data('hash')).removeClass('stickyAsset');
   },
   buildContent: function(jEvents) {
+    var maxHeight = scroller.height() - 100;
     jEvents.each(function(index) {
       var content = $(this).find('.content');
       content.find('.js-url2video').each(function(e) {
@@ -203,6 +204,13 @@ Event = {
           success: function(data) { $this.html(data['html']); }
         });
       });
+
+      if (content.height() > 300)
+        content.width(400);
+      if (content.height() > maxHeight)
+        content.width(610);
+      if (content.height() > maxHeight)
+        content.width(content.width() + 310);
 
       var source = $(this).find('.source');
       if (source.length)

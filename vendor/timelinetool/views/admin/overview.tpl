@@ -1,5 +1,9 @@
 <section id='admin-timeline-overview'>
 
+  <link href="{$path.css}/admin.css" rel="stylesheet" />
+
+{include file='../_colorclasses.tpl' selectors=['.colorful']}
+
   <h2>{$lang.admin.timeline.timeline_list}</h2>
   <!-- all events -->
   <table id='eventlist' class="table table-bordered">
@@ -43,6 +47,7 @@
 {include file='_timeline.form.template.tpl'}
 
 <script src="{$path.js}/jquery.stupidtable.js"></script>
+<script src="{$path.js}/jquery-ui.custom.min.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>

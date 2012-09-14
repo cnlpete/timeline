@@ -56,6 +56,7 @@ admin:
     date: Zeitraum
     description: Beschreibung
     language: Bevorzugte Sprache
+    colorclasses: Sortiere und benenne deine Typen
     timeline_list: Alle deine Timelines
     asset_list: Alle Einträge
     assets:

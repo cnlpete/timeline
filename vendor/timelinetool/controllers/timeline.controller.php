@@ -26,6 +26,10 @@ class Timeline extends Main {
               $oColorclassModel = $this->_loadModel('colorclass');
               $aColorclasses = (array)$oColorclassModel->getPublicColorclasses();
 
+              if (!isset($aTimelinedata['types']))
+                $aTimelinedata['types'] = array();
+              Helper::array_sort_with_target($aTimelinedata['types'], $aAssetData['types']);
+
               // assign start and end year, depending on max/min of timelinedata and assetdata
               $iStartYear = $aAssetData['min'] != null ? $aAssetData['min'] - 1 : $aTimelinedata['startDate'];
               $iEndYear   = $aAssetData['max'] != null ? $aAssetData['max'] + 1 : $aTimelinedata['endDate'];
@@ -37,7 +41,6 @@ class Timeline extends Main {
               $oSmarty->assign('range', array('start' => $iStartYear, 'end' => $iEndYear));
               $oSmarty->assign('timeline', $aTimelinedata);
               $oSmarty->assign('assets', $aAssetData['data']);
-              $oSmarty->assign('used_colorclasses', $aAssetData['types']);
               $oSmarty->assign('colorclasses', $aColorclasses);
 
               // set the title

@@ -121,6 +121,23 @@ createAsset = function(timelinehash, assetdata, success, error) {
   });
 }
 
+/* cleverly serialzie a form which can have lists inside :) */
+cleverSerialize = function(selector) {
+  selector = selector || '#myModal .modal-body form';
+  var data = {};
+  $.each($(selector).serializeArray(), function(index, item){
+    if(item.name.substring(item.name.length-2) == "[]"){
+      var x = item.name.substring(0,item.name.length-2);
+      if(!data[x])
+        data[x] = [];
+      data[x].push({ 'key': $($(selector + ' input.js-' + x)[data[x].length]).data(x), 'value': item.value });
+    }
+    else
+      data[item.name] = item.value;
+  });
+  return data;
+}
+
 $('#myModal').on('hidden', function () {
   // unbind the old click function
   $('#myModal #form-save').off('click');
@@ -152,4 +169,8 @@ $('#myModal').on('shown', function () {
     dp.setValue();
     dp.hide();
   });
-})
+  // jquery sortable
+  var sortables = $('.js-sortable');
+  if (sortables.length)
+    sortables.sortable({'placeholder': 'ui-sortable-placeholder'});
+});

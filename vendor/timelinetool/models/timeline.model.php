@@ -2,6 +2,8 @@
 
 namespace Timelinetool\Models;
 
+use \Timelinetool\Helpers\Helper;
+
 class Timeline extends Main {
 
   private $_sLastHash;
@@ -24,6 +26,23 @@ class Timeline extends Main {
     if (file_exists($sFilename)) {
       $aTimelineData = (array)json_decode(file_get_contents($sFilename));
       $aTimelineData['hash'] = $sHash;
+
+      // append with all available colorclasses
+      $oColorclassModel = $this->_loadModel('colorclass');
+      $aPublicCCs       = $oColorclassModel->getPublicColorclasses();
+      $aPublicTypes     = array();
+      foreach ($aPublicCCs as $aPublicCC)
+        $aPublicTypes[] = $aPublicCC['name'];
+
+      // array with user defined colorclass, name tuples, sorting is important
+      if (!is_array($aTimelineData['types']))
+        $aTimelineData['types'] = array();
+      // all available types are in $aPublicTypes, we need to merge those into timelinedata
+      foreach ($aPublicTypes as $sColorclass) {
+        if (!Helper::array_has_item($aTimelineData['types'], $sColorclass))
+          $aTimelineData['types'][] = array('colorclass' => $sColorclass, 'name' => $sColorclass);
+      }
+
       return $aTimelineData;
     }
     else
@@ -87,7 +106,7 @@ class Timeline extends Main {
       else
         $aSortedAssets['default-type']['data'][$iStartY][] = $aAsset;
     }
-    
+
     // sort each layer respective to their assets starting years
     foreach ($aSortedAssets as &$aAssetLayer)
       ksort($aAssetLayer['data']);

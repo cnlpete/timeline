@@ -56,6 +56,7 @@ admin:
     date: Timespan
     description: Description
     language: Preferred Language
+    colorclasses: Sort and name your Types
     timeline_list: All your Timelines
     asset_list: All Entries
     assets:

@@ -99,6 +99,23 @@ class Helper {
     }
   }
 
+  public static function array_has_item(&$aAr, &$sItem, $sKey = 'key') {
+    foreach ($aAr as &$aArItem) {
+      $aArItem = (array)$aArItem;
+      if ($aArItem[$sKey] == $sItem)
+        return true;
+    }
+    return false;
+  }
+
+  public static function array_sort_with_target(&$aArTarget, &$aArOther) {
+    foreach ($aArOther as &$sItem) {
+      // check for existance
+      if (!self::array_has_item(&$aArTarget, &$sItem))
+        $aArTarget[] = array('key' => $sItem, 'value' => $sItem);
+    }
+  }
+
   public static function array_unique_merge(&$aAr1, &$aAr2) {
     $aArTmp = array_unique(array_merge($aAr1, $aAr2));
     $aArTarget = array();
@@ -132,7 +149,7 @@ class Helper {
   public static function addSlash($sStr) {
     return substr($sStr, 0, 1) == '/' ? $sStr : '/' . $sStr;
   }
-  
+
   public static function getController($sController) {
     if (file_exists(PATH_STANDARD . '/vendor/timelinetool/controllers/' . $sController . '.controller.php')) {
       require_once PATH_STANDARD . '/vendor/timelinetool/controllers/main.controller.php';

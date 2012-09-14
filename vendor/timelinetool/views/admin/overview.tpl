@@ -94,10 +94,7 @@
       $('#myModal .modal-header h3').html(sprintf('{$lang.admin.timeline.update.header}', timeline.find('.table-title').html()));
       $('#myModal #form-save').click(function() {
         // get the data
-        var data = {};
-        $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
-            data[item.name] = item.value;
-        });
+        var data = cleverSerialize('#myModal .modal-body form');
         // send to server
         saveTimeline(timelineHash, data, function() {
           $('#myModal').modal('hide');
@@ -115,10 +112,7 @@
     $('#myModal .modal-header h3').html('{$lang.admin.timeline.create.header}');
     $('#myModal #form-save').click(function() {
       // get the data
-      var data = {};
-      $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
-          data[item.name] = item.value;
-      });
+      var data = cleverSerialize('#myModal .modal-body form');
       // send to server
       createTimeline(data, function() {
         $('#myModal').modal('hide');

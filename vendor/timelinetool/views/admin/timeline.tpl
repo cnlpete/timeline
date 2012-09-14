@@ -60,6 +60,7 @@
 {include file='_asset.form.template.tpl'}
 
 <script src="{$path.js}/jquery.stupidtable.js"></script>
+<script src="{$path.js}/jquery-ui.custom.min.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
@@ -108,10 +109,7 @@
       $('#myModal .modal-header h3').html('{$title|string_format:$lang.admin.timeline.update.header}');
       $('#myModal #form-save').click(function() {
         // get the data
-        var data = {};
-        $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
-            data[item.name] = item.value;
-        });
+        var data = cleverSerialize('#myModal .modal-body form');
         // send to server
         saveTimeline('{$hash}', data, function() {
           $('#myModal').modal('hide');

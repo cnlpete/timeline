@@ -86,7 +86,7 @@ Options = {
       button.toggleClass('selected');
       var flag = button.hasClass('selected');
 
-      $('.type-' + $(this).text() + ' .asset').each(function() {
+      $('.type-' + $(this).data('key') + ' .asset').each(function() {
         if (flag)
           Event.showEvent($(this));
         else
@@ -205,8 +205,8 @@ Event = {
       });
 
       var source = $(this).find('.source');
-      source.html(source.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>').nl2br());
-
+      if (source.length)
+        source.html(source.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>').nl2br());
     });
   },
   scrollTo: function(event) {

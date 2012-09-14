@@ -3,7 +3,7 @@
   <form class="form-horizontal">
     <fieldset>
       <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.title}{literal}</label>
+        <label class="control-label" for="form-title">{/literal}{$lang.admin.timeline.title}{literal}</label>
         <div class="controls">
           <input type="text" class="input-xlarge" name="title" id="form-title" value="{{title}}">
         </div>
@@ -29,9 +29,21 @@
     </fieldset>
     <fieldset>
       <div class="control-group">
-        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.description}{literal}</label>
+        <label class="control-label" for="form-description">{/literal}{$lang.admin.timeline.description}{literal}</label>
         <div class="controls">
           <input type="text" class="input-xlarge" name="description" id="form-description" value="{{description}}">
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.colorclasses}{literal}</label>
+        <div class="controls">
+          <ul class='js-sortable'>
+            {{#each types}}
+              <li><input type="text" class="input js-types" name="types[]" id="form-types-{{this.key}}" value="{{this.value}}" data-types="{{this.key}}"></li>
+            {{/each}}
+          </ul>
         </div>
       </div>
     </fieldset>

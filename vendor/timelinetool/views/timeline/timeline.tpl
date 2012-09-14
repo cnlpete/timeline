@@ -29,54 +29,60 @@
                 </div>
               {/for}
             </div>
-            {foreach $assets as $type=>$assetsintype}
-              <div class="timelinetype type-{$type}" style="position:relative; height: {($assetsintype.maxline + 1) * 35}px;">
-                {foreach $assetsintype.data as $year=>$assetsinyear}
-                  {foreach $assetsinyear as $asset}
-                    <div class="asset"
-                      id="asset-{$asset.hash}"
-                      data-hash="{$asset.hash}"
-                      style="top: {$asset.line * 35}px; 
-                        left: {($year - $range.start) * 100}px;
-                        width: {$asset.width * 100}px;">
-                      <h4 class="title">
-                        <span class="pin"></span>
-                        <span>{$asset.title}</span>
-                      </h4>
-                      <div class="content" style="display: none;">
-                        <h4>
+            {foreach $timeline.types as $colorclass}
+              {assign "type" $colorclass.key}
+              {assign "assetsintype" $assets.$type}
+              {if $assets.$type}
+                <div class="timelinetype type-{$type}" style="position:relative; height: {($assetsintype.maxline + 1) * 35}px;">
+                  {foreach $assetsintype.data as $year=>$assetsinyear}
+                    {foreach $assetsinyear as $asset}
+                      <div class="asset"
+                        id="asset-{$asset.hash}"
+                        data-hash="{$asset.hash}"
+                        style="top: {$asset.line * 35}px; 
+                          left: {($year - $range.start) * 100}px;
+                          width: {$asset.width * 100}px;">
+                        <h4 class="title">
                           <span class="pin"></span>
-                          <span class="color"></span>
-                          {$asset.title}
+                          <span>{$asset.title}</span>
                         </h4>
-                        <span class="date">{$year}</span>
-                        <div class="{$asset.texttype}">
-                          {if $asset.texttype == 'image'}
-                            <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
-                            <p class="img-text">{$asset.text}</p>
-                          {elseif $asset.texttype == 'video'}
-                            <div class="js-url2video" title="{$asset.image}">
-                              <a href="{$asset.image}">{$asset.image}</a>
-                            </div>
-                            <p class="img-text">{$asset.text}</p>
-                          {elseif $asset.texttype == 'quote'}
-                            {if !empty($asset.image)}
-                              <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                        <div class="content" style="display: none;">
+                          <h4>
+                            <span class="pin"></span>
+                            <span class="color"></span>
+                            {$asset.title}
+                          </h4>
+                          <span class="date">{$year}</span>
+                          <div class="{$asset.texttype}">
+                            {if $asset.texttype == 'image'}
+                              <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                              <p class="img-text">{$asset.text}</p>
+                            {elseif $asset.texttype == 'video'}
+                              <div class="js-url2video" title="{$asset.image}">
+                                <a href="{$asset.image}">{$asset.image}</a>
+                              </div>
+                              <p class="img-text">{$asset.text}</p>
+                            {elseif $asset.texttype == 'quote'}
+                              {if !empty($asset.image)}
+                                <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                              {/if}
+                              <blockquote>{$asset.text}</blockquote>
+                            {else}
+                              {if !empty($asset.image)}
+                                <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                              {/if}
+                              <p>{$asset.text}</p>
                             {/if}
-                            <blockquote>{$asset.text}</blockquote>
-                          {else}
-                            {if !empty($asset.image)}
-                              <div class="small-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
-                            {/if}
-                            <p>{$asset.text}</p>
+                          </div>
+                          {if $asset.source}
+                            <div class="source">{$asset.source}</div>
                           {/if}
                         </div>
-                        <div class="source">{$asset.source}</div>
                       </div>
-                    </div>
+                    {/foreach}
                   {/foreach}
-                {/foreach}
-              </div>
+                </div>
+              {/if}
             {/foreach}
           </div>
         </div>
@@ -87,8 +93,11 @@
       <div id="colorclasses">
         <p>{$lang.timeline.colorclasses}</p>
         <ul>
-          {foreach $used_colorclasses as $colorclass}
-            <li class="type-{$colorclass} colortarget selected">{$colorclass}</li>
+          {foreach $timeline.types as $colorclass}
+            {assign "type" $colorclass.key}
+            {if $assets.$type}
+              <li class="type-{$colorclass.key} colortarget selected" data-key="{$colorclass.key}">{$colorclass.value}</li>
+            {/if}
           {/foreach}
         </ul>
       </div>

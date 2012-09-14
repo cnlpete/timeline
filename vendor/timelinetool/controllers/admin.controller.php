@@ -118,7 +118,8 @@ class Admin extends Main {
     // if not html, directly return the data
     if ($this->_sFormat != 'html')
       return array('timeline' => $this->_oTimelineModel->getTimelineForHash($sHash),
-              'assets' => $this->_oTimelineModel->getTimelineAssetsForHash($sHash));
+              'assets' => $this->_oTimelineModel->getTimelineAssetsForHash($sHash),
+              'colorclasses' => $this->_loadModel('colorclass')->getPublicColorclasses());
 
     if (!$this->_oTimelineModel->isValidHash($sHash))
       return Helper::errorMessage(I18n::get('timeline.error.hash_not_found', $sHash), '/admin.html');

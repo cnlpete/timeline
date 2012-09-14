@@ -107,7 +107,8 @@ Event = {
     // check for content
     if (details.text().length) {
       // center title under mouse position
-      Title.scrollToPosition(newPos, title);
+      //do not scroll the title, since the popup hides this anyway
+      //Title.scrollToPosition(newPos, title);
 
       // change details position
       // avoid that details move out of container
@@ -123,24 +124,21 @@ Event = {
       zIndices.push(zIndices.last()+1);
       $this.css("zIndex", zIndices.last().toString());
 
-      xE = details.offset().top + details.outerHeight();
+      xE = title.offset().top + details.outerHeight();
       xB = scroller.height() + scroller.offset().top;
       if (xE >= xB) {
         //event is too big, we need to shift it up a bit ...
-        //FIXME, this doese not yet work with the new div approach
-        details.css('bottom', 0).css('position', 'relative');
-        details.parent().css('bottom', 0).css('top', '');
+        details.css('top', xB-xE-10);
       }
     }
   },
   hoverOutFunction: function($this, e) {
     // change title position back
-    var title = $this.find('.title span').last();
-    Title.scrollToPosition(0, title);
+    //var title = $this.find('.title span').last();
+    //do not scroll the title, since the popup hides this anyway
+    //Title.scrollToPosition(0, title);
 
     var details = $this.find('.content');
-    details.css('bottom', '').css('position', '');
-    details.parent().css('bottom', '');
 
     $('#minimap-' + $this.data('hash')).removeClass('hoveredAsset');
 

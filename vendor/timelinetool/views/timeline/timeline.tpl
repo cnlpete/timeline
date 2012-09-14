@@ -167,7 +167,7 @@
 
     /* scroll to event, if starthash is given */
     if(window.location.hash) {
-      var event = $('#asset-' + window.location.hash.substr(1, window.location.hash.length - 1));
+      var event = $('#asset-' + window.location.hash.substr(1));
       if (event.length) {
         Event.scrollTo(event);
         Event.hoverInFunction(event, event, 0);

@@ -203,12 +203,14 @@ Event = {
         });
       });
 
-      if (content.height() > 300)
+      if (content.height() > 300) {
         content.width(400);
-      if (content.height() > maxHeight)
-        content.width(610);
-      if (content.height() > maxHeight)
-        content.width(content.width() + 310);
+        if (content.height() > maxHeight) {
+          content.width(610);
+          if (content.height() > maxHeight)
+            content.width(content.width() + 310);
+        }
+      }
 
       var source = $(this).find('.source');
       if (source.length)

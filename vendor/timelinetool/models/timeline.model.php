@@ -40,7 +40,7 @@ class Timeline extends Main {
       // all available types are in $aPublicTypes, we need to merge those into timelinedata
       foreach ($aPublicTypes as $sColorclass) {
         if (!Helper::array_has_item($aTimelineData['types'], $sColorclass))
-          $aTimelineData['types'][] = array('colorclass' => $sColorclass, 'name' => $sColorclass);
+          $aTimelineData['types'][] = array('key' => $sColorclass, 'value' => $sColorclass);
       }
 
       return $aTimelineData;

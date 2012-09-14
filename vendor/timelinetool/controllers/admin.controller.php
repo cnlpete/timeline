@@ -82,6 +82,7 @@ class Admin extends Main {
     $aNavList['update'] = array('icon' => 'refresh');
     $oSmarty->assign('navlist', $aNavList);
 
+    $oSmarty->assign('colorclasses', $this->_loadModel('colorclass')->getPublicColorclasses());
     $oSmarty->assign('timelines_json', json_encode($this->_oModel->getAllEditableTimelines()));
 
     return $oSmarty->fetch('overview.tpl');

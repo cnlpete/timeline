@@ -39,9 +39,11 @@
       <div class="control-group">
         <label class="control-label" for="form-language">{/literal}{$lang.admin.timeline.colorclasses}{literal}</label>
         <div class="controls">
-          <ul class='js-sortable'>
+          <ul class='js-sortable sortable'>
             {{#each types}}
-              <li><input type="text" class="input js-types" name="types[]" id="form-types-{{this.key}}" value="{{this.value}}" data-types="{{this.key}}"></li>
+              <li>
+                <input type="text" class="input js-types type-{{this.key}} colorful" name="types[]" id="form-types-{{this.key}}" value="{{this.value}}" data-types="{{this.key}}">
+              </li>
             {{/each}}
           </ul>
         </div>

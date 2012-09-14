@@ -1,6 +1,8 @@
 <section id='admin-timeline'>
 
-{include file='../_colorclasses.tpl' selectors=' div'}
+  <link href="{$path.css}/admin.css" rel="stylesheet" />
+
+{include file='../_colorclasses.tpl' selectors=[' div', '.colorful']}
 
   <!-- the timeline info -->
   <div id='timelinedata' class="row-fluid">

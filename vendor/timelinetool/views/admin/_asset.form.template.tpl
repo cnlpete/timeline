@@ -47,7 +47,7 @@
       <div class="control-group">
         <label class="control-label" for="form-text">{/literal}{$lang.admin.timeline.assets.text}{literal}</label>
         <div class="controls">
-          <textarea type="text" class="input-xlarge" name="text" id="form-text">{{text}}</textarea>
+          <textarea type="text" class="input-xlarge" name="text" id="form-text" rows="10">{{text}}</textarea>
         </div>
       </div>
     </fieldset>

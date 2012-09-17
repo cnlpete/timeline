@@ -169,9 +169,14 @@
     if(window.location.hash) {
       var event = $('#asset-' + window.location.hash.substr(1));
       if (event.length) {
+        history.pushState({ 'hash' : asset.data('hash'), 'stateuid' : 0 }, null, 
+              window.location.href);
+
         Event.scrollTo(event);
-        Event.hoverInFunction(event, event, 0);
-        Event.makeSticky(event);
+        if (!Event.isSticky(event)) {
+          Event.hoverInFunction(event, event, 0);
+          Event.makeSticky(event);
+        }
       }
     }
   });

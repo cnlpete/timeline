@@ -2,6 +2,9 @@
 /* a regular expression for detecting urls */
 var urlpattern = /(http(s)?:\/\/([\w-]+\.)+[\w]{1,4}(\/[\w-\.,?=%#_]+)*\/?)/gi;
 
+/* a persistant stateuid to check for backward and forward jumps */
+var persistandStateUID = 1;
+
 /* Array functions to sort, removeObject and getLast */
 Array.prototype.sortNum = function() {
   return this.sort( function (a,b) { return a-b; } );
@@ -192,17 +195,38 @@ Event = {
   buildContent: function(jEvents) {
     var maxHeight = scroller.height() - 100;
     jEvents.each(function(index) {
-      var content = $(this).find('.content');
+      var asset = $(this);
+      var content = asset.find('.content');
+      /* build video links */
       content.find('.js-url2video').each(function(e) {
         var $this = $(this);
         $.ajax({
           url: 'http://url2video.com/',
-          data: { 'w': 300, 'h': 200, 'url' : encodeURI(this.title) },
+          data: { 'w': 300, 'h': 200, 'url' : encodeURI($this.title) },
           dataType: 'jsonp',
           success: function(data) { $this.html(data['html']); }
         });
       });
 
+      /* build internal links */
+      var a = content.find('a[href^="timeline:"]').click(function(e) {
+        e.preventDefault();
+        var hash = $(this).attr('href').substr(9);
+        var event = $('#asset-' + hash);
+        if (event.length) {
+          history.pushState({ 'hash' : asset.data('hash'), 'stateuid' : persistandStateUID }, null, 
+              window.location.protocol + '//' + window.location.hostname + window.location.pathname + '#' + hash);
+          persistandStateUID += 1;
+          Event.scrollTo(event);
+          if (!Event.isSticky(event)) {
+            Event.hoverInFunction(event, event, 0);
+            Event.makeSticky(event);
+          }
+        }
+        return false;
+      });
+
+      /* check the height */
       if (content.height() > 300) {
         content.width(400);
         if (content.height() > maxHeight) {
@@ -212,12 +236,35 @@ Event = {
         }
       }
 
+      /* build links in sources */
       var source = $(this).find('.source');
       if (source.length)
         source.html(source.html().replace(urlpattern, '<a href="$1" class="extern" target="_blank"> $1 </a>').nl2br());
     });
   },
   scrollTo: function(event) {
-    Timeline.scrollTo(event.offset().left + Math.round(event.width()/2) - Math.round($(window).width()/2));
+    var newX = (timeline.x - event.offset().left - Math.round((event.width() - $(window).width()) / 2)) * -1;
+    Timeline.scrollTo(newX);
   }
 };
+
+window.addEventListener("popstate", function(e) {
+  var t = '';
+  console.log(e.state.stateuid + ' < ' + persistandStateUID + ' ?');
+  if (e.state.stateuid < persistandStateUID || e.state.stateuid == undefined) {
+    t = e.state.hash;
+  }
+  else {
+    t = window.location.hash.substr(1);
+  }
+  persistandStateUID = e.state.stateuid;
+
+  var event = $('#asset-' + t);
+  if (event.length) {
+    Event.scrollTo(event);
+    if (!Event.isSticky(event)) {
+      Event.hoverInFunction(event, event, 0);
+      Event.makeSticky(event);
+    }
+  }
+});

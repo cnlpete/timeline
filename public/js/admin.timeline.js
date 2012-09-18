@@ -37,7 +37,7 @@ refreshInfo = function(data){
 
 /* create a timeline */
 createTimeline = function(timelinedata, success, error) {
-  $.post('/admin/create.json', {'data' : timelinedata}, function(data) {
+  $.post(meta.url + '/admin/create.json', {'data' : timelinedata}, function(data) {
     if (data.result) {
       if ($.isFunction(success))
         success.call(data);
@@ -51,7 +51,7 @@ createTimeline = function(timelinedata, success, error) {
 
 /* save the timeline */
 saveTimeline = function(hash, timelinedata, success, error) {
-  $.post('/admin/' + hash + '/update.json', {'data' : timelinedata}, function(data) {
+  $.post(meta.url + '/admin/' + hash + '/update.json', {'data' : timelinedata}, function(data) {
     if (data.result) {
       if ($.isFunction(success))
         success.call();
@@ -65,17 +65,17 @@ saveTimeline = function(hash, timelinedata, success, error) {
 
 /* get the timeline */
 getTimelines = function(callback) {
-  $.getJSON('/admin.json', callback);
+  $.getJSON(meta.url + '/admin.json', callback);
 }
 
 /* get the timeline */
 getTimeline = function(hash, callback) {
-  $.getJSON('/admin/' + hash + '.json', callback);
+  $.getJSON(meta.url + '/admin/' + hash + '.json', callback);
 }
 
 /* destroy the timeline */
 destroyTimeline = function(hash, success, error) {
-  $.getJSON('/admin/' + hash + '/destroy.json', function(data) {
+  $.getJSON(meta.url + '/admin/' + hash + '/destroy.json', function(data) {
     if (data.result) {
       if ($.isFunction(success))
         success.call();
@@ -90,12 +90,12 @@ destroyTimeline = function(hash, success, error) {
 
 /* get an asset */
 getAsset = function(timelinehash, assethash, callback) {
-  $.getJSON('/admin/' + timelinehash + '/' + assethash + '.json', callback);
+  $.getJSON(meta.url + '/admin/' + timelinehash + '/' + assethash + '.json', callback);
 }
 
 /* save the asset */
 saveAsset = function(timelinehash, assethash, assetdata, success, error) {
-  $.post('/admin/' + timelinehash + '/' + assethash + '/update.json', {'data' : assetdata}, function(data) {
+  $.post(meta.url + '/admin/' + timelinehash + '/' + assethash + '/update.json', {'data' : assetdata}, function(data) {
     if (data.result) {
       if ($.isFunction(success))
         success.call();
@@ -109,7 +109,7 @@ saveAsset = function(timelinehash, assethash, assetdata, success, error) {
 
 /* create an asset */
 createAsset = function(timelinehash, assetdata, success, error) {
-  $.post('/admin/' + timelinehash + '/create.json', {'data' : assetdata}, function(data) {
+  $.post(meta.url + '/admin/' + timelinehash + '/create.json', {'data' : assetdata}, function(data) {
     if (data.result) {
       if ($.isFunction(success))
         success.call(data);

@@ -16,6 +16,9 @@
     <script src="{$path.js}/handlebars.js"></script>
     <script src="{$path.js}/handlebars.helper.js"></script>
     <script src="{$path.js}/sprintf.js"></script>
+    <script type="text/javascript">
+      var meta = {$meta_json};
+    </script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -23,11 +26,11 @@
     <![endif]-->
 
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="{$path.root}/public/ico/favicon.ico" />
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{$path.root}/public/ico/apple-touch-icon-144-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{$path.root}/public/ico/apple-touch-icon-114-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{$path.root}/public/ico/apple-touch-icon-72-precomposed.png" />
-    <link rel="apple-touch-icon-precomposed" href="{$path.root}/public/ico/apple-touch-icon-57-precomposed.png" />
+    <link rel="shortcut icon" href="{$path.img}/ico/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{$path.img}/ico/apple-touch-icon-144-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{$path.img}/ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{$path.img}/ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="{$path.img}/ico/apple-touch-icon-57-precomposed.png" />
     <style>
       body {
         padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -48,7 +51,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{if $hash}/{$hash}{else}{$meta.url}{/if}">
+          <a class="brand" href="{$meta.url}{if isset($hash)}/{$hash}{/if}">
             {if isset($title)}{$title}{else}{$meta.title}{/if}</a>
           {if $user.authenticated}
             <div class="btn-group pull-right">
@@ -57,16 +60,16 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                {if $timeline.hash}<li><a href="/admin/{$timeline.hash}.html">
+                {if $timeline.hash}<li><a href="{$meta.url}/admin/{$timeline.hash}.html">
                   <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
                 {if $user.has_admin_right || $user.editable_timelines}
-                  <li><a href="/admin.html">
+                  <li><a href="{$meta.url}/admin.html">
                     <i class="icon-th"></i> {$lang.navigation.admin}</a></li>
                 {/if}
                 {if !$user.has_admin_right && $user.editable_timelines}
                   <li class="divider-horizontal"></li>
                   {foreach $user.editable_timelines as $user_timeline}
-                    <li><a href="/admin/{$user_timeline}.html">
+                    <li><a href="{$meta.url}/admin/{$user_timeline}.html">
                       <i class="icon-th-large"></i> {$user_timeline}</a></li>
                   {/foreach}
                 {/if}

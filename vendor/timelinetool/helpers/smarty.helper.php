@@ -74,10 +74,12 @@ class MySmarty extends Smarty {
 
     $this->assign('path', array(
           'root' => PATH_STANDARD,
-          'css' => '/' . $aSession['config']['paths']['public'] . '/css',
-          'js' => '/' . $aSession['config']['paths']['public'] . '/js'));
+          'css' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/css',
+          'js' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/js',
+          'img' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/img'));
 
     $this->assign('meta', $aSession['config']['page']);
+    $this->assign('meta_json', json_encode($aSession['config']['page']));
 
     $oUser = Session::getUserSession();
     $aUser = array(

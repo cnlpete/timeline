@@ -13,7 +13,7 @@ namespace Timelinetool\Helpers;
 
 use Smarty;
 
-require_once PATH_STANDARD . '/vendor/smarty/smarty/libs/Smarty.class.php';
+require_once PATH_STANDARD . '/vendor/smarty/smarty/distribution/libs/Smarty.class.php';
 
 class MySmarty extends Smarty {
 
@@ -59,7 +59,7 @@ class MySmarty extends Smarty {
 
     $this->setCacheDir(PATH_STANDARD . '/' . $aSession['config']['paths']['smarty']['cache']);
     $this->setCompileDir(PATH_STANDARD . '/' . $aSession['config']['paths']['smarty']['compile']);
-    $this->setPluginsDir(PATH_STANDARD . '/vendor/smarty/smarty/libs/plugins');
+    $this->setPluginsDir(PATH_STANDARD . '/vendor/smarty/smarty/distribution/libs/plugins');
     $this->setTemplateDir(PATH_STANDARD . '/vendor/timelinetool/views');
 
     # See http://www.smarty.net/docs/en/variable.merge.compiled.includes.tpl

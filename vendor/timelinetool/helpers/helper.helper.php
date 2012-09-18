@@ -111,7 +111,7 @@ class Helper {
   public static function array_sort_with_target(&$aArTarget, &$aArOther) {
     foreach ($aArOther as &$sItem) {
       // check for existance
-      if (!self::array_has_item(&$aArTarget, &$sItem))
+      if (!self::array_has_item($aArTarget, $sItem))
         $aArTarget[] = array('key' => $sItem, 'value' => $sItem);
     }
   }

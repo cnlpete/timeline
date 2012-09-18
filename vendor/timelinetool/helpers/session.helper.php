@@ -112,7 +112,7 @@ class Session {
     $this->_aCookie   = &$aCookie;
 
     // check if logged in in session
-    if ($aSession['session'])
+    if (isset($aSession['session']))
       $this->_aData = &$aSession['session'];
     // check for cookie
     else if (isset($aCookie['loginname']) && !empty($aCookie['loginname'])) {

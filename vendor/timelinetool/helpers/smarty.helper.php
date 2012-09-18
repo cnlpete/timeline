@@ -17,6 +17,10 @@ require_once PATH_STANDARD . '/vendor/smarty/smarty/distribution/libs/Smarty.cla
 
 class MySmarty extends Smarty {
 
+  protected $_aRequest;
+
+  protected $_aSession;
+
   /**
    *
    * @var static

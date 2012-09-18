@@ -58,6 +58,7 @@ class Index {
 
     $sURI = isset($_SERVER['REQUEST_URI']) ? Helper::removeSlash($_SERVER['REQUEST_URI']) : '';
 
+    $sAdditionalParams = '';
     if ( strpos( $sURI, '?' ) !== false ) {
       # Break the query string off and attach later
       $sAdditionalParams = parse_url( $sURI, PHP_URL_QUERY );

@@ -122,7 +122,7 @@ class Timeline extends Main {
         foreach ($aAssetYear as &$aAsset) {
           $aAsset['line'] = 0;
           // find the first free line
-          while ($aFlags[$iStartY][$aAsset['line']])
+          while (isset($aFlags[$iStartY][$aAsset['line']]) && $aFlags[$iStartY][$aAsset['line']])
             $aAsset['line']++;
           // mark this line as taken
           $iEndY = max((int)substr($aAsset['endDate'],0,4), $iStartY);

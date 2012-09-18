@@ -2,7 +2,7 @@
 <html lang="de">
   <head>
     <meta charset="utf-8">
-    <title>{if $title}{$title} - {/if}{$meta.title}</title>
+    <title>{if isset($title)}{$title} - {/if}{$meta.title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{$meta.description}" />
     <meta name="author" content="{$meta.author}" />
@@ -49,7 +49,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="{if $hash}/{$hash}{else}{$meta.url}{/if}">
-            {if $title}{$title}{else}{$meta.title}{/if}</a>
+            {if isset($title)}{$title}{else}{$meta.title}{/if}</a>
           {if $user.authenticated}
             <div class="btn-group pull-right">
               <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -84,7 +84,7 @@
           {/if}
           <div class="nav-collapse">
             <ul class="nav">
-              {if $navlist}
+              {if isset($navlist)}
                 {foreach $navlist as $navkey => $navitem}
                   <li><a href="{if $navitem.url}{$navitem.url}{else}#{$navkey}{/if}" id="nav-{$navkey}">
                     {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}

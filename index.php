@@ -21,7 +21,7 @@ ini_set('log_errors', 1);
 define('PATH_STANDARD', dirname(__FILE__));
 
 # Define current url
-define('CURRENT_URL', isset($_SERVER['REQUEST_URI']) ? WEBSITE_URL . $_SERVER['REQUEST_URI'] : WEBSITE_URL);
+#define('CURRENT_URL', isset($_SERVER['REQUEST_URI']) ? WEBSITE_URL . $_SERVER['REQUEST_URI'] : WEBSITE_URL);
 
 # Start user session.
 @session_start();

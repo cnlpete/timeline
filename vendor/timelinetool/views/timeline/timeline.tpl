@@ -31,8 +31,8 @@
             </div>
             {foreach $timeline.types as $colorclass}
               {assign "type" $colorclass.key}
-              {assign "assetsintype" $assets.$type}
-              {if $assets.$type}
+              {if isset($assets.$type)}
+                {assign "assetsintype" $assets.$type}
                 <div class="timelinetype type-{$type}" style="position:relative; height: {($assetsintype.maxline + 1) * 35}px;">
                   {foreach $assetsintype.data as $year=>$assetsinyear}
                     {foreach $assetsinyear as $asset}
@@ -95,7 +95,7 @@
         <ul>
           {foreach $timeline.types as $colorclass}
             {assign "type" $colorclass.key}
-            {if $assets.$type}
+            {if isset($assets.$type)}
               <li class="type-{$colorclass.key} colortarget selected" data-key="{$colorclass.key}">{$colorclass.value}</li>
             {/if}
           {/foreach}

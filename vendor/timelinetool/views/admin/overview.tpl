@@ -36,8 +36,8 @@
   <td class="table-description">{{description}}</td>
   <td class="table-date">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
-    <a class="js-play btn" href="/{{hash}}.html"><i class="icon-play-circle"></i></a>
-    <a class="js-show btn" href="/admin/{{hash}}.html"><i class="icon-eye-open"></i></a>
+    <a class="js-play btn" href="{/literal}{$meta.url}{literal}/{{hash}}.html"><i class="icon-play-circle"></i></a>
+    <a class="js-show btn" href="{/literal}{$meta.url}{literal}/admin/{{hash}}.html"><i class="icon-eye-open"></i></a>
     <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
     <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
   </td>

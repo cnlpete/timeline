@@ -142,7 +142,8 @@ class Admin extends Main {
 
     // assign nav-links
     $aNavList = array();
-    $aNavList['play']   = array('icon' => 'play-circle', 'url' => '/'.$sHash.'.html');
+    $aNavList['play']   = array('icon' => 'play-circle', 
+      'url' => $this->_aSession['config']['page']['url'] . '/'.$sHash.'.html');
     $aNavList['update'] = array('icon' => 'refresh');
     $aNavList['edit']   = array('icon' => 'wrench');
     $aNavList['delete'] = array('icon' => 'trash');
@@ -160,7 +161,7 @@ class Admin extends Main {
   }
 
   protected function updateTimeline($sTimelineHash) {
-    if (!(Session::getUserSession()->canEditTimeline($sHash)))
+    if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
       Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_updateTimeline($sTimelineHash);
   }

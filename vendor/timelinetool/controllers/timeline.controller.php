@@ -17,7 +17,7 @@ class Timeline extends Main {
           $oSmarty->addTplDir($this->_sController);
           //TODO cache
 
-          if ($this->_aRequest['hash']) {
+          if (isset($this->_aRequest['hash'])) {
             $sHash = trim($this->_aRequest['hash']);
 
             if ($this->_oModel->isValidHash($sHash)) {

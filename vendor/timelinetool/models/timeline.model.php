@@ -35,7 +35,7 @@ class Timeline extends Main {
         $aPublicTypes[] = $aPublicCC['name'];
 
       // array with user defined colorclass, name tuples, sorting is important
-      if (!is_array($aTimelineData['types']))
+      if (!isset($aTimelineData['types']) || !is_array($aTimelineData['types']))
         $aTimelineData['types'] = array();
       // all available types are in $aPublicTypes, we need to merge those into timelinedata
       foreach ($aPublicTypes as $sColorclass) {

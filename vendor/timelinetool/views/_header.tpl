@@ -60,7 +60,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                {if $timeline.hash}<li><a href="{$meta.url}/admin/{$timeline.hash}.html">
+                {if isset($timeline.hash)}<li><a href="{$meta.url}/admin/{$timeline.hash}.html">
                   <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
                 {if $user.has_admin_right || $user.editable_timelines}
                   <li><a href="{$meta.url}/admin.html">
@@ -89,10 +89,10 @@
             <ul class="nav">
               {if isset($navlist)}
                 {foreach $navlist as $navkey => $navitem}
-                  <li><a href="{if $navitem.url}{$navitem.url}{else}#{$navkey}{/if}" id="nav-{$navkey}">
-                    {if $navitem.icon}<i class="icon-{$navitem.icon} icon-white"></i>{/if}
-                    {if $navitem.label}{$navitem.label}{/if}</a></li>
-                  {if !$navitem.nodivider}<li class="divider-vertical"></li>{/if}
+                  <li><a href="{if isset($navitem.url)}{$navitem.url}{else}#{$navkey}{/if}" id="nav-{$navkey}">
+                    {if isset($navitem.icon)}<i class="icon-{$navitem.icon} icon-white"></i>{/if}
+                    {if isset($navitem.label)}{$navitem.label}{/if}</a></li>
+                  {if !isset($navitem.nodivider)}<li class="divider-vertical"></li>{/if}
                 {/foreach}
               {/if}
             </ul>

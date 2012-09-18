@@ -169,7 +169,7 @@
     if(window.location.hash) {
       var event = $('#asset-' + window.location.hash.substr(1));
       if (event.length) {
-        history.pushState({ 'hash' : asset.data('hash'), 'stateuid' : 0 }, null, 
+        history.pushState({ 'hash' : event.data('hash'), 'stateuid' : 0 }, null, 
               window.location.href);
 
         Event.scrollTo(event);

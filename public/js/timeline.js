@@ -202,7 +202,7 @@ Event = {
         var $this = $(this);
         $.ajax({
           url: 'http://url2video.com/',
-          data: { 'w': 300, 'h': 200, 'url' : encodeURI($this.title) },
+          data: { 'w': 300, 'h': 200, 'url' : encodeURI($this.attr('title')) },
           dataType: 'jsonp',
           success: function(data) { $this.html(data['html']); }
         });

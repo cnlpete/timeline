@@ -169,8 +169,23 @@ $('#myModal').on('shown', function () {
     dp.setValue();
     dp.hide();
   });
+
   // jquery sortable
   var sortables = $('.js-sortable');
   if (sortables.length)
     sortables.sortable({'placeholder': 'ui-sortable-placeholder'});
+
+  // the text editor
+  var textarea = $('#form-text');
+  if (textarea.length) {
+    if ($('#wysihtml5-editor-toolbar').length)
+      toolbar = "wysihtml5-editor-toolbar";
+    else
+      toolbar = false;
+    var editor = new wysihtml5.Editor("form-text", {
+      toolbar:     toolbar,
+      parserRules: wysihtml5ParserRules
+    });
+  }
+
 });

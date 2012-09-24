@@ -61,6 +61,8 @@
 
 {include file='_asset.form.template.tpl'}
 
+<script src="{$path.js}/wysihtml5.parser_rules.advanced.js" ></script>
+<script src="{$path.js}/wysihtml5.min.js" ></script>
 <script src="{$path.js}/jquery.stupidtable.js"></script>
 <script src="{$path.js}/jquery-ui.custom.min.js"></script>
 <script src="{$path.js}/bootstrap-datepicker.js"></script>

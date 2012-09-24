@@ -1,0 +1,148 @@
+#wysihtml5-editor-toolbar {
+  background: -moz-linear-gradient(center bottom , #EEEEEE 0%, #FFFFFF 100%) repeat scroll 0 0 #F6F6F6;
+  .border-radius(4px 4px 4px 4px);
+  .box-shadow(0 0 4px 1px rgba(0, 0, 0, 0.3));
+  display:      block;
+  font-size:    0;
+  position:     relative;
+  text-align:   center;
+  z-index:      1;
+  line-height:  0;
+  .commands {
+    border-left: 1px solid #ddd;
+    display: inline-block;
+    margin: 0;
+    
+    li,
+    .fore-color {
+      position:     relative;
+      border-right: 1px solid #ddd;
+      border-left:  1px solid #fff;
+      list-style:   none;
+      font-size:    12px;
+      display:      inline-block;
+      cursor:       pointer;
+      height:       30px;
+      width:        30px;
+    }
+
+    li::after,
+    .fore-color::after {
+      content:            "";
+      background-image:   url(../img/spr_toolbar_icons_r1.png);
+      background-repeat:  no-repeat;
+      position: absolute;
+      left:   0;
+      right:  0;
+      top:    0;
+      bottom: 0;
+    }
+
+    li:hover,
+    .fore-color:hover {
+      background-image: linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+      background-image: -o-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+      background-image: -moz-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+      background-image: -webkit-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+      background-image: -ms-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+    }
+
+    .js-bold::after { background-position: 2px center; }
+    .js-italic::after { background-position: -68px center; }
+    .js-ul::after { background-position: -134px center; }
+    .js-ol::after { background-position: -217px center; }
+    .js-h::after { background-position: -362px center; }
+    .js-hh::after { background-position: -448px center; }
+    .js-a::after { background-position: -291px center; }
+    .js-img::after { background-position: -533px center; }
+    .js-color::after { background-position: -760px center; }
+    .js-src::after { background-position: -687px center; }
+
+    .fore-color {
+      &:hover ul {
+        display: block;
+      }
+      ul {
+        display: none;
+        position: absolute;
+        z-index: 2;
+        top: 40px;
+        right: -1px;
+        left: -2px;
+        border: 1px solid #ccc;
+        border-top: 0;
+        background: #fff;
+        overflow: hidden;
+        li {
+          display: block;
+          margin: 3px;
+          width: auto;
+          border: 0;
+          height: 15px;
+          &::after {
+            display: none;
+          }
+        }
+      }
+      .silver { background: silver !important; }
+      .gray { background: gray !important; }
+      .maroon { background: maroon !important; }
+      .red { background: red !important; }
+      .purple { background: purple !important; }
+      .green { background: green !important; }
+      .olive { background: olive !important; }
+      .navy { background: navy !important; }
+      .blue { background: blue !important; }
+    }
+
+    .fore-color .wysihtml5-command-active {
+      outline: 1px solid #666;
+      outline-offset: 1px;
+    }
+
+    .wysihtml5-action-active,
+    .wysihtml5-command-active {
+      box-shadow: inset 0 1px 6px rgba(0, 0, 0, 0.2);
+      background: #eee !important;
+    }
+
+    .wysihtml5-commands-disabled .command,
+    .wysihtml5-commands-disabled .fore-color {
+      opacity: 0.4;
+      cursor: default;
+      background-image: none !important;
+      ul {
+        display: none;
+      }
+    }
+
+    .js-dialog {
+      color: #333;
+      font-size: 14px;
+      text-align: left;
+      border-radius: 4px;
+      -ms-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      background: #FFFBE0;
+      position: absolute;
+      width: 810px;
+      text-align: center;
+      top: 45px;
+      
+      input {
+        color:    #333;
+        border:   1px solid #ccc;
+        padding:  3px;
+        width:    300px;
+        &:focus {
+          outline: 0;
+          border: 1px solid #666;
+        }
+      }
+    }
+  }
+}

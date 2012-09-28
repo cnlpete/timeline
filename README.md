@@ -10,6 +10,7 @@ There is no live demo yet.
 Requirements
 ---------------------------------
 - at least PHP 5.1 (PHP 5.3 recommended)
+- mod_rewrite
 - HTML5 enabled browser (older browsers might work aswell, but are (and will remain) untested
 
 
@@ -25,6 +26,16 @@ See `vendor/timelinetool/languages/xx.language.yml` for available translation ke
 These are at least `app/storage`, `app/cache` and `app/compile` plus subfolders.
 
 >There will be a graphical Installer one day to automate these last steps for you, but for now you have to do this manually.
+
+
+HTTP-Server
+---------------------------------
+Currently tested only with Apache2 and Cherokee.
+
+For Apache2 you might have to adjust the htaccess file.
+
+For Cherokee just add the following rule:
+  NOT (File exists) and add the internal redirection handler with '^(.*)' and 'index.php?$1' as Parameters.
 
 
 Update

@@ -1,0 +1,15 @@
+<Files index.php>
+  Allow from all
+</Files>
+
+#Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+# redirect existing files and symbolic links
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^.*$ - [NC,L]
+
+# rewrite all other calls to our index.php
+RewriteRule ^.*$ /index.php [NC,L]

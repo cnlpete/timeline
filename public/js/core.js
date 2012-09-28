@@ -25,7 +25,7 @@ $('#js-flash_message .close').click(function(e) {
 
 /* call the login api */
 login = function(logindata, success, error) {
-  $.post('/login.json', logindata, function(data) {
+  $.post(meta.url + '/login.json', logindata, function(data) {
     if (data) {
       if ($.isFunction(success))
         success.call();
@@ -39,7 +39,7 @@ login = function(logindata, success, error) {
 
 /* call the login api */
 logout = function(success, error) {
-  $.post('/logout.json', function(data) {
+  $.post(meta.url + '/logout.json', function(data) {
     if (data) {
       if ($.isFunction(success))
         success.call();

@@ -1,6 +1,7 @@
 page:
   title: Timelinetool
   url: http://timelinetool.com
+  subdirpath: ''
   description: This is the timelinetool
   keywords: timeline,timelinetool
   author: Hauke Schade's Timelinetool

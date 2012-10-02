@@ -67,7 +67,7 @@ admin:
       title: Title
       date: Timespan
       type: Type
-      source: Source
+      source: Source(s)
       text: Description
       image: Image or Video URL
       texttype: Texttype

@@ -42,57 +42,58 @@
     .fore-color:hover {
       background-image: linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
       background-image: -o-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
+      background-image: -ms-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
       background-image: -moz-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
       background-image: -webkit-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
-      background-image: -ms-linear-gradient(bottom, rgb(229,240,226) 0%, rgb(255,255,255) 100%);
     }
 
-    .js-bold::after { background-position: 2px center; }
+    .js-bold::after {   background-position: 2px center; }
     .js-italic::after { background-position: -68px center; }
-    .js-ul::after { background-position: -134px center; }
-    .js-ol::after { background-position: -217px center; }
-    .js-h::after { background-position: -362px center; }
-    .js-hh::after { background-position: -448px center; }
-    .js-a::after { background-position: -291px center; }
-    .js-img::after { background-position: -533px center; }
-    .js-color::after { background-position: -760px center; }
-    .js-src::after { background-position: -687px center; }
+    .js-ul::after {     background-position: -134px center; }
+    .js-ol::after {     background-position: -217px center; }
+    .js-h::after {      background-position: -362px center; }
+    .js-hh::after {     background-position: -448px center; }
+    .js-a::after {      background-position: -291px center; }
+    .js-img::after {    background-position: -533px center; }
+    .js-color::after {  background-position: -760px center; }
+    .js-src::after {    background-position: -687px center; }
 
     .fore-color {
       &:hover ul {
         display: block;
       }
       ul {
-        display: none;
-        position: absolute;
-        z-index: 2;
-        top: 40px;
-        right: -1px;
-        left: -2px;
-        border: 1px solid #ccc;
+        display:    none;
+        position:   absolute;
+        z-index:    2;
+        top:        31px;
+        right:      -1px;
+        left:       -26px;
+        width:      30px;
+        border:     1px solid #ccc;
         border-top: 0;
         background: #fff;
-        overflow: hidden;
+        overflow:   hidden;
         li {
-          display: block;
-          margin: 3px;
-          width: auto;
-          border: 0;
-          height: 15px;
+          display:  block;
+          margin:   3px;
+          width:    auto;
+          border:   0;
+          height:   15px;
           &::after {
             display: none;
           }
         }
       }
       .silver { background: silver !important; }
-      .gray { background: gray !important; }
+      .gray {   background: gray !important; }
       .maroon { background: maroon !important; }
-      .red { background: red !important; }
+      .red {    background: red !important; }
       .purple { background: purple !important; }
-      .green { background: green !important; }
-      .olive { background: olive !important; }
-      .navy { background: navy !important; }
-      .blue { background: blue !important; }
+      .green {  background: green !important; }
+      .olive {  background: olive !important; }
+      .navy {   background: navy !important; }
+      .blue {   background: blue !important; }
     }
 
     .fore-color .wysihtml5-command-active {

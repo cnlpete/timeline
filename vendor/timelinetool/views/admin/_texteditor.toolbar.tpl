@@ -7,17 +7,17 @@
     <li data-wysihtml5-command="createLink" title="Insert a link" class="command js-a"></li>
     <li data-wysihtml5-command="insertImage" title="Insert an image" class="command js-img"></li>
     <li data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" title="Insert headline 1" class="command js-h"></li>
-    <li data-wysihtml5-command-group="foreColor" class="fore-color js-color" title="Color the selected text" class="command">
+    <li data-wysihtml5-command-group="foreColor" title="Color the selected text" class="command fore-color js-color">
       <ul>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="silver"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="gray"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="maroon"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="purple"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="olive"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="navy"></li>
-        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="silver" class="silver"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="gray" class="gray"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="maroon" class="maroon"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red" class="red"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="purple" class="purple"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green" class="green"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="olive" class="olive"></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="navy" class="navy></li>
+        <li data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue" class="blue"></li>
       </ul>
     </li>
     <li data-wysihtml5-action="change_view" title="Show HTML" class="action js-src"></li>

@@ -48,7 +48,9 @@
         <label class="control-label" for="form-text">{/literal}{$lang.admin.timeline.assets.text}{literal}</label>
         <div class="controls">
           {/literal}{include file='_texteditor.toolbar.tpl'}{literal}
-          <textarea type="text" class="input-xlarge" name="text" id="form-text" rows="10">{{text}}</textarea>
+          <textarea type="text" class="input-xlarge" name="text" id="form-text" rows="10" cols="40" style="width: 350px;">
+          {{text}}
+          </textarea>
         </div>
       </div>
     </fieldset>

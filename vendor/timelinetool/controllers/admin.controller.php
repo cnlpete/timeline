@@ -17,10 +17,18 @@ class Admin extends Main {
   }
 
   public function executeAction() {
-    if (!(Session::getUserSession()->isLoggedIn()))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+    if (!(Session::getUserSession()->isLoggedIn())) {
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
+    }
 
     switch ($this->_sAction) {
+      // api
+      case 'user':
+        return $this->usermanagement();
+        break;
       // api
       case 'create_timeline':
         return $this->createTimeline();
@@ -57,13 +65,42 @@ class Admin extends Main {
         break;
     }
   }
+  
+  protected function usermanagement() {
+    $sCustomAction = $this->_aRequest['custom_action'];
+    $bResult = false;
+    $oSession = Session::getUserSession();
+    $bUserIsAdmin = $oSession->isAdmin();
+    switch ($sCustomAction) {
+      case 'addAdmin':
+        $bResult = $bUserIsAdmin && $this->_oModel->addAdminUser($this->_aRequest['username']);
+        break;
+      case 'removeAdmin':
+        $bResult = $bUserIsAdmin && $this->_oModel->removeAdminUser($this->_aRequest['username']);
+        break;
+      case 'addTimelineUser':
+        $bResult = $bUserIsAdmin && $this->_oTimelineModel->addEditableUser($this->_aRequest['timeline'], $this->_aRequest['username']);
+        break;
+      case 'removeTimelineUser':
+        $bResult = $bUserIsAdmin && $this->_oTimelineModel->removeEditableUser($this->_aRequest['timeline'], $this->_aRequest['username']);
+        break;
+      case 'listTimelineUsers':
+        // only do this if user is editableUser or admin
+        if ($oSession->canEditTimeline($this->_aRequest['timeline']))
+          return $this->_oTimelineModel->listEditableUsers($this->_aRequest['timeline']);
+        else
+          $bResult = false;
+        break;
+    }
+    return array('result' => $bResult);
+  }
 
   /**
    * show all available timelines
    **/
   protected function showOverview() {
     //check rights
-    if (!(Session::getUserSession()->hasPermission('admin') || Session::getUserSession()->hasPermission('edit_timeline')))
+    if (!(Session::getUserSession()->isLoggedIn()))
       Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_showOverview();
   }
@@ -92,7 +129,7 @@ class Admin extends Main {
    * show one specific timeline to edit
    **/
   protected function createTimeline() {
-    if (!(Session::getUserSession()->hasPermission('admin')))
+    if (!(Session::getUserSession()->isAdmin()))
       Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
     return $this->_createTimeline();
   }

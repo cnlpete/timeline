@@ -35,21 +35,33 @@ class Session {
       'firstname' => (string)$oData->firstName,
       'lastname' => (string)$oData->lastName,
       'authenticated' => (int)$oData->authenticated == 1,
-      'permissions' => array());
+      'editableTimelines' => array());
 
-    // find our scope
-    $sScopeName = $this->_aSession['config']['permissions']['scope'];
-    $oPermissionsScope = null;
-    foreach ($oData->permissions->scope as $oScope) {
-      if ($sScopeName == (string)$oScope['name']) {
-        foreach ($oScope->permission as $oPermission) {
-          if (!isset($this->_aData['permissions'][(string)$oPermission['name']]))
-            $this->_aData['permissions'][(string)$oPermission['name']] = array((string)$oPermission);
-          else
-            $this->_aData['permissions'][(string)$oPermission['name']][] = (string)$oPermission;
+    // admin permission?
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sAdminsFile = $sStoragePath . '/admin_users.json';
+    $aAdmins = File::_readData($sAdminsFile);
+    $this->_aData['isAdmin'] = is_in($this->_aData['username'], $aAdmins);
+
+    // go through all timelines and check whether this is has right to edit (is in list)
+    $this->_parseEditabletimelines();
+  }
+  
+  protected function _parseEditabletimelines() {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'] . '/timeline/';
+
+    $aTimelines = array();
+    $sPattern = '/^([\w\s-_]+)_users[.]json$/';
+    if ($oDirHandle = opendir($sStoragePath)) {
+      while (false !== ($sFile = readdir($oDirHandle))) {
+        if(preg_match($sPattern, $sFile, $aTreffer)) {
+          $sTimelineHash = substr($sFile, 0, strlen($sFile) - 11);
+          $aUsernames = File::_readData($sStoragePath . $sFile);
+          if (in_array($this->_aData['username'], $aUsernames))
+            $this->_aData['editableTimelines'][] = $sTimelineHash;
         }
-        break;
       }
+      closedir($oDirHandle);
     }
   }
 
@@ -59,7 +71,9 @@ class Session {
       'firstname' => (string)$sUsername,
       'lastname' => (string)'',
       'authenticated' => (int)true,
-      'permissions' => array('admin' => array('true')));
+      'isAdmin' => true,
+      'editableTimelines' => array());
+    $this->_parseEditabletimelines();
   }
 
   public function login($sUsername, $sPassword) {
@@ -128,26 +142,17 @@ class Session {
     return (bool)$this->_aData['authenticated'];
   }
 
-  public function hasPermission($sPermissionIdentifier) {
-    return isset($this->_aData['permissions'][$sPermissionIdentifier]) && 
-      count($this->_aData['permissions'][$sPermissionIdentifier]) > 0;
-  }
-
-  private function hasTimelineHashInPermission($sHash, $sPermission) {
-    foreach ($this->_aData['permissions'][$sPermission] as $sTimeline)
-      if ($sTimeline == $sHash)
-        return true;
+  public function isAdmin() {
+    return $this->_aData['isAdmin'];
   }
 
   public function canEditTimeline($sHash) {
-    return $this->hasPermission('admin') || 
-      ($this->hasPermission('edit_timeline') && $this->hasTimelineHashInPermission($sHash, 'edit_timeline')) ;
+    return $this->isAdmin() || in_array($sHash, $this->_aData['editableTimelines']);
   }
 
   public function getEditableTimelineHashes() {
-    $sPermissionName = $this->_aSession['config']['permissions']['edit_timeline'];
-    if (isset($this->_aData['permissions'][$sPermissionName]))
-      return $this->_aData['permissions'][$sPermissionName];
+    if (isset($this->_aData['editableTimelines']))
+      return $this->_aData['editableTimelines'];
     else
       return array();
   }

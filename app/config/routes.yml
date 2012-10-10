@@ -2,6 +2,7 @@
 "/": timeline
 
 # admin api
+"admin/user/(:alnum).(json|xml)": controller=admin&format=$2&action=user&custom_action=$1
 "admin/create.(json|xml|html)": controller=admin&format=$1&action=create_timeline
 "admin/(:alnum).(json|xml|html)": controller=admin&hash=$1&format=$2&action=show_timeline
 "admin/(:alnum)/(update|destroy).(json|xml|html)": controller=admin&format=$3&hash=$1&action=$2_timeline

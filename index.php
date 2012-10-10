@@ -13,8 +13,8 @@ ini_set('zlib.output_compression_level', 9);
 date_default_timezone_set('Europe/Berlin');
 
 # print errors for now
-ini_set('display_errors', 1);
-ini_set('error_reporting', 1);
+ini_set('display_errors', -1);
+ini_set('error_reporting', -1);
 ini_set('log_errors', 1);
 
 # Define a standard path
@@ -29,7 +29,8 @@ define('PATH_STANDARD', dirname(__FILE__));
 # Initialize software
 # @todo extension check
 require_once PATH_STANDARD . '/vendor/timelinetool/controllers/index.controller.php';
-$oIndex = new \Timelinetool\Controllers\Index(array_merge($_GET, $_POST), $_SESSION, $_COOKIE);
+$aRequest = array_merge($_GET, $_POST);
+$oIndex = new \Timelinetool\Controllers\Index($aRequest, $_SESSION, $_COOKIE);
 $oIndex->getRoutes();
 
 echo $oIndex->show();

@@ -19,6 +19,7 @@ class Index {
 
   function __construct(&$aRequest, &$aSession, &$aCookie = '') {
     require_once PATH_STANDARD . '/vendor/autoload.php';
+    require PATH_STANDARD . '/vendor/timelinetool/helpers/file.helper.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/helper.helper.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/i18n.helper.php';
     require PATH_STANDARD . '/vendor/timelinetool/helpers/smarty.helper.php';

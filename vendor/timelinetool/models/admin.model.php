@@ -3,6 +3,7 @@
 namespace Timelinetool\Models;
 
 use \Timelinetool\Helpers\Session;
+use \Timelinetool\Helpers\File;
 
 class Admin extends Main {
 
@@ -15,7 +16,7 @@ class Admin extends Main {
 
     $oSession = Session::getUserSession();
     $aTimelines = array();
-    if ($oSession->hasPermission('admin')) {
+    if ($oSession->isAdmin()) {
       $sPattern = '/^([\w\s-_]+)[.]json$/';
       if ($oDirHandle = opendir($sStoragePath)) {
         while (false !== ($sFile = readdir($oDirHandle))) {
@@ -37,8 +38,44 @@ class Admin extends Main {
         $aTimelineData[] = $aData;
       }
     }
-    
+
     return $aTimelineData;
+  }
+  
+  public function addAdminUser($sUsername) {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sAdminsFile = $sStoragePath . '/admin_users.json';
+
+    // read admin list
+    $aAdmins = File::_readData($sAdminsFile);
+
+    // add admin to list, check for duplicates
+    // important, only allow this if user is admin
+    if (!in_array($sUsername, $aAdmins))
+      $aAdmins[] = $sUsername;
+
+    // and save
+    File::_writeData($aAdmins, $sAdminsFile);
+    return true;
+  }
+
+  public function removeAdminUser($sUsername) {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sAdminsFile = $sStoragePath . '/admin_users.json';
+    // read admin list
+    $aAdmins = File::_readData($sAdminsFile);
+
+    // remove admin from list
+    // important, do not remove self
+    // important, only allow this if user is admin
+    if (in_array($sUsername, $aAdmins)) {
+      $ikey = array_search($sUsername, $aAdmins);
+      array_splice($aAdmins, $ikey, 1);
+    }
+
+    // and save
+    File::_writeData($aAdmins, $sAdminsFile);
+    return true;
   }
 
 }

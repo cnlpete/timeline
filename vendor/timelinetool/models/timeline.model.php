@@ -3,6 +3,7 @@
 namespace Timelinetool\Models;
 
 use \Timelinetool\Helpers\Helper;
+use \Timelinetool\Helpers\File;
 
 class Timeline extends Main {
 
@@ -163,7 +164,7 @@ class Timeline extends Main {
       return false;
 
     // create the timeline-file
-    return $this->_writeData($this->_aRequest['data'], $sTimelinePath . $sHash . '.json');
+    return File::_writeData($this->_aRequest['data'], $sTimelinePath . $sHash . '.json');
   }
 
   public function updateTimeline($sHash) {
@@ -175,13 +176,13 @@ class Timeline extends Main {
       return false;
 
     // rewrite the timeline-file
-    return $this->_writeData($this->_aRequest['data'], $sTimelinePath . $sHash . '.json');
+    return File::_writeData($this->_aRequest['data'], $sTimelinePath . $sHash . '.json');
   }
 
   public function destroyTimeline($sHash) {
     $sStoragePath = $this->_aSession['config']['paths']['storage'];
     $sTimelinePath = $sStoragePath . '/timeline/';
-    $sAssetPath = $sStoragePath . '/timeline/' . $sHash . '/';
+    $sAssetPath = $sTimelinePath . $sHash . '/';
 
     if (!file_exists($sTimelinePath . $sHash . '.json'))
       return false;
@@ -202,6 +203,9 @@ class Timeline extends Main {
     if (!rmdir($sAssetPath))
       return false;
 
+    // delete the timeline-users-file
+    unlink($sTimelinePath . $sHash . '_users.json');
+
     // delete the timeline-file
     return unlink($sTimelinePath . $sHash . '.json');
   }
@@ -217,7 +221,7 @@ class Timeline extends Main {
     $this->_sLastHash = $sAssetHash;
 
     // create a new asset-file
-    return $this->_writeData($this->_aRequest['data'], $sAssetPath . $sAssetHash . '.json');
+    return File::_writeData($this->_aRequest['data'], $sAssetPath . $sAssetHash . '.json');
   }
 
   public function showAsset($sHash, $sAssetHash) {
@@ -241,7 +245,7 @@ class Timeline extends Main {
       return false;
 
     // rewrite the asset-file, overwriting the existing file
-    return $this->_writeData($this->_aRequest['data'], $sAssetPath . $sAssetHash . '.json');
+    return File::_writeData($this->_aRequest['data'], $sAssetPath . $sAssetHash . '.json');
   }
 
   public function destroyAsset($sHash, $sAssetHash) {
@@ -255,16 +259,50 @@ class Timeline extends Main {
     return unlink($sAssetPath . $sAssetHash . '.json');
   }
 
-  private function _writeData($aData, $sFileName) {
-    $file_pointer = fopen($sFileName,'w');
-    if (!$file_pointer)
-      return false;
+  public function addEditableUser($sTimelineHash, $sUsername) {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sUsersFile = $sStoragePath . '/timeline/' . $sTimelineHash . '_users.json';
 
-    // write the data
-    fwrite($file_pointer, json_encode($aData));
-    // and close the file
-    fclose($file_pointer);
+    // read user list for timeline
+    $aUsers = File::_readData($sUsersFile);
+
+    // add user to list, check for duplicates
+    if (!in_array($sUsername, $aUsers))
+      $aUsers[] = $sUsername;
+
+    // and save
+    File::_writeData($aUsers, $sUsersFile);
     return true;
+  }
+
+  public function removeEditableUser($sTimelineHash, $sUsername) {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sUsersFile = $sStoragePath . '/timeline/' . $sTimelineHash . '_users.json';
+
+    // read user list for timeline
+    $aUsers = File::_readData($sUsersFile);
+
+    // remove user from list
+    if (in_array($sUsername, $aUsers)) {
+      $ikey = array_search($sUsername, $aUsers);
+      array_splice($aUsers, $ikey, 1);
+    }
+
+    // and save
+    File::_writeData($aUsers, $sUsersFile);
+    return true;
+  }
+  
+  public function listEditableUsers($sTimelineHash) {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sUsersFile = $sStoragePath . '/timeline/' . $sTimelineHash . '_users.json';
+
+    // read user list for timeline
+    // and return
+    if (empty($sTimelineHash))
+      return array();
+    else
+      return File::_readData($sUsersFile);
   }
 }
 

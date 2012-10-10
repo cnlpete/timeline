@@ -12,7 +12,11 @@
         <th class="type-string">{$lang.admin.timeline.title}</th>
         <th>{$lang.admin.timeline.description}</th>
         <th class="type-string">{$lang.admin.timeline.date}</th>
-        <th width='160px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></th>
+        <th width='160px'>
+          {if $user.has_admin_right}
+            <a class="js-create btn" href="#create"><i class="icon-plus"></i></a>
+          {/if}
+        </th>
       </tr>
     </thead>
     <tbody>

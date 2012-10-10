@@ -41,7 +41,7 @@ class Session {
     $sStoragePath = $this->_aSession['config']['paths']['storage'];
     $sAdminsFile = $sStoragePath . '/admin_users.json';
     $aAdmins = File::_readData($sAdminsFile);
-    $this->_aData['isAdmin'] = is_in($this->_aData['username'], $aAdmins);
+    $this->_aData['isAdmin'] = in_array($this->_aData['username'], $aAdmins);
 
     // go through all timelines and check whether this is has right to edit (is in list)
     $this->_parseEditabletimelines();

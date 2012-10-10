@@ -67,7 +67,7 @@ class Index {
     }
 
     # remove the subdir path, if any
-    if (!empty($this->_aSession['config']['page']['subdirpath'])) {
+    if (strlen($this->_aSession['config']['page']['subdirpath']) > 1) {
       $sURI = str_replace( $this->_aSession['config']['page']['subdirpath'], '', $sURI );
     }
 

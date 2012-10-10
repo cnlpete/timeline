@@ -66,12 +66,13 @@ class Session {
   }
 
   protected function _parseDummyData($sUsername) {
+    $adminname = $this->_aSession['config']['permissions']['adminusername'];
     $this->_aData = array(
       'username' => (string)$sUsername,
       'firstname' => (string)$sUsername,
       'lastname' => (string)'',
       'authenticated' => (int)true,
-      'isAdmin' => true,
+      'isAdmin' => strtolower((string)$sUsername) == strtolower($adminname),
       'editableTimelines' => array());
     $this->_parseEditabletimelines();
   }

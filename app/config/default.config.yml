@@ -19,8 +19,7 @@ paths:
 permissions:
   use_permissions: true
   scope: timelinetool
-  admin: admin
-  edit_timeline: edit_timeline
+  adminusername: admin
 
 authserver:
   host: localhost

@@ -130,7 +130,10 @@ class Admin extends Main {
    **/
   protected function createTimeline() {
     if (!(Session::getUserSession()->isAdmin()))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_createTimeline();
   }
 
@@ -148,7 +151,10 @@ class Admin extends Main {
 
   protected function showTimeline($sHash) {
     if (!(Session::getUserSession()->canEditTimeline($sHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_showTimeline($sHash);
   }
 
@@ -199,7 +205,10 @@ class Admin extends Main {
 
   protected function updateTimeline($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_updateTimeline($sTimelineHash);
   }
 
@@ -214,7 +223,10 @@ class Admin extends Main {
 
   protected function destroyTimeline($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_destroyTimeline($sTimelineHash);
   }
 
@@ -228,7 +240,10 @@ class Admin extends Main {
 
   protected function createAsset($sTimelineHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_createAsset($sTimelineHash);
   }
 
@@ -246,7 +261,10 @@ class Admin extends Main {
 
   protected function showAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_showAsset($sTimelineHash, $sAssetHash);
   }
 
@@ -260,7 +278,10 @@ class Admin extends Main {
 
   protected function updateAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_updateAsset($sTimelineHash, $sAssetHash);
   }
 
@@ -275,7 +296,10 @@ class Admin extends Main {
 
   protected function destroyAsset($sTimelineHash, $sAssetHash) {
     if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
-      Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      if ($this->_aRequest['format'] == 'html')
+        Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
+      else
+        return array('result' => false, 'reason' => I18n::get('admin.error.missing_rights'));
     return $this->_destroyAsset($sTimelineHash, $sAssetHash);
   }
 

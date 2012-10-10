@@ -18,6 +18,7 @@
     <script src="{$path.js}/sprintf.js"></script>
     <script type="text/javascript">
       var meta = {$meta_json};
+      var path = {$path_json};
     </script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

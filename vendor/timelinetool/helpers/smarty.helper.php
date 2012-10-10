@@ -72,11 +72,13 @@ class MySmarty extends Smarty {
     # Use a readable structure
     $this->use_sub_dirs = true;
 
-    $this->assign('path', array(
+    $aPaths = array(
           'root' => PATH_STANDARD,
           'css' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/css',
           'js' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/js',
-          'img' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/img'));
+          'img' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/img');
+    $this->assign('path', $aPaths);
+    $this->assign('path_json', json_encode($aPaths));
 
     $this->assign('meta', $aSession['config']['page']);
     $this->assign('meta_json', json_encode($aSession['config']['page']));

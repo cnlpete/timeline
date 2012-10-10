@@ -184,7 +184,8 @@ $('#myModal').on('shown', function () {
       toolbar = false;
     var editor = new wysihtml5.Editor("form-text", {
       toolbar:     toolbar,
-      parserRules: wysihtml5ParserRules
+      parserRules: wysihtml5ParserRules,
+      stylesheets: [path.css + "/wysihtml5.css"]
     });
   }
 

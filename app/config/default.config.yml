@@ -1,9 +1,13 @@
 page:
   title: Timelinetool
+  # the url to your installation. IMPORTANT: do NOT include the trailing '/'
   url: http://timelinetool.com
+  # if your installation resides in a subdir, put the part of the url, that defines the subdir here, 
+  # otherwise the routes will not work. IMPORTANT: DO include the trailing '/'
+  subdirpath: /
   description: This is the timelinetool
   keywords: timeline,timelinetool
-  author: Hauke Schade's Timelinetool
+  author: Hauke Schade
 
 # the default language to use, timelines however can specify different languages
 language: de

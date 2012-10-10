@@ -9,8 +9,8 @@ jQuery.fn.Switch = function(start_state, switched_on_callback, switched_off_call
 
 	// define default settings
 	var settings = {
-		switch_on: '/public/img/switch/switch_container_on.png',
-		switch_off: '/public/img/switch/switch_container_off.png',
+		switch_on: path.img + '/switch/switch_container_on.png',
+		switch_off: path.img + '/switch/switch_container_off.png',
 	};
 
 	// create the switch

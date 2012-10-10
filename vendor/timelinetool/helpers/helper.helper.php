@@ -84,7 +84,7 @@ class Helper {
       header('HTTP/1.0 404 Not Found');
     }
     else
-      exit(header('Location:' . $sUrl));
+      exit(header('Location:' . $_SESSION['config']['page']['url'] . $sUrl));
   }
 
   public static function recursive_array_replace(&$aAr1, &$aAr2) {

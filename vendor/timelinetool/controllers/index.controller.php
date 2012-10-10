@@ -66,6 +66,11 @@ class Index {
       $sURI = str_replace( '?' . $sAdditionalParams, '', $sURI );
     }
 
+    # remove the subdir path, if any
+    if (!empty($this->_aSession['config']['page']['subdirpath'])) {
+      $sURI = str_replace( $this->_aSession['config']['page']['subdirpath'], '', $sURI );
+    }
+
     $aRouteParts = explode('&', Routes::route($sURI));
 
     if (strlen($sAdditionalParams) > 0)

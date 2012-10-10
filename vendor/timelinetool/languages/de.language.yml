@@ -67,7 +67,7 @@ admin:
       title: Titel
       date: Zeitraum
       type: Typ
-      source: Quelle
+      source: Quelle(n)
       text: Beschreibung
       image: Bild oder Video Quelle
       texttype: Inhaltsart

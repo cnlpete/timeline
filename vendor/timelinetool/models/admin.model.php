@@ -18,9 +18,11 @@ class Admin extends Main {
     $aTimelines = array();
     if ($oSession->isAdmin()) {
       $sPattern = '/^([\w\s-_]+)[.]json$/';
+      $sPatternUser = '/^([\w\s-_]+)_users[.]json$/';
       if ($oDirHandle = opendir($sStoragePath)) {
         while (false !== ($sFile = readdir($oDirHandle))) {
-          if(preg_match($sPattern, $sFile, $aTreffer))
+          if(preg_match($sPattern, $sFile, $aTreffer) &&
+            !preg_match($sPatternUser, $sFile, $aTreffer))
             $aTimelines[] = substr($sFile, 0, strlen($sFile) - 5);
         }
         closedir($oDirHandle);

@@ -96,7 +96,7 @@
                 <a id="js-login-button" 
                     href="#login"
                     title="{$lang.navigation.login.alt}">
-                  <i class="icon-user icon-white"></i> {$lang.global.login.label}
+                  <i class="icon-user icon-white"></i> {$lang.navigation.login.label}
                 </a>
               </li>
             </ul>

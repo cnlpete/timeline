@@ -16,7 +16,7 @@
       // the assets update buttons
       $('#js-login-button').click(function() {
         $('#myModal .modal-body').html(login_form_template());
-        $('#myModal .modal-header h3').html('{$meta.title|string_format:$lang.global.login}');
+        $('#myModal .modal-header h3').html('{$meta.title|string_format:$lang.navigation.login.label}');
         $('#myModal #form-save').click(function() {
           // get the data
           var data = {};

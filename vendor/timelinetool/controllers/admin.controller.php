@@ -87,7 +87,8 @@ class Admin extends Main {
       case 'listTimelineUsers':
         // only do this if user is editableUser or admin
         if ($oSession->canEditTimeline($this->_aRequest['timeline']))
-          return $this->_oTimelineModel->listEditableUsers($this->_aRequest['timeline']);
+          return array('result' => true,
+              'data' => $this->_oTimelineModel->listEditableUsers($this->_aRequest['timeline']));
         else
           $bResult = false;
         break;
@@ -182,16 +183,23 @@ class Admin extends Main {
     $oSmarty->assign('assets_json', json_encode($aAssets));
     $oSmarty->assign('types', json_encode($aTimelinedata['types']));
     $oSmarty->assign('colorclasses', $aPublicCCs);
+    if (Session::getUserSession()->isAdmin())
+      $oSmarty->assign('users_json', json_encode($this->_oTimelineModel->listEditableUsers($sHash)));
 
     // assign nav-links
     $aNavList = array();
     $aNavList['play']   = array('icon' => 'play-circle', 
       'url' => $this->_aSession['config']['page']['url'] . '/'.$sHash.'.html',
       'alt' => I18n::get('admin.timeline.play.alt'));
-    $aNavList['update'] = array('icon' => 'refresh', 'alt' => I18n::get('navigation.refresh.alt'));
-    $aNavList['edit']   = array('icon' => 'wrench', 'alt' => I18n::get('admin.timeline.update.alt'));
-    $aNavList['delete'] = array('icon' => 'trash', 'alt' => I18n::get('admin.timeline.destroy.alt'));
-    $aNavList['permissions'] = array('icon' => 'user');
+    $aNavList['update'] = array('icon' => 'refresh', 
+      'alt' => I18n::get('navigation.refresh.alt'));
+    $aNavList['edit']   = array('icon' => 'wrench', 
+      'alt' => I18n::get('admin.timeline.update.alt'));
+    $aNavList['delete'] = array('icon' => 'trash', 
+      'alt' => I18n::get('admin.timeline.destroy.alt'));
+    if (Session::getUserSession()->isAdmin())
+      $aNavList['permissions'] = array('icon' => 'user',
+        'alt' => I18n::get('admin.timeline.permissions.alt'));
     $oSmarty->assign('navlist', $aNavList);
 
     // set the title

@@ -138,6 +138,55 @@ cleverSerialize = function(selector) {
   return data;
 }
 
+var Permission = {
+  getList: function(timeline, success, error) {
+    $.post(meta.url + '/admin/user/listTimelineUsers.json', 
+      {'timeline' : timeline}, 
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
+  },
+  addUser: function(timeline, user, success, error) {
+    $.post(meta.url + '/admin/user/addTimelineUser.json', 
+      {'timeline' : timeline, 'username' : user}, 
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
+  },
+  removeUser: function(timeline, user, success, error) {
+    $.post(meta.url + '/admin/user/removeTimelineUser.json', 
+      {'timeline' : timeline, 'username' : user}, 
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
+  }
+};
+
+
 $('#myModal').on('hidden', function () {
   // unbind the old click function
   $('#myModal #form-save').off('click');

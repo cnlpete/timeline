@@ -1,6 +1,12 @@
 <div class="modal hide" id="myModal">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" alt="{$lang.confirm.modal.cancel}">×</button>
+    <button 
+        type="button" 
+        class="close" 
+        data-dismiss="modal" 
+        title="{$lang.confirm.modal.cancel}">
+      ×
+    </button>
     <h3>Modal header</h3>
   </div>
   <div class="modal-body">

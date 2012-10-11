@@ -50,6 +50,7 @@ confirm:
   modal:
     save: Save
     cancel: Cancel
+    close: Close
 
 admin:
   error:
@@ -72,6 +73,16 @@ admin:
       alt: '`Play` the Timeline'
     show:
       alt: 'Edit the Timeline'
+    permissions:
+      alt: Edit the Permissions of this Timeline
+      header: Edit Permissions
+      create:
+        label: Add a User
+        alt: Give a User the Right to Edit
+        prompt: "Enter a Username. This user will have the Right to Edit and Delete this Timeline."
+      destroy:
+        alt: Remove User
+      user: Nutzer mit Zugriffsrechten
     title: Title
     date: Timespan
     description: Description

@@ -27,7 +27,7 @@ navigation:
     label: Home
     alt: Home
   refresh:
-    alt: Aktualisieren
+    alt: Ansicht Aktualisieren
   login:
     label: Login
     alt: Einloggen
@@ -50,6 +50,7 @@ confirm:
   modal:
     save: Speichern
     cancel: Abbrechen
+    close: Schliessen
 
 admin:
   error:
@@ -72,6 +73,16 @@ admin:
       alt: Timeline anzeigen
     show:
       alt: Timeline bearbeiten
+    permissions:
+      alt: Bearbeite die Rechte dieser Timeline
+      header: Rechte bearbeiten
+      create:
+        label: Nutzer hinzufügen
+        alt: Einem neuen Nutzer das Recht zum bearbeiten geben
+        prompt: "Einen Neuen Nutzernamen eingeben. Dieser Nutzer wird das Recht zum Bearbeiten und Löschen der Timeline haben."
+      destroy:
+        alt: Zugriff löschen
+      user: Nutzer mit Zugriffsrechten
     title: Titel
     date: Zeitraum
     description: Beschreibung

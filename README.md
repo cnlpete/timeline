@@ -21,8 +21,9 @@ Setup
 3. Configure your settings at `app/config/config.yml`, copy needed settings from `app/config/default.config.yml` as needed.
 4. Adjust the translations and/or define new translations in `app/languages/`.
 See `vendor/timelinetool/languages/xx.language.yml` for available translation keys.
-5. Upload all files.
-6. Make sure that the necessary folders are writable. 
+5. Enter all your future Admin-usernames in the `app/storage/admin_users.json`as formatted json-array (`["user1","user2"]`).
+6. Upload all files.
+7. Make sure that the necessary folders are writable. 
 These are at least `app/storage`, `app/cache` and `app/compile` plus subfolders.
 
 >There will be a graphical Installer one day to automate these last steps for you, but for now you have to do this manually.

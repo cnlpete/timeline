@@ -61,11 +61,17 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                {if isset($timeline.hash)}<li><a href="{$meta.url}/admin/{$timeline.hash}.html">
-                  <i class="icon-wrench"></i> {$lang.timeline.update}</a></li>{/if}
+                {if isset($timeline.hash)}
+                  <li><a href="{$meta.url}/admin/{$timeline.hash}.html"
+                        title="{$lang.admin.timeline.update.alt}">
+                    <i class="icon-wrench"></i> {$lang.admin.timeline.update.label}
+                  </a></li>
+                {/if}
                 {if $user.has_admin_right || $user.editable_timelines}
-                  <li><a href="{$meta.url}/admin.html">
-                    <i class="icon-th"></i> {$lang.navigation.admin}</a></li>
+                  <li><a href="{$meta.url}/admin.html"
+                        title="{$lang.navigation.admin.alt}">
+                    <i class="icon-th"></i> {$lang.navigation.admin.label}
+                  </a></li>
                 {/if}
                 {if !$user.has_admin_right && $user.editable_timelines}
                   <li class="divider-horizontal"></li>
@@ -75,23 +81,38 @@
                   {/foreach}
                 {/if}
                 <li class="divider-horizontal"></li>
-                <li><a id="js-logout-button" href="#logout">
-                  <i class="icon-off"></i> {$lang.global.logout}</a></li>
+                <li>
+                  <a id="js-logout-button" 
+                      href="#logout"
+                      title="{$lang.navigation.logout.alt}">
+                    <i class="icon-off"></i> {$lang.navigation.logout.label}
+                  </a>
+                </li>
               </ul>
             </div>
           {else}
             <ul class="nav pull-right">
-              <li><a id="js-login-button" href="#login">
-                <i class="icon-user icon-white"></i> {$lang.global.login}
-              </a></li>
+              <li>
+                <a id="js-login-button" 
+                    href="#login"
+                    title="{$lang.navigation.login.alt}">
+                  <i class="icon-user icon-white"></i> {$lang.global.login.label}
+                </a>
+              </li>
             </ul>
           {/if}
           <div class="nav-collapse">
             <ul class="nav">
               {if isset($navlist)}
                 {foreach $navlist as $navkey => $navitem}
-                  <li><a href="{if isset($navitem.url)}{$navitem.url}{else}#{$navkey}{/if}" id="nav-{$navkey}">
-                    {if isset($navitem.icon)}<i class="icon-{$navitem.icon} icon-white"></i>{/if}
+                  <li><a 
+                      href="{if isset($navitem.url)}{$navitem.url}{else}#{$navkey}{/if}" 
+                      id="nav-{$navkey}" 
+                      {if isset($navitem.alt)}title="{$navitem.alt}"{/if}
+                    >
+                    {if isset($navitem.icon)}
+                      <i class="icon-{$navitem.icon} icon-white"></i>
+                    {/if}
                     {if isset($navitem.label)}{$navitem.label}{/if}</a></li>
                   {if !isset($navitem.nodivider)}<li class="divider-vertical"></li>{/if}
                 {/foreach}

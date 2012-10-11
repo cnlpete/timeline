@@ -116,7 +116,7 @@ class Admin extends Main {
 
     // assign nav-links
     $aNavList = array();
-    $aNavList['update'] = array('icon' => 'refresh');
+    $aNavList['update'] = array('icon' => 'refresh', 'alt' => I18n::get('navigation.refresh.alt'));
     $oSmarty->assign('navlist', $aNavList);
 
     $oSmarty->assign('colorclasses', $this->_loadModel('colorclass')->getPublicColorclasses());
@@ -186,10 +186,12 @@ class Admin extends Main {
     // assign nav-links
     $aNavList = array();
     $aNavList['play']   = array('icon' => 'play-circle', 
-      'url' => $this->_aSession['config']['page']['url'] . '/'.$sHash.'.html');
-    $aNavList['update'] = array('icon' => 'refresh');
-    $aNavList['edit']   = array('icon' => 'wrench');
-    $aNavList['delete'] = array('icon' => 'trash');
+      'url' => $this->_aSession['config']['page']['url'] . '/'.$sHash.'.html',
+      'alt' => I18n::get('admin.timeline.play.alt'));
+    $aNavList['update'] = array('icon' => 'refresh', 'alt' => I18n::get('navigation.refresh.alt'));
+    $aNavList['edit']   = array('icon' => 'wrench', 'alt' => I18n::get('admin.timeline.update.alt'));
+    $aNavList['delete'] = array('icon' => 'trash', 'alt' => I18n::get('admin.timeline.destroy.alt'));
+    $aNavList['permissions'] = array('icon' => 'user');
     $oSmarty->assign('navlist', $aNavList);
 
     // set the title

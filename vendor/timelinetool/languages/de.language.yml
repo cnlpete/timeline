@@ -1,6 +1,4 @@
 global:
-  login: Login
-  logout: Logout
   guestname: Besucher
 
 login_form:
@@ -19,14 +17,27 @@ flash:
   success: ''
 
 navigation:
-  about: Über
-  admin: Administration
-  home: Home
+  about:
+    label: Über
+    alt: Über
+  admin:
+    label: Administration
+    alt: Administration
+  home:
+    label: Home
+    alt: Home
+  refresh:
+    alt: Aktualisieren
+  login:
+    label: Login
+    alt: Einloggen
+  logout: 
+    label: Logout
+    alt: Ausloggen
 
 timeline:
   sources: 'Quellen:'
   colorclasses: 'Ereignisse filtern:'
-  update: Timeline bearbeiten
   index: 
     intro: Der Intro Text
     about: Der About Text
@@ -50,8 +61,17 @@ admin:
   timeline:
     create:
       header: 'Timeline erstellen'
+      alt: Neue Timeline erstellen
     update:
       header: '"%s" bearbeiten'
+      label: Timeline bearbeiten
+      alt: Timeline bearbeiten
+    destroy:
+      alt: Timeline löschen
+    play:
+      alt: Timeline anzeigen
+    show:
+      alt: Timeline bearbeiten
     title: Titel
     date: Zeitraum
     description: Beschreibung
@@ -62,8 +82,14 @@ admin:
     assets:
       update:
         header: 'Event bearbeiten'
+        alt: Event bearbeiten
       create:
         header: 'Event erstellen'
+        alt: Neues Event erstellen
+      destroy:
+        alt: Event löschen
+      play:
+        alt: Dieses Event in der Timeline anzeigen
       title: Titel
       date: Zeitraum
       type: Typ

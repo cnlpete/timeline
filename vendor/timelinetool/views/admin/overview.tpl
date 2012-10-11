@@ -14,7 +14,11 @@
         <th class="type-string">{$lang.admin.timeline.date}</th>
         <th width='160px'>
           {if $user.has_admin_right}
-            <a class="js-create btn" href="#create"><i class="icon-plus"></i></a>
+            <a class="js-create btn" 
+                href="#create"
+                title="{$lang.admin.timeline.create.alt}">
+              <i class="icon-plus"></i>
+            </a>
           {/if}
         </th>
       </tr>
@@ -40,10 +44,26 @@
   <td class="table-description">{{description}}</td>
   <td class="table-date">{{startDate}} - {{endDate}}</td>
   <td class="table-options">
-    <a class="js-play btn" href="{/literal}{$meta.url}{literal}/{{hash}}.html"><i class="icon-play-circle"></i></a>
-    <a class="js-show btn" href="{/literal}{$meta.url}{literal}/admin/{{hash}}.html"><i class="icon-eye-open"></i></a>
-    <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
-    <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
+    <a class="js-play btn" 
+        href="{/literal}{$meta.url}{literal}/{{hash}}.html"
+        title="{/literal}{$lang.admin.timeline.play.alt}{literal}">
+      <i class="icon-play-circle"></i>
+    </a>
+    <a class="js-show btn" 
+        href="{/literal}{$meta.url}{literal}/admin/{{hash}}.html"
+        title="{/literal}{$lang.admin.timeline.show.alt}{literal}">
+      <i class="icon-eye-open"></i>
+    </a>
+    <a class="js-edit btn" 
+        href="#edit-{{hash}}"
+        title="{/literal}{$lang.admin.timeline.update.alt}{literal}">
+      <i class="icon-wrench"></i>
+    </a>
+    <a class="js-destroy btn btn-danger"
+        href="#delete-{{hash}}"
+        title="{/literal}{$lang.admin.timeline.destroy.alt}{literal}">
+      <i class="icon-trash"></i>
+    </a>
   </td>
 {/literal}
 </script>

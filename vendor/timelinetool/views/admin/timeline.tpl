@@ -25,7 +25,13 @@
         <th class="type-string" style="width: 30px;"></th>
         <th class="type-string">{$lang.admin.timeline.assets.title}</th>
         <th class="type-int">{$lang.admin.timeline.assets.date}</th>
-        <th width='120px'><a class="js-create btn" href="#create"><i class="icon-plus"></i></a></th>
+        <th width='120px'>
+          <a class="js-create btn" 
+              href="#create"
+              title="{$lang.admin.timeline.assets.create.alt}">
+            <i class="icon-plus"></i>
+          </a>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -48,11 +54,25 @@
   <td class="type-{{type}}" style="text-align: center;" data-order-by="{{type}}">
     <div style="width: 20px; height: 20px; display: inline-block"></div></td>
   <td class="table-title">{{title}}</td>
-  <td class="table-date" data-order-by="{{startDate}}">{{startDate}} - {{endDate}}</td>
+  <td class="table-date" data-order-by="{{startDate}}">
+    {{startDate}} - {{endDate}}
+  </td>
   <td class="table-options">
-    <a class="js-play btn" href="{/literal}{$meta.url}/{$hash}{literal}.html#{{hash}}"><i class="icon-play-circle"></i></a>
-    <a class="js-edit btn" href="#edit-{{hash}}"><i class="icon-wrench"></i></a>
-    <a class="js-destroy btn btn-danger" href="#delete-{{hash}}"><i class="icon-trash"></i></a>
+    <a class="js-play btn" 
+        href="{/literal}{$meta.url}/{$hash}{literal}.html#{{hash}}"
+        title="{/literal}{$lang.admin.timeline.assets.play.alt}{literal}">
+      <i class="icon-play-circle"></i>
+    </a>
+    <a class="js-edit btn" 
+        href="#edit-{{hash}}"
+        title="{/literal}{$lang.admin.timeline.assets.update.alt}{literal}">
+      <i class="icon-wrench"></i>
+    </a>
+    <a class="js-destroy btn btn-danger" 
+        href="#delete-{{hash}}"
+        title="{/literal}{$lang.admin.timeline.assets.destroy.alt}{literal}">
+      <i class="icon-trash"></i>
+    </a>
   </td>
 {/literal}
 </script>

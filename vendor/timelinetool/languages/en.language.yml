@@ -1,6 +1,4 @@
 global:
-  login: Login
-  logout: Logout
   guestname: Guest
 
 login_form:
@@ -19,14 +17,27 @@ flash:
   success: ''
 
 navigation:
-  about: About
-  admin: Administration
-  home: Home
+  about:
+    label: About
+    alt: About
+  admin:
+    label: Administration
+    alt: Administration
+  home:
+    label: Home
+    alt: Home
+  refresh:
+    alt: Refresh List
+  login:
+    label: Login
+    alt: Login
+  logout: 
+    label: Logout
+    alt: Logout
 
 timeline:
   sources: 'Sources:'
   colorclasses: 'Filter by Type:'
-  update: Edit Timeline
   index: 
     intro: The Intro Text
     about: The About Text
@@ -50,8 +61,17 @@ admin:
   timeline:
     create:
       header: 'Create Timeline'
+      alt: Create a new Timeline
     update:
       header: 'Edit "%s"'
+      label: 'Edit the Timeline'
+      alt: 'Edit the Timeline'
+    destroy:
+      alt: Delete the Timeline
+    play:
+      alt: '`Play` the Timeline'
+    show:
+      alt: 'Edit the Timeline'
     title: Title
     date: Timespan
     description: Description
@@ -62,8 +82,14 @@ admin:
     assets:
       update:
         header: 'Edit Entry'
+        alt: Edit this Event
       create:
         header: 'Create Entry'
+        alt: Create a new Event
+      destroy:
+        alt: Delete the Event
+      play:
+        alt: '`Play` the Timeline with this Event'
       title: Title
       date: Timespan
       type: Type

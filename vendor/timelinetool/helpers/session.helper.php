@@ -83,7 +83,7 @@ class Session {
     // fallback, if no admin specified yet
     if (count($aAdmins) == 0) {
       $adminname = $this->_aSession['config']['permissions']['adminusername'];
-      $this->_aData['isAdmin'] = $this->_aData['username'] == strtolower($adminname)
+      $this->_aData['isAdmin'] = $this->_aData['username'] == strtolower($adminname);
     }
 
     $this->_parseEditabletimelines();

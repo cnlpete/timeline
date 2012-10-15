@@ -199,7 +199,7 @@ class Admin extends Main {
       'alt' => I18n::get('admin.timeline.destroy.alt'));
     if (Session::getUserSession()->isAdmin())
       $aNavList['permissions'] = array('icon' => 'user',
-        'alt' => I18n::get('admin.timeline.permissions.alt'));
+        'alt' => I18n::get('admin.timeline.permissions.users.alt'));
     $oSmarty->assign('navlist', $aNavList);
 
     // set the title

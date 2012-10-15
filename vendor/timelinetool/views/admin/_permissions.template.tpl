@@ -1,18 +1,18 @@
 <div class="modal hide" id="myPermissionModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" title="{$lang.confirm.modal.close}">×</button>
-    <h3>{$lang.admin.timeline.permissions.header}</h3>
+    <h3>{$lang.admin.timeline.permissions.users.header}</h3>
   </div>
   <div class="modal-body">
     <table id='userlist' class="table table-bordered">
       <thead>
         <tr>
-          <th class="type-string">{$lang.admin.timeline.permissions.user}</th>
+          <th class="type-string">{$lang.admin.timeline.permissions.users.user}</th>
           <th width='40px'>
             {if $user.has_admin_right}
               <a class="js-create btn" 
                   href="#create"
-                  title="{$lang.admin.timeline.permissions.create.alt}">
+                  title="{$lang.admin.timeline.permissions.users.create.alt}">
                 <i class="icon-plus"></i>
               </a>
             {/if}
@@ -27,8 +27,8 @@
     {if $user.has_admin_right}
       <a class="js-create btn btn-primary" 
           href="#create"
-          title="{$lang.admin.timeline.permissions.create.alt}">
-        <i class="icon-plus"></i> {$lang.admin.timeline.permissions.create.label}
+          title="{$lang.admin.timeline.permissions.users.create.alt}">
+        <i class="icon-plus"></i> {$lang.admin.timeline.permissions.users.create.label}
       </a>
     {/if}
     <a href="#" class="btn" data-dismiss="modal">{$lang.confirm.modal.close}</a>
@@ -47,7 +47,7 @@
         {if $user.has_admin_right}
           <a class="js-destroy btn btn-danger" 
               href="#delete-{literal}{{this}}{/literal}"
-              title="{$lang.admin.timeline.permissions.destroy.alt}">
+              title="{$lang.admin.timeline.permissions.users.destroy.alt}">
             <i class="icon-trash"></i>
           </a>
         {/if}
@@ -85,7 +85,7 @@
     var user = destroyButton.closest('tr.user');
     var username = user.data('user');
 
-    if (confirm(sprintf('Delete %s', username))) {
+    if (confirm(sprintf("{$lang.admin.timeline.permissions.users.destroy.prompt}", username))) {
       destroyButton.hide();
       Permission.removeUser('{$hash}', username, function() {
         user.fadeOut(function() { user.remove(); });
@@ -98,7 +98,7 @@
 
   // the timeline create buttons
   $('#myPermissionModal').find('a.js-create').click(function() {
-    username = prompt("{$lang.admin.timeline.permissions.create.prompt}", '');
+    username = prompt("{$lang.admin.timeline.permissions.users.create.prompt}", '');
     if (username != null && username != "") {
       Permission.addUser('{$hash}', username, function() {
         $('#userlist tbody').append(permissions_list_template( { 'users':[username] } ));

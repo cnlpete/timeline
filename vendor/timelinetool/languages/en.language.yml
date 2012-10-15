@@ -74,15 +74,17 @@ admin:
     show:
       alt: 'Edit the Timeline'
     permissions:
-      alt: Edit the Permissions of this Timeline
-      header: Edit Permissions
-      create:
-        label: Add a User
-        alt: Give a User the Right to Edit
-        prompt: "Enter a Username. This user will have the Right to Edit and Delete this Timeline."
-      destroy:
-        alt: Remove User
-      user: Nutzer mit Zugriffsrechten
+      users:
+        alt: Edit the Permissions of this Timeline
+        header: Edit Permissions
+        create:
+          label: Add a User
+          alt: Give a User the Right to Edit
+          prompt: "Enter a Username. This user will have the Right to Edit and Delete this Timeline."
+        destroy:
+          alt: Remove User
+          prompt: "Really Remove %s's Right to edit this Timeline?"
+        user: User with Edit Rights
     title: Title
     date: Timespan
     description: Description

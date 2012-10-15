@@ -158,6 +158,10 @@ class Session {
       return array();
   }
 
+  public function getUsername() {
+    return trim($this->_aData['username']);
+  }
+
   public function getName() {
     $sName = trim($this->_aData['firstname'] . ' ' . $this->_aData['lastname']);
     return empty($sName) ? I18n::get('global.guestname') : $sName;

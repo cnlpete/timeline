@@ -80,5 +80,12 @@ class Admin extends Main {
     return true;
   }
 
+  public function listAdminUsers() {
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sAdminsFile = $sStoragePath . '/admin_users.json';
+
+    // read admin list and return
+    return File::_readData($sAdminsFile);
+  }
 }
 

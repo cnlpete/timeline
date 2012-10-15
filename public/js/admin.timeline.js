@@ -183,6 +183,50 @@ var Permission = {
         }
       }
     );
+  },
+  getAdminList: function(success, error) {
+    $.post(meta.url + '/admin/user/listAdminUsers.json',
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
+  },
+  addAdmin: function(user, success, error) {
+    $.post(meta.url + '/admin/user/addAdminUser.json', 
+      {'username' : user}, 
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
+  },
+  removeAdmin: function(user, success, error) {
+    $.post(meta.url + '/admin/user/removeAdminUser.json', 
+      {'username' : user}, 
+      function(data) {
+        if (data.result) {
+          if ($.isFunction(success))
+            success.call(data);
+        }
+        else {
+          if ($.isFunction(error))
+            error.call(data);
+        }
+      }
+    );
   }
 };
 

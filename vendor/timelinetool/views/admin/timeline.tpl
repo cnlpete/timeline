@@ -89,7 +89,7 @@
 <script src="{$path.js}/bootstrap-datepicker.de.js"></script>
 <script src="{$path.js}/admin.timeline.js"></script>
 {if $user.has_admin_right}
-  {include file='_permissions.template.tpl'}
+  {include file='_users.permissions.tpl'}
 {/if}
 <script type="text/javascript">
   Handlebars.registerPartial("list-item", $("#list-item-template").html());

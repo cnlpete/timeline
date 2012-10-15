@@ -72,11 +72,23 @@ class Admin extends Main {
     $oSession = Session::getUserSession();
     $bUserIsAdmin = $oSession->isAdmin();
     switch ($sCustomAction) {
-      case 'addAdmin':
+      case 'addAdminUser':
         $bResult = $bUserIsAdmin && $this->_oModel->addAdminUser($this->_aRequest['username']);
         break;
-      case 'removeAdmin':
-        $bResult = $bUserIsAdmin && $this->_oModel->removeAdminUser($this->_aRequest['username']);
+      case 'removeAdminUser':
+        if ($bUserIsAdmin && $oSession->getUsername() != $this->_aRequest['username'])
+          $bResult = $this->_oModel->removeAdminUser($this->_aRequest['username']);
+
+        else
+          $bResult = false;
+        break;
+      case 'listAdminUsers':
+        // only do this if user is editableUser or admin
+        if ($bUserIsAdmin)
+          return array('result' => true,
+              'data' => $this->_oModel->listAdminUsers());
+        else
+          $bResult = false;
         break;
       case 'addTimelineUser':
         $bResult = $bUserIsAdmin && $this->_oTimelineModel->addEditableUser($this->_aRequest['timeline'], $this->_aRequest['username']);
@@ -118,6 +130,9 @@ class Admin extends Main {
     // assign nav-links
     $aNavList = array();
     $aNavList['update'] = array('icon' => 'refresh', 'alt' => I18n::get('navigation.refresh.alt'));
+    if (Session::getUserSession()->isAdmin())
+      $aNavList['permissions'] = array('icon' => 'user',
+        'alt' => I18n::get('admin.timeline.permissions.admins.alt'));
     $oSmarty->assign('navlist', $aNavList);
 
     $oSmarty->assign('colorclasses', $this->_loadModel('colorclass')->getPublicColorclasses());

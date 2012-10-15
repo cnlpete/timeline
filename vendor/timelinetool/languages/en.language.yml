@@ -83,8 +83,19 @@ admin:
           prompt: "Enter a Username. This user will have the Right to Edit and Delete this Timeline."
         destroy:
           alt: Remove User
-          prompt: "Really Remove %s's Right to edit this Timeline?"
+          prompt: "Really remove %s's Right to edit this Timeline?"
         user: User with Edit Rights
+      admins:
+        alt: Edit the List of Administrators
+        header: Edit Administrator List
+        create:
+          label: Add Adminstrator
+          alt: Give a User Administrator Rights
+          prompt: "Enter a Username. This user will have Adminstrator Rights (Name new Administrators, Add new Timelines)."
+        destroy:
+          alt: Remove Administrator Right
+          prompt: "Really remove %s's Administrator rights?"
+        user: Administrators
     title: Title
     date: Timespan
     description: Description

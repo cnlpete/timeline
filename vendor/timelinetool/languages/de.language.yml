@@ -85,6 +85,17 @@ admin:
           alt: Zugriff löschen
           prompt: "%s die Rechte wirklich entziehen?"
         user: Nutzer mit Zugriffsrechten
+      admins:
+        alt: Bearbeite die Liste der Administratoren
+        header: Administrator Liste bearbeiten
+        create:
+          label: Nutzer hinzufügen
+          alt: Einem neuen Nutzer Administrator-Rechte geben
+          prompt: "Einen Neuen Nutzernamen eingeben. Dieser Nutzer wird das Recht zum Anlegen von Timelines haben."
+        destroy:
+          alt: Zugriff löschen
+          prompt: "%s die Administrator-Rechte wirklich entziehen?"
+        user: Nutzer mit Administrator-Rechten
     title: Titel
     date: Zeitraum
     description: Beschreibung

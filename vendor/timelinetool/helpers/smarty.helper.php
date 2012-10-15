@@ -87,6 +87,7 @@ class MySmarty extends Smarty {
     $aUser = array(
       'authenticated' => $oUser->isLoggedIn(),
       'name' => $oUser->getName(),
+      'username' => $oUser->getUsername(),
       'editable_timelines' => $oUser->getEditableTimelineHashes(),
       'has_admin_right' => $oUser->isAdmin()
     );

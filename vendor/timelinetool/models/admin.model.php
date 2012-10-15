@@ -51,6 +51,8 @@ class Admin extends Main {
     // read admin list
     $aAdmins = File::_readData($sAdminsFile);
 
+    $sUsername = strtolower($sUsername);
+
     // add admin to list, check for duplicates
     // important, only allow this if user is admin
     if (!in_array($sUsername, $aAdmins))
@@ -66,6 +68,8 @@ class Admin extends Main {
     $sAdminsFile = $sStoragePath . '/admin_users.json';
     // read admin list
     $aAdmins = File::_readData($sAdminsFile);
+
+    $sUsername = strtolower($sUsername);
 
     // remove admin from list
     // important, do not remove self

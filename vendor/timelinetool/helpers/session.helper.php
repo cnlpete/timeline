@@ -31,7 +31,7 @@ class Session {
 
   protected function _parseUserDataFromXML($oData) {
     $this->_aData = array(
-      'username' => (string)$oData->username,
+      'username' => strtolower((string)$oData->username),
       'firstname' => (string)$oData->firstName,
       'lastname' => (string)$oData->lastName,
       'authenticated' => (int)$oData->authenticated == 1,
@@ -66,14 +66,26 @@ class Session {
   }
 
   protected function _parseDummyData($sUsername) {
-    $adminname = $this->_aSession['config']['permissions']['adminusername'];
     $this->_aData = array(
-      'username' => (string)$sUsername,
+      'username' => strtolower((string)$sUsername),
       'firstname' => (string)$sUsername,
       'lastname' => (string)'',
       'authenticated' => (int)true,
-      'isAdmin' => strtolower((string)$sUsername) == strtolower($adminname),
+      'isAdmin' => false,
       'editableTimelines' => array());
+
+    // admin permission?
+    $sStoragePath = $this->_aSession['config']['paths']['storage'];
+    $sAdminsFile = $sStoragePath . '/admin_users.json';
+    $aAdmins = File::_readData($sAdminsFile);
+    $this->_aData['isAdmin'] = in_array($this->_aData['username'], $aAdmins);
+
+    // fallback, if no admin specified yet
+    if (count($aAdmins) == 0) {
+      $adminname = $this->_aSession['config']['permissions']['adminusername'];
+      $this->_aData['isAdmin'] = $this->_aData['username'] == strtolower($adminname)
+    }
+
     $this->_parseEditabletimelines();
   }
 

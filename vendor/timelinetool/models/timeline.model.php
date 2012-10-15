@@ -266,6 +266,8 @@ class Timeline extends Main {
     // read user list for timeline
     $aUsers = File::_readData($sUsersFile);
 
+    $sUsername = strtolower($sUsername);
+
     // add user to list, check for duplicates
     if (!in_array($sUsername, $aUsers))
       $aUsers[] = $sUsername;
@@ -281,6 +283,8 @@ class Timeline extends Main {
 
     // read user list for timeline
     $aUsers = File::_readData($sUsersFile);
+
+    $sUsername = strtolower($sUsername);
 
     // remove user from list
     if (in_array($sUsername, $aUsers)) {

@@ -1,65 +1,88 @@
-/*!
- * Bootstrap v2.0.4
- *
- * Copyright 2012 Twitter, Inc
- * Licensed under the Apache License v2.0
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Designed and built with all the love in the world @twitter by @mdo and @fat.
- */
+
+@import "core/variables.less"; // Modify this for custom colors, font-sizes, etc
 
 // CSS Reset
-@import "bootstrap/reset.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/reset.less";
 
 // Core variables and mixins
-@import "bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "bootstrap/mixins.less";
+//@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/mixins.less";
 
 // Grid system and page structure
-@import "bootstrap/scaffolding.less";
-@import "bootstrap/grid.less";
-@import "bootstrap/layouts.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/scaffolding.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/grid.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/layouts.less";
 
 // Base CSS
-@import "bootstrap/type.less";
-@import "bootstrap/code.less";
-@import "bootstrap/forms.less";
-@import "bootstrap/tables.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/type.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/code.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/forms.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/tables.less";
 
 // Components: common
-@import "bootstrap/sprites.less";
-@import "bootstrap/dropdowns.less";
-@import "bootstrap/wells.less";
-@import "bootstrap/component-animations.less";
-@import "bootstrap/close.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/sprites.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/dropdowns.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/wells.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/component-animations.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/close.less";
 
 // Components: Buttons & Alerts
-@import "bootstrap/buttons.less";
-@import "bootstrap/button-groups.less";
-@import "bootstrap/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/buttons.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/button-groups.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-@import "bootstrap/navs.less";
-@import "bootstrap/navbar.less";
-@import "bootstrap/breadcrumbs.less";
-@import "bootstrap/pagination.less";
-@import "bootstrap/pager.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/navs.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/navbar.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/breadcrumbs.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/pagination.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/pager.less";
 
 // Components: Popovers
-@import "bootstrap/modals.less";
-@import "bootstrap/tooltip.less";
-@import "bootstrap/popovers.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/modals.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/tooltip.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/popovers.less";
 
 // Components: Misc
-@import "bootstrap/thumbnails.less";
-@import "bootstrap/labels-badges.less";
-@import "bootstrap/progress-bars.less";
-@import "bootstrap/accordion.less";
-@import "bootstrap/carousel.less";
-@import "bootstrap/hero-unit.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/thumbnails.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/labels-badges.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/progress-bars.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/accordion.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/carousel.less";
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/hero-unit.less";
 
 // Utility classes
-@import "bootstrap/utilities.less"; // Has to be last to override when necessary
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/utilities.less"; // Has to be last to override when necessary
+
+// Responsive.less
+// For phone and tablet devices
+// -------------------------------------------------------------
+
+
+// RESPONSIVE CLASSES
+// ------------------
+
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/responsive-utilities.less";
+
+
+// MEDIA QUERIES
+// ------------------
+
+// Phones to portrait tablets and narrow desktops
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/responsive-767px-max.less";
+
+// Tablets to regular desktops
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/responsive-768px-979px.less";
+
+// Large desktops
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/responsive-1200px-min.less";
+
+
+// RESPONSIVE NAVBAR
+// ------------------
+
+// From 979px and below, show a button to toggle navbar contents
+@import "../../vendor/twitter/bootstrap/twitter/bootstrap/less/responsive-navbar.less";
 
 @import "bootstrap-datepicker.less";
 

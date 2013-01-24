@@ -76,7 +76,8 @@ class MySmarty extends Smarty {
           'root' => PATH_STANDARD,
           'css' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/css',
           'js' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/js',
-          'img' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/img');
+          'img' => $aSession['config']['page']['url'] . '/' . $aSession['config']['paths']['public'] . '/img',
+          'bootstrap' => $aSession['config']['page']['url'] . '/vendor/twitter/bootstrap/');
     $this->assign('path', $aPaths);
     $this->assign('path_json', json_encode($aPaths));
 

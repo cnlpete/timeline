@@ -1,24 +1,8 @@
-{ "repositories":
-    [ {
-        "type": "package",
-        "package": {
-          "name": "simonhamp/routes",
-          "version": "0.1",
-          "dist": {
-            "url": "https://github.com/simonhamp/routes/zipball/master",
-            "type": "zip"
-          },
-          "source": {
-            "url": "https://github.com/simonhamp/routes",
-            "type": "git",
-            "reference": "master"
-          }
-        }
-      }],
-
+{
   "require": {
     "smarty/smarty": "3.1.*",
     "symfony/yaml": "2.*",
-    "simonhamp/routes": ">=0.1"
+    "simonhamp/routes": "1.0",
+    "twitter/bootstrap": "v2.2.2"
   }
 }

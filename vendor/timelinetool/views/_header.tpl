@@ -9,10 +9,19 @@
 
     <!-- Le styles -->
     <link href="{$path.css}/bootstrap.css" rel="stylesheet" />
-    <link href="{$path.css}/bootstrap-responsive.css" rel="stylesheet" />
 
     <script src="{$path.js}/jquery.min.js"></script>
-    <script src="{$path.js}/bootstrap.min.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-button.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-typeahead.js"></script>
     <script src="{$path.js}/handlebars.js"></script>
     <script src="{$path.js}/handlebars.helper.js"></script>
     <script src="{$path.js}/sprintf.js"></script>
@@ -52,7 +61,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="{$meta.url}{if isset($hash)}/{$hash}{/if}">
+          <a class="brand" href="{$meta.url}{if isset($timeline.hash)}/{$timeline.hash}{/if}">
             {if isset($title)}{$title}{else}{$meta.title}{/if}</a>
           {if $user.authenticated}
             <div class="btn-group pull-right">
@@ -96,7 +105,7 @@
                 <a id="js-login-button" 
                     href="#login"
                     title="{$lang.navigation.login.alt}">
-                  <i class="icon-user icon-white"></i> {$lang.navigation.login.label}
+                  <i class="icon-user"></i> {$lang.navigation.login.label}
                 </a>
               </li>
             </ul>
@@ -111,7 +120,7 @@
                       {if isset($navitem.alt)}title="{$navitem.alt}"{/if}
                     >
                     {if isset($navitem.icon)}
-                      <i class="icon-{$navitem.icon} icon-white"></i>
+                      <i class="icon-{$navitem.icon}"></i>
                     {/if}
                     {if isset($navitem.label)}{$navitem.label}{/if}</a></li>
                   {if !isset($navitem.nodivider)}<li class="divider-vertical"></li>{/if}

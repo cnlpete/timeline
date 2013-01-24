@@ -25,7 +25,7 @@
         <th class="type-string" style="width: 30px;"></th>
         <th class="type-string">{$lang.admin.timeline.assets.title}</th>
         <th class="type-int">{$lang.admin.timeline.assets.date}</th>
-        <th width='120px'>
+        <th width='135px'>
           <a class="js-create btn" 
               href="#create"
               title="{$lang.admin.timeline.assets.create.alt}">

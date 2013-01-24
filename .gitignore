@@ -7,13 +7,7 @@ app/storage
 old
 
 composer.phar
-vendor/.composer
-vendor/composer
-vendor/autoload.php
-
-vendor/simonhamp
-vendor/smarty
-vendor/symfony
+vendor
 
 *~
 .sass-cache

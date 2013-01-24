@@ -68,6 +68,13 @@ class Timeline extends Main {
             $aNavList['about']   = array('icon' => 'question-sign', 
               'label' => I18n::get('navigation.about.label'), 
               'alt' => I18n::get('navigation.about.alt'));
+            // if there is a howto timeline, add a link to it
+            if ($this->_oModel->isValidHash('howto')) {
+              $aTimelinedata = (array)$this->_oModel->getTimelineForHash('howto');
+              $aNavList['howto'] = array('icon' => 'film', 
+                'label' => $aTimelinedata['title'],
+                'url' => $this->_aSession['config']['page']['url'] . '/howto.html');
+            }
             $oSmarty->assign('navlist', $aNavList);
 
             return $oSmarty->fetch('index.tpl');

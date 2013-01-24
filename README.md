@@ -4,7 +4,8 @@ Timelinetool
 
 Demo:
 ---------------------------------
-There is no live demo yet.
+There is a demo at http://timeline.cnlpete.de/.
+You can sue 'demo' as a username and leave the password blank.
 
 
 Requirements

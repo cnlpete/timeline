@@ -3,11 +3,13 @@ app/config/config.yml
 app/cache
 app/compile
 app/storage
+!app/storage/timeline/howto*
 
 old
-
 composer.phar
+
 vendor
+!vendor/timelinetool
 
 *~
 .sass-cache

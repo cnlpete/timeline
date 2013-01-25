@@ -18,7 +18,7 @@
 .wysiwyg-color-blue{color:blue;}
 .wysiwyg-color-teal{color:teal;}
 .wysiwyg-color-aqua{color:aqua;}
-ul.sortable li{line-height:20px;list-style:decimal outside none;}
+ul.sortable{cursor:move;}ul.sortable li{line-height:20px;list-style:decimal outside none;}
 ul.sortable .ui-sortable-placeholder{line-height:20px;background:#f5f5f5;}
 ul.sortable .ui-sortable-helper{line-height:20px;list-style:none;}
 input.js-yearpicker,input.js-monthpicker{cursor:pointer;}

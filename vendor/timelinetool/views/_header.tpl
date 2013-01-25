@@ -53,7 +53,7 @@
 {include file='_asset.modal.tpl'}
 {include file='_login.form.template.tpl'}
 
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -75,21 +75,22 @@
                         title="{$lang.admin.timeline.update.alt}">
                     <i class="icon-wrench"></i> {$lang.admin.timeline.update.label}
                   </a></li>
+                  <li class="divider"></li>
                 {/if}
-                {if $user.has_admin_right || $user.editable_timelines}
+                {if $user.has_admin_right || count($user.editable_timelines) > 5}
                   <li><a href="{$meta.url}/admin.html"
                         title="{$lang.navigation.admin.alt}">
                     <i class="icon-th"></i> {$lang.navigation.admin.label}
                   </a></li>
+                  <li class="divider"></li>
                 {/if}
-                {if !$user.has_admin_right && $user.editable_timelines}
-                  <li class="divider-horizontal"></li>
+                {if !$user.has_admin_right && count($user.editable_timelines) <= 5}
                   {foreach $user.editable_timelines as $user_timeline}
                     <li><a href="{$meta.url}/admin/{$user_timeline.hash}.html">
                       <i class="icon-film"></i> {$user_timeline.title}</a></li>
                   {/foreach}
+                  <li class="divider"></li>
                 {/if}
-                <li class="divider-horizontal"></li>
                 <li>
                   <a id="js-logout-button" 
                       href="#logout"
@@ -105,7 +106,7 @@
                 <a id="js-login-button" 
                     href="#login"
                     title="{$lang.navigation.login.alt}">
-                  <i class="icon-user"></i> {$lang.navigation.login.label}
+                  <i class="icon-user icon-white"></i> {$lang.navigation.login.label}
                 </a>
               </li>
             </ul>
@@ -120,7 +121,7 @@
                       {if isset($navitem.alt)}title="{$navitem.alt}"{/if}
                     >
                     {if isset($navitem.icon)}
-                      <i class="icon-{$navitem.icon}"></i>
+                      <i class="icon-{$navitem.icon} icon-white"></i>
                     {/if}
                     {if isset($navitem.label)}{$navitem.label}{/if}</a></li>
                   {if !isset($navitem.nodivider)}<li class="divider-vertical"></li>{/if}

@@ -21,6 +21,7 @@
 ul.sortable li{line-height:20px;list-style:decimal outside none;}
 ul.sortable .ui-sortable-placeholder{line-height:20px;background:#f5f5f5;}
 ul.sortable .ui-sortable-helper{line-height:20px;list-style:none;}
+input.js-yearpicker,input.js-monthpicker{cursor:pointer;}
 .wysiwyg-font-size-smaller{font-size:smaller;}
 .wysiwyg-font-size-larger{font-size:larger;}
 .wysiwyg-font-size-xx-large{font-size:xx-large;}

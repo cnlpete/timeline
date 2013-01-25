@@ -68,12 +68,12 @@ class Session {
     }
   }
 
-  protected function _parseDummyData($sUsername) {
+  protected function _parseDummyData($sUsername, $bAuthenticated = true) {
     $this->_aData = array(
       'username' => strtolower((string)$sUsername),
       'firstname' => (string)$sUsername,
       'lastname' => (string)'',
-      'authenticated' => (int)true,
+      'authenticated' => (int)$bAuthenticated,
       'isAdmin' => false,
       'editableTimelines' => array());
 
@@ -118,6 +118,7 @@ class Session {
     unset($this->_aData);
     if (isset($this->_aCookie['loginname']) && !empty($this->_aCookie['loginname']))
       setcookie('loginname', '', time()); // invalidate the cookie by setting it to '' and invalidating the time
+    $this->_parseDummyData('', false); // reset the base user
     return true;
   }
 
@@ -150,6 +151,8 @@ class Session {
       //FIXME this is unsecure
       $this->_aData['authenticated'] = true;
     }
+    else
+      $this->_parseDummyData('', false); // load defaults
     if ($aSession != null)
       $aSession['session'] = & $this->_aData;
   }
@@ -163,6 +166,8 @@ class Session {
   }
 
   public function canEditTimeline($sHash) {
+    if ($sHash, $this->_aData['editableTimelines'] == null)
+      return false;
     return $this->isAdmin() || in_array($sHash, $this->_aData['editableTimelines']);
   }
 

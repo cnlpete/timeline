@@ -70,7 +70,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                {if isset($timeline.hash)}
+                {if isset($timeline.hash) && $canEditCurrentTimeline}
                   <li><a href="{$meta.url}/admin/{$timeline.hash}.html"
                         title="{$lang.admin.timeline.update.alt}">
                     <i class="icon-wrench"></i> {$lang.admin.timeline.update.label}

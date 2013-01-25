@@ -5,6 +5,7 @@ namespace Timelinetool\Controllers;
 use \Timelinetool\Helpers\Helper;
 use \Timelinetool\Helpers\I18n;
 use \Timelinetool\Helpers\MySmarty;
+use \Timelinetool\Helpers\Session;
 
 class Timeline extends Main {
 
@@ -42,6 +43,8 @@ class Timeline extends Main {
               $oSmarty->assign('timeline', $aTimelinedata);
               $oSmarty->assign('assets', $aAssetData['data']);
               $oSmarty->assign('colorclasses', $aColorclasses);
+
+              $oSmarty->assign('canEditCurrentTimeline', Session::getUserSession()->canEditTimeline($sHash));
 
               // set the title
               if ($aTimelinedata['title'])

@@ -221,6 +221,8 @@ class Admin extends Main {
     if ($aTimelinedata['title'])
       $oSmarty->assign('title', $aTimelinedata['title']);
 
+    $oSmarty->assign('canEditCurrentTimeline', SessionHelper::getUserSession()->canEditTimeline($sHash));
+
     // maybe set the user specified language?
     if (isset($aTimelinedata['language']) && !empty($aTimelinedata['language']))
       I18n::load($aTimelinedata['language']);

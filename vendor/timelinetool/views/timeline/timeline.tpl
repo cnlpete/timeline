@@ -55,7 +55,7 @@
                           <span class="date">{$year}</span>
                           <div class="{$asset.texttype}">
                             {if $asset.texttype == 'image'}
-                              <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" /></div>
+                              <div class="big-img"><img src="{$asset.image}" alt="{$asset.title}" class="img-polaroid" /></div>
                               <p class="img-text">{$asset.text}</p>
                             {elseif $asset.texttype == 'video'}
                               <div class="js-url2video" title="{$asset.image}">

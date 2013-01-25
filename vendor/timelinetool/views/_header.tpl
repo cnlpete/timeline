@@ -11,16 +11,15 @@
     <link href="{$path.css}/bootstrap.css" rel="stylesheet" />
 
     <script src="{$path.js}/jquery.min.js"></script>
+    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-transition.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-alert.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-button.js"></script>
-    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-carousel.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-collapse.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-dropdown.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-modal.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-tooltip.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-popover.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-scrollspy.js"></script>
-    <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-tab.js"></script>
     <script src="{$path.bootstrap}/twitter/bootstrap/js/bootstrap-typeahead.js"></script>
     <script src="{$path.js}/handlebars.js"></script>
     <script src="{$path.js}/handlebars.helper.js"></script>

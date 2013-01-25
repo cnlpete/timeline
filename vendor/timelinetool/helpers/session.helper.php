@@ -37,7 +37,8 @@ class Session {
       'firstname' => (string)$oData->firstName,
       'lastname' => (string)$oData->lastName,
       'authenticated' => (int)$oData->authenticated == 1,
-      'editableTimelines' => array());
+      'editableTimelines' => array(),
+      'isAdmin' => false); // needs to be set for strict mode
 
     // admin permission?
     $sStoragePath = $this->_aSession['config']['paths']['storage'];

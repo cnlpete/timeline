@@ -85,8 +85,8 @@
                 {if !$user.has_admin_right && $user.editable_timelines}
                   <li class="divider-horizontal"></li>
                   {foreach $user.editable_timelines as $user_timeline}
-                    <li><a href="{$meta.url}/admin/{$user_timeline}.html">
-                      <i class="icon-th-large"></i> {$user_timeline}</a></li>
+                    <li><a href="{$meta.url}/admin/{$user_timeline.hash}.html">
+                      <i class="icon-film"></i> {$user_timeline.title}</a></li>
                   {/foreach}
                 {/if}
                 <li class="divider-horizontal"></li>

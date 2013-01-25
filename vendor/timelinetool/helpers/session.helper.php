@@ -11,6 +11,8 @@
 
 namespace Timelinetool\Helpers;
 
+use Timelinetool\Controllers\Main;
+
 class Session {
 
   /**
@@ -164,8 +166,15 @@ class Session {
   }
 
   public function getEditableTimelineHashes() {
-    if (isset($this->_aData['editableTimelines']))
-      return $this->_aData['editableTimelines'];
+    if (isset($this->_aData['editableTimelines'])) {
+      $oTimelineModel = Main::loadModel('timeline');
+      $aData = array();
+      foreach ($this->_aData['editableTimelines'] as $sHash) {
+        if ($oTimelineModel->isValidHash($sHash))
+          $aData[$sHash] = $oTimelineModel->getTimelineForHash($sHash);
+      }
+      return $aData;
+    }
     else
       return array();
   }

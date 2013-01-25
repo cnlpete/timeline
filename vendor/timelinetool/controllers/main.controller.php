@@ -36,7 +36,19 @@ class Main {
     //overwrite to customize
   }
 
-  protected function _loadModel($sModel) {
+  public static function loadModel($sModel) {
+    if (file_exists(PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php')) {
+      require_once PATH_STANDARD . '/vendor/timelinetool/models/main.model.php';
+      require_once PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php';
+
+      $sClass = '\Timelinetool\Models\\' . ucfirst($sModel);
+      return new $sClass($_SESSION);
+    }
+    else
+      return null;
+  }
+
+  public function _loadModel($sModel) {
     if (file_exists(PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php')) {
       require_once PATH_STANDARD . '/vendor/timelinetool/models/main.model.php';
       require_once PATH_STANDARD . '/vendor/timelinetool/models/' . $sModel . '.model.php';

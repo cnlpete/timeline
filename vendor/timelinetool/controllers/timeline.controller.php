@@ -18,6 +18,8 @@ class Timeline extends Main {
           $oSmarty->addTplDir($this->_sController);
           //TODO cache
 
+          $aNavList = array();
+
           if (isset($this->_aRequest['hash'])) {
             $sHash = trim($this->_aRequest['hash']);
 
@@ -46,6 +48,10 @@ class Timeline extends Main {
 
               $oSmarty->assign('canEditCurrentTimeline', Session::getUserSession()->canEditTimeline($sHash));
 
+              $aNavList['fullscreen'] = array('icon' => 'fullscreen',
+                'alt' => I18n::get('navigation.fullscreen.alt'));
+              $oSmarty->assign('navlist', $aNavList);
+
               // set the title
               if ($aTimelinedata['title'])
                 $oSmarty->assign('title', $aTimelinedata['title']);
@@ -64,7 +70,6 @@ class Timeline extends Main {
             // show some index instead
 
             // assign nav-links
-            $aNavList = array();
             $aNavList['home'] = array('icon' => 'home', 
               'label' => I18n::get('navigation.home.label'),
               'alt' => I18n::get('navigation.home.alt'));

@@ -11,6 +11,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{$path.js}/core.js"></script>
     <script type="text/javascript">
+      if (supportsFullscreen())
+        $('#nav-fullscreen').click(function(e) {
+          e.preventDefault();
+          toggleFullscreen();
+        });
+      else
+        $('#nav-fullscreen').hide();
+
       var login_form_template = Handlebars.compile($("#login-form-template").html());
 
       // the assets update buttons

@@ -34,6 +34,8 @@ navigation:
   logout: 
     label: Logout
     alt: Logout
+  fullscreen:
+    alt: Show Fullscreen
 
 timeline:
   sources: 'Sources:'

@@ -22,9 +22,18 @@
   <table id='eventlist' class="table table-bordered">
     <thead>
       <tr>
-        <th class="type-string" style="width: 30px;"></th>
-        <th class="type-string">{$lang.admin.timeline.assets.title}</th>
-        <th class="type-int">{$lang.admin.timeline.assets.date}</th>
+        <th class="type-string" style="width: 30px;">
+          &nbsp;
+          <i class="icon-resize-vertical" />
+        </th>
+        <th class="type-string">
+          {$lang.admin.timeline.assets.title}
+          <i class="icon-resize-vertical" />
+        </th>
+        <th class="type-int">
+          {$lang.admin.timeline.assets.date}
+          <i class="icon-resize-vertical" />
+        </th>
         <th width='135px'>
           <a class="js-create btn" 
               href="#create"

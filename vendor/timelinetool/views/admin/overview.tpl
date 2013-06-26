@@ -9,9 +9,15 @@
   <table id='eventlist' class="table table-bordered">
     <thead>
       <tr>
-        <th class="type-string">{$lang.admin.timeline.title}</th>
+        <th class="type-string">
+          {$lang.admin.timeline.title}
+          <i class="icon-resize-vertical" />
+        </th>
         <th>{$lang.admin.timeline.description}</th>
-        <th class="type-string">{$lang.admin.timeline.date}</th>
+        <th class="type-string">
+          {$lang.admin.timeline.date}
+          <i class="icon-resize-vertical" />
+        </th>
         <th width='180px'>
           {if $user.has_admin_right}
             <a class="js-create btn" 

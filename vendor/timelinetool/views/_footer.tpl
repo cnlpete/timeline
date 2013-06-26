@@ -11,30 +11,31 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{$path.js}/core.js"></script>
     <script type="text/javascript">
-      var login_form_template = Handlebars.compile($("#login-form-template").html());
-
-      // the assets update buttons
+      // the login button
       $('#js-login-button').click(function() {
-        $('#myModal .modal-body').html(login_form_template());
-        $('#myModal .modal-header h3').html('{$meta.title|string_format:$lang.navigation.login.label}');
-        $('#myModal #form-save').click(function() {
+        $('#myLoginModal form').on('submit', function() {
+          // disable the form and show a loading thingie
+          /* $('#myLoginModal form').disable(); */
           // get the data
-          var data = {};
-          $.each($('#myModal .modal-body form').serializeArray(), function(index, item){
+          var data = { };
+          $.each($('#myLoginModal form').serializeArray(), function(index, item){
               data[item.name] = item.value;
-          });
+          } );
+          if (!data.password)
+            data.password = '';
           // send to server
           login(data, function() {
-            $('#myModal').modal('hide');
+            $('#myLoginModal').modal('hide');
             window.location.reload();
           }, function() {
             /* TODO some error message */
-            $('#myModal').modal('hide');
-          });
+            $('#myLoginModal').modal('hide');
+          } );
         });
-        $('#myModal').modal( { 'backdrop':'static' } );
-      });
-      // the assets update buttons
+        $('#myLoginModal').modal( { 'backdrop':'static' } );
+      } );
+
+      // the logout button
       $('#js-logout-button').click(function() {
         // send to server
         logout(function() {

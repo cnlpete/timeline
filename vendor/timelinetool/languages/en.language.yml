@@ -59,6 +59,7 @@ admin:
     asset_not_destroyed: 'Could not delete the Entry "%s".'
     asset_not_updated: 'Something went wrong during saving of "%s".'
     missing_rights: You do not have the Permission to proceed.
+    remove_self_rights: You can not remove your own permissions.
   timeline:
     create:
       header: 'Create Timeline'

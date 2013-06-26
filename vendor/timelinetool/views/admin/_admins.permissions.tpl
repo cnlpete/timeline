@@ -87,6 +87,7 @@
     
     if ('{$user.username}' == username) {
       destroyButton.hide();
+      alert('{$lang.admin.error.remove_self_rights}');
     }
     else {
       if (confirm(sprintf("{$lang.admin.timeline.permissions.admins.destroy.prompt}", username))) {

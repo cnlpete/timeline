@@ -59,6 +59,7 @@ admin:
     asset_not_destroyed: 'Beim löschen des Eintrags "%s" ist etwas schief gegangen.'
     asset_not_updated: 'Beim speichern des Eintrags "%s" ist etwas schief gegangen.'
     missing_rights: Dir fehlen die erforderlichen Rechte um diese Seite aufrufen zu können.
+    remove_self_rights: Du kannst dir nicht selber die Rechte entziehen.
   timeline:
     create:
       header: 'Timeline erstellen'

@@ -84,6 +84,8 @@ class MySmarty extends Smarty {
     $this->assign('meta', $aSession['config']['page']);
     $this->assign('meta_json', json_encode($aSession['config']['page']));
 
+    $this->assign('use_permission', $aSession['config']['permissions']['use_permissions']);
+
     $oUser = Session::getUserSession();
     $aUser = array(
       'authenticated' => $oUser->isLoggedIn(),

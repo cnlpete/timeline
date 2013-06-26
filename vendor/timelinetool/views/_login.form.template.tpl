@@ -8,15 +8,17 @@
           <input type="text" class="input-xlarge" name="user" id="form-user" value="">
         </div>
       </div>
-    </fieldset>
-    <fieldset>
-      <div class="control-group">
-        <label class="control-label" for="form-password">{/literal}{$lang.login_form.password}{literal}</label>
-        <div class="controls">
-          <input type="password" class="input-xlarge" name="password" id="form-password" value="">
-        </div>
-      </div>
-    </fieldset>
+      </fieldset>
+      {if $use_permission}
+        <fieldset>
+          <div class="control-group">
+            <label class="control-label" for="form-password">{$lang.login_form.password}</label>
+            <div class="controls">
+              <input type="password" class="input-xlarge" name="password" id="form-password" value="">
+            </div>
+          </div>
+        </fieldset>
+      {/if}
   </form>
 {/literal}
 </script>

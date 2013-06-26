@@ -50,3 +50,37 @@ logout = function(success, error) {
     }
   });
 }
+
+supportsFullscreen = function() {
+  var element = document.documentElement;
+  return document.fullScreenEnabled || document.mozFullScreenEnabled || document.webkitFullScreenEnabled;
+}
+
+cancelFullscreen = function() {
+  if(document.cancelFullScreen) {
+    document.cancelFullScreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitCancelFullScreen) {
+    document.webkitCancelFullScreen();
+  }
+}
+
+launchFullScreen = function() {
+  var element = document.documentElement;
+  if(element.requestFullScreen) {
+    element.requestFullScreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+
+toggleFullscreen = function() {
+  var fullscreenEnabled = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+  if (fullscreenEnabled)
+    cancelFullscreen();
+  else
+    launchFullScreen();
+}

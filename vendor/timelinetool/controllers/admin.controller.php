@@ -249,7 +249,7 @@ class Admin extends Main {
   }
 
   protected function destroyTimeline($sTimelineHash) {
-    if (!(Session::getUserSession()->canEditTimeline($sHash)))
+    if (!(Session::getUserSession()->canEditTimeline($sTimelineHash)))
       if ($this->_aRequest['format'] == 'html')
         Helper::errorMessage(I18n::get('admin.error.missing_rights'), '/');
       else

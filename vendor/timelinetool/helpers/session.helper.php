@@ -25,11 +25,10 @@ class Session {
 
   /**
    *
-   * @var static
    * @access private
    *
    */
-  private $_aData = null;
+  private $_aData = array();
 
   public static function getUserSession(&$aSession = null, &$aCookie = null) {
     if (self::$_oInstance === null) {
@@ -159,7 +158,7 @@ class Session {
       //FIXME this is unsecure
       $this->_aData['authenticated'] = true;
     }
-    if ($this->_aData == null || count($this->_aData) > 6)
+    if ($this->_aData == null || count($this->_aData) < 6)
       $this->_parseDummyData('', false); // load defaults
     if ($aSession != null)
       $aSession['session'] = & $this->_aData;

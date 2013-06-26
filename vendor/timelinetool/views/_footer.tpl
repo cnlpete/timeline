@@ -11,6 +11,14 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{$path.js}/core.js"></script>
     <script type="text/javascript">
+      if (supportsFullscreen())
+        $('#nav-fullscreen').click(function(e) {
+          e.preventDefault();
+          toggleFullscreen();
+        });
+      else
+        $('#nav-fullscreen').hide();
+
       // the login button
       $('#js-login-button').click(function() {
         $('#myLoginModal form').on('submit', function() {

@@ -167,10 +167,16 @@
 
     /* scroll to event, if starthash is given */
     if(window.location.hash) {
-      var event = $('#asset-' + window.location.hash.substr(1));
+      var hash = window.location.hash.substr(1);
+      var event = $('#asset-' + hash);
       if (event.length) {
-        history.pushState({ 'hash' : event.data('hash'), 'stateuid' : 0 }, null, 
-              window.location.href);
+        if (history.pushState)
+          history.pushState({ 
+                'hash' : hash,
+                'stateuid' : persistandStateUID++
+            }, 
+            event.find('.title span').last(), 
+            window.location.protocol + '//' + window.location.hostname + window.location.pathname + '#' + hash);
 
         Event.scrollTo(event);
         if (!Event.isSticky(event)) {

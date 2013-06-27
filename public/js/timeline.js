@@ -124,8 +124,9 @@ Event = {
       $('#minimap-' + $this.data('hash')).addClass('hoveredAsset');
 
       //create new max of zIndices, so element will hover on top...
-      zIndices.push(zIndices.last()+1);
-      $this.css("zIndex", zIndices.last().toString());
+      var newZ = zIndices.last()+1;
+      zIndices.push(newZ);
+      $this.css("zIndex", newZ.toString());
 
       xE = title.offset().top + details.outerHeight();
       xB = scroller.height() + scroller.offset().top;
@@ -214,9 +215,21 @@ Event = {
         var hash = $(this).attr('href').substr(9);
         var event = $('#asset-' + hash);
         if (event.length) {
-          history.pushState({ 'hash' : asset.data('hash'), 'stateuid' : persistandStateUID }, null, 
+          if (history.pushState)
+            if (!history.state || history.state.hash != asset.data('hash'))
+              history.pushState({ 
+                    'hash' : asset.data('hash'),
+                    'stateuid' : persistandStateUID++
+                }, 
+                asset.find('.title span').last(), 
+                window.location.protocol + '//' + window.location.hostname + window.location.pathname + '#' + asset.data('hash'));
+          if (history.pushState)
+            history.pushState({ 
+                  'hash' : hash,
+                  'stateuid' : persistandStateUID++
+              }, 
+              event.find('.title span').last(), 
               window.location.protocol + '//' + window.location.hostname + window.location.pathname + '#' + hash);
-          persistandStateUID += 1;
           Event.scrollTo(event);
           if (!Event.isSticky(event)) {
             Event.hoverInFunction(event, event, 0);
@@ -250,7 +263,6 @@ Event = {
 
 window.addEventListener("popstate", function(e) {
   var t = '';
-  console.log(e.state.stateuid + ' < ' + persistandStateUID + ' ?');
   if (e.state.stateuid < persistandStateUID || e.state.stateuid == undefined) {
     t = e.state.hash;
   }

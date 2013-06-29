@@ -263,13 +263,16 @@ Event = {
 
 window.addEventListener("popstate", function(e) {
   var t = '';
-  if (e.state.stateuid < persistandStateUID || e.state.stateuid == undefined) {
-    t = e.state.hash;
+  if (e.state == undefined || e.state.stateuid >= persistandStateUID) {
+    t = window.location.hash.substr(1);
+    if (t == undefined)
+      return;
   }
   else {
-    t = window.location.hash.substr(1);
+    t = e.state.hash;
+    persistandStateUID = e.state.stateuid;
   }
-  persistandStateUID = e.state.stateuid;
+  persistandStateUID = e.state ? e.state.stateuid : 0;
 
   var event = $('#asset-' + t);
   if (event.length) {

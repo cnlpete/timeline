@@ -69,7 +69,7 @@ setWrapperHeight = function() {
   var wrapper = $('#wrapper');
   var full_height = $(window).height();
   var height = full_height - 10
-      - parseInt(wrapper.css('top')) 
+      - wrapper.offset().top
       - $('#options').outerHeight(true);
   $('#scroller').css('height', (height - 15) + 'px');
   $('#wrapper').css('height', (height) + 'px');

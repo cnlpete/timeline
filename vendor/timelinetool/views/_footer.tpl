@@ -21,7 +21,8 @@
 
       // the login button
       $('#js-login-button').click(function() {
-        $('#myLoginModal form').on('submit', function() {
+        $('#myLoginModal form').on('submit', function(event) {
+          event.preventDefault();
           // disable the form and show a loading thingie
           /* $('#myLoginModal form').disable(); */
           // get the data

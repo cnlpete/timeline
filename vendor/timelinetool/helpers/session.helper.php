@@ -173,7 +173,7 @@ class Session {
   }
 
   public function canEditTimeline($sHash) {
-    if ($this->_aData['editableTimelines'] == null)
+    if ($this->_aData['editableTimelines'] === null)
       return false;
     return $this->isAdmin() || in_array($sHash, $this->_aData['editableTimelines']);
   }

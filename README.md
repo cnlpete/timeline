@@ -5,7 +5,7 @@ Timelinetool
 Demo:
 ---------------------------------
 There is a demo at http://timeline.cnlpete.de/.
-You can sue 'demo' as a username and leave the password blank.
+You can use 'demo' as a username and leave the password blank.
 
 
 Requirements
@@ -48,4 +48,4 @@ To upgrade, simply use the Composer (`./composer.phar update`):
 
 License
 ---------------------------------
-CandyCMS is licensed under [GPLv3](http://www.gnu.org/licenses/gpl.html).
+The Timelinetool is licensed under [GPLv3](http://www.gnu.org/licenses/gpl.html).
